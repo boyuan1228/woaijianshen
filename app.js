@@ -1,3 +1,6841 @@
+window.PROGRAM_DATA = {
+  "title": "RHTS SSTT Training Plan",
+  "source": "C:\\Users\\allen\\Desktop\\RHTS SSTT-1.xlsx",
+  "split": "D1 - REST - D2 - REST - D3 - D4 - REST",
+  "weeks": [
+    {
+      "number": 1,
+      "label": "Week 1",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB LATERAL RAISES",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 HIGHLIGHTED MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "TRICEP PUSHDOWNS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "5.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "label": "Week 2",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB LATERAL RAISES",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "TRICEP PUSHDOWNS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "label": "Week 3",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB LATERAL RAISES",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "TRICEP PUSHDOWNS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "label": "Week 4",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "9",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB LATERAL RAISES",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "TRICEP PUSHDOWNS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5 - 9",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "label": "Week 5 / Deload",
+      "phase": "deload",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "INCLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB LATERAL RAISES",
+              "sets": "2",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "TRICEP PUSHDOWNS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "2",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "3",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "3",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "2",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "2",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "2",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "5.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "2",
+              "reps": "12-15",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "label": "Week 6",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "5-7",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "label": "Week 7",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "5-7",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "label": "Week 8",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "5-7",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "label": "Week 9",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "9",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "5-7",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "4",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 8-10% FOR THE LAST SET.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "8-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "label": "Week 10 / Deload - 2",
+      "phase": "deload",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "2",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DECLINE DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "5-7",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "2",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "3",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "3",
+              "reps": "7",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "2",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "3",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "2",
+              "reps": "8-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "2",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "2",
+              "reps": "10-12",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "2",
+              "reps": "9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "label": "Week 11",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "3",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "4-6",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "4",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "4-5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "4",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "4-5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "6-7",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "label": "Week 12",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "3",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "4-6",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "4",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "???",
+              "reps": "",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "??",
+              "reps": "",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "label": "Week 13",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "3",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "4-6",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "5,6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "7.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "4",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "6",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CHEST SUPPORTED ROWS",
+              "sets": "NEUTRAL GRIP PULL-DOWNS",
+              "reps": "MACHINE LATERAL RAISES",
+              "weight": "DB HAMMER CURLS",
+              "volume": "TRICEP PUSHDOWNS",
+              "rpe": "CLOSE GRIP BENCH PRESS",
+              "tempo": "LEG PRESS",
+              "notes": "SEATED HAMSTRING CURLS",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE ROWS",
+              "sets": "CHIN-UPS",
+              "reps": "DB LATERAL RAISES",
+              "weight": "TWO ARM DB CURLS",
+              "volume": "SKULL CRUSHERS",
+              "rpe": "LARSEN PRESS",
+              "tempo": "HACK SQUAT",
+              "notes": "BANDED HAMSTRING CURLS",
+              "kind": "accessory"
+            },
+            {
+              "name": "BARBELL ROWS",
+              "sets": "WIDE GRIP PULLDOWNS",
+              "reps": "CABLE Y RAISE",
+              "weight": "BARBELL CURLS",
+              "volume": "DB TRICEP KICK BACKS",
+              "rpe": "FEET UP BENCH PRESS",
+              "tempo": "BELT SQUAT",
+              "notes": "NORDIC CURLS",
+              "kind": "accessory"
+            },
+            {
+              "name": "PRONE ROWS",
+              "sets": "REVERSE GRIP PULL-DOWNS",
+              "reps": "CABLE LATERAL RAISES",
+              "weight": "CABLE CURLS",
+              "volume": "TRICEP OVERHEAD EXTENSIONS",
+              "rpe": "CLOSE GRIP LARSEN PRESS",
+              "tempo": "PENDULUM SQUAT",
+              "notes": "SINGLE LEG HAMSTRING CURLS",
+              "kind": "accessory"
+            },
+            {
+              "name": "SINGLE ARM DB ROWS",
+              "sets": "PULL-UPS",
+              "reps": "INCLINE CHEST SUPPORTED LATERAL RAISE",
+              "weight": "PREACHER CURLS",
+              "volume": "SINGLE ARM PUSHDOWNS",
+              "rpe": "CLOSE GRIP FEET UP BENCH PRESS",
+              "tempo": "GOBLET SQUATS",
+              "notes": "LYING HAMSTRING CURLS",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "SINGLE ARM PULL-DOWNS",
+              "reps": "",
+              "weight": "INCLINE DB CURLS",
+              "volume": "DIPS",
+              "rpe": "",
+              "tempo": "V SQUAT",
+              "notes": "HAMSTRING SLIDERS",
+              "kind": "accessory"
+            },
+            {
+              "name": "PENDLEY ROWS",
+              "sets": "WIDE GRIP PULL-UPS",
+              "reps": "",
+              "weight": "REVERSE CURLS",
+              "volume": "CROSS BODY CABLE TRICEP EXT.",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "label": "Week 14",
+      "phase": "build",
+      "days": [
+        {
+          "day": "Day 1",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "9",
+              "tempo": "",
+              "notes": "PLEASE CHECK THE FAQ PAGE. IT EXPLAINS THE BACKDOWN SETS.",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "3",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "1",
+              "reps": "AMRAP",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "1",
+              "reps": "4-6",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEAL ROWS",
+              "sets": "3",
+              "reps": "8-10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "MACHINE LATERAL RAISES",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "EZ BAR CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "SUPERSET ALL 3 MOVEMENTS.",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 2",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5-9",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "4",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "6,7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS & DROP 10% FOR THE LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "DEADLIFT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadliftVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "1",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "BELT SQUAT",
+              "sets": "2",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "NORDIC CURLS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SEATED CALVE RAISES",
+              "sets": "4",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 3",
+          "items": [
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS VARIANT",
+              "sets": "2",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "7,8",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "DB ANTERIOR DELT PRESS",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "3",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REAR DELT FLYS",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Day 4",
+          "items": [
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "8.5 - 9",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "8",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "4",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "1",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "7",
+              "tempo": "",
+              "notes": "",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "SQUAT VARIANT",
+              "sets": "2",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squatVariant"
+            },
+            {
+              "name": "HATSFIELD SPLIT SQUAT",
+              "sets": "3",
+              "reps": "10",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "REVERSE HYPER-EXTENSIONS",
+              "sets": "3",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "LEG PRESS CALVE RAISES",
+              "sets": "4",
+              "reps": "6-8",
+              "weight": "",
+              "volume": "",
+              "rpe": "7-8",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "DB HAMMER CURLS",
+              "sets": "REAR DELT FLYS",
+              "reps": "HATSFIELD SPLIT SQUAT",
+              "weight": "GHD BACK EXTENSIONS",
+              "volume": "SEATED CALVE RAISES",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "TWO ARM DB CURLS",
+              "sets": "REVERSE FLYS",
+              "reps": "QUAD FOCUSED SPLIT SQUAT VARIATION",
+              "weight": "GOOD MORNINGS",
+              "volume": "STANDING CALVE RAISES",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "BARBELL CURLS",
+              "sets": "CABLE REAR DELT FLYS",
+              "reps": "",
+              "weight": "DB RDLS",
+              "volume": "LEG PRESS CALVE RAISES",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "CABLE CURLS",
+              "sets": "FACE PULLS",
+              "reps": "",
+              "weight": "45 DEGREE BACK EXTENSIONS",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "PREACHER CURLS",
+              "sets": "INCLINE SHOULDER Ys",
+              "reps": "",
+              "weight": "REVERSE HYPER-EXTENSIONS",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "label": "Week 15 / Test",
+      "phase": "test",
+      "days": [
+        {
+          "day": "Sunday",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "6.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "0",
+              "reps": "4",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "bench"
+            },
+            {
+              "name": "FLAT DB PRESS",
+              "sets": "2",
+              "reps": "8",
+              "weight": "",
+              "volume": "",
+              "rpe": "5-6",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "NEUTRAL GRIP PULL-DOWNS",
+              "sets": "2",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "5-6",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "SKULL CRUSHERS",
+              "sets": "1",
+              "reps": "7-9",
+              "weight": "",
+              "volume": "",
+              "rpe": "5-6",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            },
+            {
+              "name": "GHD CRUNCHES",
+              "sets": "3",
+              "reps": "15-20",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "5-6",
+              "tempo": "",
+              "notes": "ASCENDING SETS.",
+              "kind": "squat"
+            },
+            {
+              "name": "SQUAT",
+              "sets": "2",
+              "reps": "3",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "squat"
+            },
+            {
+              "name": "CLOSE GRIP BENCH PRESS",
+              "sets": "3",
+              "reps": "6",
+              "weight": "",
+              "volume": "",
+              "rpe": "4,5,6",
+              "tempo": "",
+              "notes": "ASCENDING SETS. 7.5 TO 10% DROP FOR YOUR LAST SET.",
+              "kind": "benchVariant"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "5.5",
+              "tempo": "",
+              "notes": "",
+              "kind": "deadlift"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "3",
+              "reps": "2",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "WEIGHT WILL BE AUTO GENERATED. JUST ENTER YOUR TOP SET WEIGHT.",
+              "kind": "deadlift"
+            },
+            {
+              "name": "WEIGHTED V-UPS",
+              "sets": "3",
+              "reps": "15+",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Wed",
+          "items": [
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "2",
+              "reps": "5",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "",
+              "kind": "bench"
+            },
+            {
+              "name": "GHD CORE ISO HOLD",
+              "sets": "3",
+              "reps": "30-60s",
+              "weight": "",
+              "volume": "",
+              "rpe": "",
+              "tempo": "",
+              "notes": "TUCK YOUR PELVIS AND SQUEEZE THE GLUTES.",
+              "kind": "accessory"
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "items": [
+            {
+              "name": "SQUAT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "9-10",
+              "tempo": "",
+              "notes": "PR SINGLE.",
+              "kind": "squat"
+            },
+            {
+              "name": "BENCH PRESS",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "9-10",
+              "tempo": "",
+              "notes": "PR SINGLE.",
+              "kind": "bench"
+            },
+            {
+              "name": "DEADLIFT",
+              "sets": "1",
+              "reps": "1",
+              "weight": "",
+              "volume": "",
+              "rpe": "9-10",
+              "tempo": "",
+              "notes": "PR SINGLE.",
+              "kind": "deadlift"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+
 const STORAGE_KEY = "rhts-sstt-app-state-v2";
 const LICENSE_STORAGE_KEY = "rhts-sstt-license-v1";
 const LICENSE_VERIFY_ENDPOINT = "";
