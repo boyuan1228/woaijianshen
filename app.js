@@ -7207,6 +7207,8 @@ function implicitMainVolumeRpe(item) {
 function estimatedLoadWithContext(item, index, items) {
   const testLoad = testWeekLoad(item, index, items);
   if (testLoad) return testLoad;
+  const expandedSummary = expandedSetEstimateSummary(item);
+  if (expandedSummary) return expandedSummary;
   const direct = estimatedLoad(item);
   if (direct) return direct;
   if (movementType(item) === "accessory" || !hasAutoWeightNote(item) || String(item.sets) === "0") return "";
@@ -7218,6 +7220,64 @@ function estimatedLoadWithContext(item, index, items) {
     if (previousLoad) return `${roundLoad(previousLoad * 0.9)} kg`;
   }
   return "";
+}
+
+function rpeSequence(item) {
+  return String(item.rpe || "")
+    .match(/\d+(?:\.\d+)?/g)
+    ?.map(Number) || [];
+}
+
+function loadForItemAtRpe(item, rpe) {
+  const type = movementType(item);
+  const maxKey = {
+    bench: "bench",
+    squat: "squat",
+    deadlift: "deadlift",
+    benchVariant: "benchVariantMax",
+    squatVariant: "squatVariantMax",
+    deadliftVariant: "deadliftVariantMax",
+  }[type];
+  const oneRm = Number(state.profile[maxKey] || 0);
+  const reps = numberFrom(item.reps);
+  const percent = rpePercent(reps, rpe);
+  if (!oneRm || !reps || !percent) return "";
+  return `${roundLoad(oneRm * percent)} kg`;
+}
+
+function expandedSetRows(item) {
+  const note = String(item.notes || "").toUpperCase();
+  if (!note.includes("ASCENDING SETS")) return [];
+  const rpes = rpeSequence(item);
+  if (rpes.length < 2) return [];
+  const totalSets = numberFrom(item.sets);
+  const reps = item.reps || "-";
+  const rows = rpes.map((rpe, index) => ({
+    label: `递增第 ${index + 1} 组`,
+    sets: 1,
+    reps,
+    rpe,
+    load: loadForItemAtRpe(item, rpe) || "-",
+  }));
+
+  const remaining = Math.max(0, totalSets - rows.length);
+  if (note.includes("DROP 10") && remaining > 0) {
+    const topLoad = numberFrom(rows[rows.length - 1]?.load);
+    rows.push({
+      label: `降重 ${remaining} 组`,
+      sets: remaining,
+      reps,
+      rpe: `≤${rpes[rpes.length - 1]}`,
+      load: topLoad ? `${roundLoad(topLoad * 0.9)} kg` : "降 10%",
+    });
+  }
+  return rows;
+}
+
+function expandedSetEstimateSummary(item) {
+  const rows = expandedSetRows(item);
+  if (!rows.length) return "";
+  return rows.map((row) => `${row.load}`).join(" / ");
 }
 
 function e1rmFromSet(load, reps, rpe) {
@@ -8146,6 +8206,21 @@ function renderExercises() {
           <td class="notes-cell"><textarea class="note-edit" data-note="${index}" rows="2">${editableNote || ""}</textarea></td>
         </tr>
       `];
+      const expandedRows = expandedSetRows(item).map((row) => `
+        <tr class="generated-backdown">
+          <td></td>
+          <td>
+            <div class="exercise-name">${displayName(item)} · ${row.label}</div>
+            <span class="kind auto">自动拆分</span>
+          </td>
+          <td>${row.sets}</td>
+          <td>${row.reps}</td>
+          <td>${row.rpe}</td>
+          <td class="estimate">${row.load}</td>
+          <td class="notes-cell"><textarea class="note-edit" data-note="${index}-a${row.label}" rows="2">${log.itemNotes[`${index}-a${row.label}`] || (row.label.includes("降重") ? "按顶组降 10%，当天疲劳偏高可再降 5-10%。" : "递增组按各自 RPE 估重，不是全部组都用最重一组。")}</textarea></td>
+        </tr>
+      `);
+      rows.push(...expandedRows);
       return rows;
     })
     .join("");
