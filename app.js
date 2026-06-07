@@ -7048,6 +7048,84 @@ function currentLog() {
   return state.logs[key];
 }
 
+function cloneWorkoutDay(day, items = day.items) {
+  return { ...day, items: items.map((item) => ({ ...item })) };
+}
+
+function isMainOrVariantItem(item) {
+  return movementType(item) !== "accessory" || isBackdownRow(item);
+}
+
+function mainAndVariantItems(day) {
+  return day.items.filter(isMainOrVariantItem).map((item) => ({ ...item }));
+}
+
+function accessoryItems(day, limit = 2) {
+  return day.items
+    .filter((item) => movementType(item) === "accessory")
+    .slice(0, limit)
+    .map((item) => ({ ...item }));
+}
+
+function generatedTrainingDay(number, sourcePhase) {
+  const deload = sourcePhase === "deload";
+  const sets = deload ? "2" : "3";
+  const rpe = deload ? "5-6" : "6";
+  const accessoryRpe = deload ? "5-6" : "6-7";
+  const templates = {
+    5: [
+      { name: "BENCH PRESS", sets, reps: "6", weight: "", volume: "", rpe, tempo: "", notes: "轻技术日：保持速度和动作质量，不追求疲劳。", kind: "bench" },
+      { name: "SQUAT VARIANT", sets: deload ? "1" : "2", reps: "5", weight: "", volume: "", rpe, tempo: "", notes: "轻变式，用来填充 0.5 次频率或分散周容量。", kind: "squatVariant" },
+      { name: "LAT PULLDOWNS", sets, reps: "10-12", weight: "", volume: "", rpe: accessoryRpe, tempo: "", notes: "", kind: "accessory" },
+      { name: "TRICEP PUSHDOWNS", sets: "2", reps: "12-15", weight: "", volume: "", rpe: accessoryRpe, tempo: "", notes: "", kind: "accessory" },
+      { name: "WEIGHTED V-UPS", sets: "3", reps: "12-15", weight: "", volume: "", rpe: "", tempo: "", notes: "", kind: "accessory" },
+    ],
+    6: [
+      { name: "DEADLIFT VARIANT", sets: deload ? "1" : "2", reps: "4", weight: "", volume: "", rpe, tempo: "", notes: "轻拉或高迁移辅助，不要做成第二个重硬拉日。", kind: "deadliftVariant" },
+      { name: "BENCH PRESS VARIANT", sets, reps: "5", weight: "", volume: "", rpe, tempo: "", notes: "轻卧推变式，主要用于技术和容量分散。", kind: "benchVariant" },
+      { name: "CABLE ROWS", sets, reps: "10-12", weight: "", volume: "", rpe: accessoryRpe, tempo: "", notes: "", kind: "accessory" },
+      { name: "DB LATERAL RAISES", sets: "2", reps: "12-15", weight: "", volume: "", rpe: accessoryRpe, tempo: "", notes: "", kind: "accessory" },
+      { name: "CABLE CRUNCHES", sets: "3", reps: "15-20", weight: "", volume: "", rpe: "", tempo: "", notes: "", kind: "accessory" },
+    ],
+  };
+  return { day: `Day ${number}`, items: templates[number].map((item) => ({ ...item })) };
+}
+
+function applyTrainingDayCount(source, desiredDays, weekNumber, isTestWeek) {
+  if (isTestWeek) return source.days.map((day) => cloneWorkoutDay(day));
+  const days = source.days.map((day) => cloneWorkoutDay(day));
+  let adjusted = days;
+
+  if (desiredDays <= 3 && days.length >= 4) {
+    adjusted = [
+      cloneWorkoutDay(days[0]),
+      cloneWorkoutDay(days[1]),
+      {
+        ...days[2],
+        items: [
+          ...mainAndVariantItems(days[3]),
+          ...mainAndVariantItems(days[2]),
+          ...accessoryItems(days[3], 2),
+          ...accessoryItems(days[2], 2),
+        ],
+      },
+    ];
+  } else if (desiredDays < days.length) {
+    adjusted = days.slice(0, desiredDays);
+  } else if (desiredDays > days.length) {
+    adjusted = [...days];
+    for (let next = days.length + 1; next <= desiredDays; next += 1) {
+      adjusted.push(generatedTrainingDay(next, source.phase));
+    }
+  }
+
+  return adjusted.map((day, index) => ({
+    ...day,
+    day: `W${weekNumber}D${index + 1}`,
+    originalDay: day.day,
+  }));
+}
+
 function virtualWeek(index) {
   const totalWeeks = weeksUntilMeet();
   const testTemplate = data.weeks.find((week) => week.phase === "test") || data.weeks[data.weeks.length - 1];
@@ -7055,11 +7133,15 @@ function virtualWeek(index) {
   let source = trainingTemplates[index % trainingTemplates.length];
   if (index === totalWeeks - 2) source = trainingTemplates[trainingTemplates.length - 1];
   if (index === totalWeeks - 1) source = testTemplate;
+  const isTestWeek = index === totalWeeks - 1;
+  const dayCount = makePlanner().days;
+  const weekNumber = index + 1;
   return {
     ...source,
-    number: index + 1,
-    label: `Week ${index + 1}${index === totalWeeks - 1 ? " / Test" : ""}`,
-    phase: index === totalWeeks - 1 ? "test" : source.phase,
+    number: weekNumber,
+    label: `Week ${weekNumber}${isTestWeek ? " / Test" : ""}`,
+    phase: isTestWeek ? "test" : source.phase,
+    days: applyTrainingDayCount(source, dayCount, weekNumber, isTestWeek),
   };
 }
 
