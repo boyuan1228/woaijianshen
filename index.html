@@ -3,27 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RHTS SSTT 训练 App</title>
+    <title>力量周期计划生成器</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260607-4"></script>
+    <script defer src="./app.js?v=20260611-1"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <div class="mark">YBY</div>
+          <img class="brand-logo" src="./assets/power-logo.png" alt="力量周期训练体系" />
           <div>
-            <p class="eyebrow">Meet Prep Access</p>
-            <h1>力量举备赛计划生成器</h1>
+            <p class="eyebrow">JTS × SSTT 力量周期训练体系</p>
+            <h1>力量周期计划生成器</h1>
           </div>
         </div>
-        <p class="activation-copy">
-          输入购买后收到的激活码，激活后即可填写数据、生成计划、导出 PDF，并把这个页面嵌入 FlowUs 使用。
-        </p>
+        <div class="activation-copy activation-disclaimer">
+          <p><strong>注意事项</strong> 本工具会根据你填写的基础数据、MEV/MRV、频率和比赛日期生成训练建议，实际训练仍需要按当天状态微调。</p>
+          <p><strong>适合人群</strong> 适合已经掌握深蹲、卧推、硬拉基础动作，并希望按周期安排增肌、增力、冲刺和测试周的训练者。</p>
+          <p><strong>风险声明</strong> 本计划不替代医疗、康复或现场教练评估；如出现疼痛、动作变形、异常疲劳或恢复明显下降，应下调重量、减少组数或暂停训练。</p>
+        </div>
         <label>
           激活码
-          <input id="activationCodeInput" type="text" autocomplete="one-time-code" placeholder="例如 YBY-XXXX-XXXX" />
+          <input id="activationCodeInput" type="text" autocomplete="one-time-code" placeholder="woaijianshen" />
         </label>
         <button id="activationButton" type="button">
           <i data-lucide="key-round"></i>
@@ -31,9 +33,9 @@
         </button>
         <p id="activationMessage" class="activation-message" role="status"></p>
         <div class="activation-notes">
-          <span>支持本地保存激活状态</span>
-          <span>后续可接支付平台或数据库校验</span>
-          <span>适合部署后嵌入 FlowUs</span>
+          <span>JTS 容量逻辑：MEV/MRV、频率、减载、冲刺</span>
+          <span>SSTT 15 周范本：RPE 与百分比估重、测试周安排</span>
+          <span>支持变式动作、降重组、训练记录和 PDF 导出</span>
         </div>
       </div>
     </section>
@@ -41,10 +43,10 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <div class="mark">YBY</div>
+          <img class="brand-logo sidebar-logo" src="./assets/power-logo.png" alt="力量周期训练体系" />
           <div>
-            <h1>力量举计划</h1>
-            <p>力量举周期与训练表</p>
+            <h1>备赛专门化</h1>
+            <p>JTS 思路 · SSTT 15 周范本</p>
           </div>
         </div>
 
@@ -159,11 +161,12 @@
       </aside>
 
       <main class="main">
+        <button id="languageButton" class="language-toggle" type="button">EN</button>
         <section id="plannerView" class="planner-view">
           <header class="topbar">
             <div>
-              <p class="eyebrow">Meet Prep · JTS 风格容量规划</p>
-              <h2>备赛计划生成器</h2>
+              <p class="eyebrow">JTS × SSTT 力量周期训练体系</p>
+              <h2>力量周期计划生成器</h2>
               <p>先确定比赛日期、基础信息、MEV/MRV、阶段长度和三大项频率，再进入训练周表。</p>
             </div>
             <button id="goWeekButton" class="secondary-button" type="button">
@@ -172,6 +175,7 @@
             </button>
           </header>
           <section id="plannerMeetPrepStrip" class="meet-prep-strip" aria-label="备赛状态"></section>
+          <section id="programIntro" class="program-intro" aria-label="计划说明"></section>
 
           <section class="planner-layout">
             <form class="questionnaire" id="questionnaire">
