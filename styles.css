@@ -71,30 +71,17 @@ button:hover {
   line-height: 1.1;
 }
 
-.activation-hero {
-  margin: 0 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fbfaf7;
-}
-
-.activation-hero img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .activation-copy {
-  margin: 0 0 18px;
+  margin: 0 0 12px;
   color: var(--muted);
   line-height: 1.55;
 }
 
 .activation-disclaimer {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-2);
@@ -102,6 +89,8 @@ button:hover {
 
 .activation-disclaimer p {
   margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .activation-disclaimer strong {
@@ -164,12 +153,28 @@ button:hover {
   font-weight: 750;
 }
 
+.generator-features,
 .activation-updates {
-  margin-top: 14px;
-  padding: 12px;
+  margin-top: 10px;
+  padding: 9px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-2);
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.feature-list span {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
 }
 
 .update-head {
@@ -177,7 +182,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .update-head span,
@@ -194,18 +199,18 @@ button:hover {
 }
 
 .activation-updates ul {
-  margin: 8px 0 0;
-  padding-left: 18px;
+  margin: 6px 0 0;
+  padding-left: 16px;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .activation-updates details {
-  margin-top: 8px;
+  margin-top: 6px;
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .activation-updates summary {
@@ -278,6 +283,7 @@ button:hover {
 .brand h1 {
   font-size: 22px;
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .brand p,
@@ -539,6 +545,25 @@ textarea:focus {
   background: var(--accent);
   color: #fff;
   font-weight: 850;
+}
+
+.tool-button {
+  min-width: 58px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.tool-button svg {
+  width: 17px;
+  height: 17px;
 }
 
 .hero-banner {
@@ -1016,13 +1041,6 @@ mark,
   line-height: 1.45;
 }
 
-.summary-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
 .metric {
   padding: 12px;
   transition: transform 180ms ease, box-shadow 180ms ease;
@@ -1051,6 +1069,14 @@ mark,
 
 .rpe-reference {
   min-width: 0;
+}
+
+.log-rpe-reference {
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  box-shadow: none;
 }
 
 .rpe-reference .rpe-grid {
@@ -1082,6 +1108,134 @@ mark,
   background: #fff8f4;
   color: #5f4136;
   line-height: 1.45;
+}
+
+.floating-tools {
+  position: fixed;
+  right: 14px;
+  top: 46%;
+  z-index: 40;
+  display: grid;
+  gap: 8px;
+}
+
+.activation-gate:not(.hidden) ~ .floating-tools {
+  display: none;
+}
+
+.floating-tool {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  gap: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(20, 31, 42, 0.22);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.floating-tool svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tool-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(17, 28, 39, 0.52);
+}
+
+.modal-card {
+  width: min(560px, 100%);
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 22px 60px rgba(20, 31, 42, 0.25);
+  padding: 16px;
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.modal-head h3,
+.calc-section h4 {
+  margin: 0;
+}
+
+.calc-section {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.calc-grid label {
+  display: grid;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.calc-grid input,
+.calc-grid select {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0 10px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.modal-card > button,
+.calc-section button {
+  min-height: 42px;
+  margin-top: 12px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 850;
+  padding: 0 14px;
+}
+
+.calc-result {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 7px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.calc-result strong,
+.calc-result span {
+  display: block;
+}
+
+.calc-result strong {
+  color: var(--ok);
+  font-size: 16px;
 }
 
 .projection-panel {
@@ -1473,33 +1627,34 @@ td {
     justify-content: flex-start;
   }
 
-  .hero-banner img {
-    height: clamp(68px, 19vw, 92px);
-  }
-
-  .summary-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .activation-card {
-    padding: 22px;
+    padding: 18px;
   }
 
   .activation-brand h1 {
-    font-size: 24px;
+    font-size: clamp(20px, 6vw, 24px);
+    overflow-wrap: anywhere;
   }
 
   .activation-brand {
-    align-items: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
   .activation-brand .brand-logo {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
   }
 
+  .activation-disclaimer,
   .activation-notes {
     grid-template-columns: 1fr;
+  }
+
+  .generator-features,
+  .activation-updates {
+    padding: 8px;
   }
 
   .phase-rail {
@@ -1588,12 +1743,6 @@ td {
   .day-tab {
     min-width: 104px;
     padding: 9px 10px;
-  }
-
-  .summary-grid {
-    grid-template-columns: 1fr;
-    overflow-x: auto;
-    padding-bottom: 2px;
   }
 
   .rpe-reference .rpe-grid {
@@ -1737,5 +1886,37 @@ td {
     min-height: 34px;
     max-height: 44px;
     font-size: 12px;
+  }
+
+  .floating-tools {
+    right: 8px;
+    top: auto;
+    bottom: 78px;
+  }
+
+  .floating-tool {
+    width: 50px;
+    height: 50px;
+  }
+
+  .tool-modal {
+    align-items: end;
+    padding: 10px;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-height: 82vh;
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-button {
+    min-width: 52px;
+    padding: 0 9px;
   }
 }

@@ -7028,16 +7028,16 @@ const VARIANT_OPTIONS_BY_SYSTEM = {
 
 const PROGRAM_SYSTEMS = {
   jtsSstt: {
-    short: "自定义周期",
-    brandTitle: "力量周期",
+    short: "JTS × SSTT",
+    brandTitle: "JTS × SSTT 十五周",
     defaultDays: 4,
     usesJtsSurvey: true,
-    zhTitle: "自定义力量周期训练体系",
-    enTitle: "Custom Strength Cycle System",
+    zhTitle: "JTS × SSTT 十五周训练体系",
+    enTitle: "JTS × SSTT 15-Week System",
     zhText:
-      "当前可完整生成训练表。支持容量管理、RPE、百分比估重、变式、降重组、测试周和 PDF 导出。",
+      "默认体系。结合 JTS 容量管理思路和 SSTT 15 周范本，支持 MEV/MRV、RPE、百分比估重、变式、降重组、测试周和 PDF 导出。",
     enText:
-      "Fully available. Supports volume management, RPE, percentage estimates, variants, backdown sets, test-week structure, and PDF export.",
+      "Default system. Combines JTS-style volume management with an SSTT 15-week template, including MEV/MRV, RPE, percentage estimates, variants, backdown sets, test-week structure, and PDF export.",
     status: "active",
   },
   sheiko: {
@@ -7310,10 +7310,12 @@ function renderSystemChrome() {
   const usesJts = Boolean(system.usesJtsSurvey);
   document.body.dataset.system = state.survey.programSystem || "jtsSstt";
   const brandTitle = system.brandTitle || system.short;
-  const brandSub = state.survey.programSystem === "jtsSstt" ? "计划生成 · 训练记录 · PDF 导出" : `${system.short} 基础周期模板`;
+  const brandSub =
+    state.survey.programSystem === "jtsSstt" ? "计划生成 · 训练记录 · PDF 导出" : `${system.short} 基础周期模板`;
   $("sidebarBrandTitle").textContent = brandTitle;
   $("sidebarBrandSub").textContent = brandSub;
-  $("plannerEyebrow").textContent = state.survey.programSystem === "jtsSstt" ? "自定义力量周期训练体系" : `${system.short} 力量周期训练体系`;
+  $("plannerEyebrow").textContent =
+    state.survey.programSystem === "jtsSstt" ? "JTS × SSTT 十五周训练体系" : `${system.short} 力量周期训练体系`;
   $("plannerTitle").textContent = `${brandTitle} 计划生成器`;
   $("plannerSubtitle").textContent = usesJts
     ? "先填写基础信息、周期目标和训练天数，再生成训练周表。"
@@ -9603,12 +9605,111 @@ function resetLogs() {
   render();
 }
 
+function toggleModal(id, open) {
+  const modal = $(id);
+  if (!modal) return;
+  modal.classList.toggle("hidden", !open);
+  if (open && window.lucide) window.lucide.createIcons();
+}
+
+function massInputToKg(value) {
+  const numeric = Number(value);
+  if (!numeric) return 0;
+  return isEnglish() ? numeric / KG_TO_LBS : numeric;
+}
+
+function seedBmrModal() {
+  const age = ageFromBirthDate();
+  const weight = Number(state.survey.bodyweight || state.profile.bodyweight || 0);
+  const height = Number(state.survey.height || 0);
+  if ($("bmrAgeInput")) $("bmrAgeInput").value = clamp(age || 25, 15, 90);
+  if ($("bmrSexInput")) $("bmrSexInput").value = state.survey.sex === "female" ? "female" : "male";
+  if ($("bmrHeightInput") && height) $("bmrHeightInput").value = height;
+  if ($("bmrWeightInput") && weight) $("bmrWeightInput").value = isEnglish() ? Math.round(weight * KG_TO_LBS) : weight;
+}
+
+function calculateBmr() {
+  const age = Number($("bmrAgeInput")?.value || 0);
+  const sex = $("bmrSexInput")?.value || "male";
+  const height = Number($("bmrHeightInput")?.value || 0);
+  const weight = massInputToKg($("bmrWeightInput")?.value || 0);
+  const activity = Number($("bmrActivityInput")?.value || 1.2);
+  const target = $("bmrResult");
+  if (!target) return;
+  if (!age || !height || !weight) {
+    target.textContent = isEnglish() ? "Enter age, height, and body weight." : "请输入年龄、身高和体重。";
+    return;
+  }
+  const bmr = Math.round(10 * weight + 6.25 * height - 5 * age + (sex === "female" ? -161 : 5));
+  const maintenance = Math.round(bmr * activity);
+  target.innerHTML = isEnglish()
+    ? `<strong>BMR ${bmr} kcal/day</strong><span>Estimated maintenance: ${maintenance} kcal/day</span>`
+    : `<strong>基础代谢 ${bmr} 千卡/天</strong><span>估算维持热量：${maintenance} 千卡/天</span>`;
+}
+
+function calculateRpeE1rm() {
+  const load = massInputToKg($("rpeLoadInput")?.value || 0);
+  const reps = Number($("rpeRepsInput")?.value || 0);
+  const rpe = Number($("rpeValueInput")?.value || 0);
+  const target = $("rpeE1rmResult");
+  if (!target) return;
+  const percent = rpePercent(reps, rpe);
+  if (!load || !percent) {
+    target.textContent = isEnglish() ? "Enter load, reps, and RPE." : "请输入重量、次数和 RPE。";
+    return;
+  }
+  const e1rm = roundLoad(load / percent);
+  target.innerHTML = isEnglish()
+    ? `<strong>Estimated 1RM: ${displayMass(e1rm)}</strong><span>Based on reps ${reps} @ RPE ${rpe}.</span>`
+    : `<strong>预估 1RM：${displayMass(e1rm)}</strong><span>基于 ${reps} 次 @ RPE ${rpe}。</span>`;
+  if ($("targetE1rmInput")) $("targetE1rmInput").value = isEnglish() ? Math.round(e1rm * KG_TO_LBS) : e1rm;
+}
+
+function calculateRpeLoad() {
+  const e1rm = massInputToKg($("targetE1rmInput")?.value || 0);
+  const reps = Number($("targetRepsInput")?.value || 0);
+  const rpe = Number($("targetRpeInput")?.value || 0);
+  const target = $("rpeLoadResult");
+  if (!target) return;
+  const percent = rpePercent(reps, rpe);
+  if (!e1rm || !percent) {
+    target.textContent = isEnglish() ? "Enter estimated 1RM, reps, and RPE." : "请输入预估 1RM、次数和 RPE。";
+    return;
+  }
+  const load = roundLoad(e1rm * percent);
+  target.innerHTML = isEnglish()
+    ? `<strong>Suggested load: ${displayMass(load)}</strong><span>${reps} reps @ RPE ${rpe}.</span>`
+    : `<strong>建议重量：${displayMass(load)}</strong><span>${reps} 次 @ RPE ${rpe}。</span>`;
+}
+
 function bindActions() {
   $("profileToggle").addEventListener("click", () => {
     document.querySelector(".sidebar").classList.toggle("profile-open");
   });
   document.querySelectorAll("[data-language-toggle]").forEach((button) => {
     button.addEventListener("click", toggleLanguage);
+  });
+  document.querySelectorAll("[data-bmr-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      seedBmrModal();
+      toggleModal("bmrModal", true);
+    });
+  });
+  $("floatingRpeButton")?.addEventListener("click", () => toggleModal("rpeModal", true));
+  document.querySelectorAll("[data-modal-close]").forEach((button) => {
+    button.addEventListener("click", () => toggleModal(button.dataset.modalClose, false));
+  });
+  document.querySelectorAll(".tool-modal").forEach((modal) => {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) toggleModal(modal.id, false);
+    });
+  });
+  $("bmrCalculateButton")?.addEventListener("click", calculateBmr);
+  $("rpeE1rmButton")?.addEventListener("click", calculateRpeE1rm);
+  $("rpeLoadButton")?.addEventListener("click", calculateRpeLoad);
+  $("historyLogLink")?.addEventListener("click", () => {
+    const history = $("historyLog");
+    if (history) history.open = true;
   });
   $("testPrToggle")?.addEventListener("click", () => {
     if (state.survey.meetDate) return;

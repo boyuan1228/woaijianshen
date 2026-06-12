@@ -6,7 +6,7 @@
     <title>力量周期计划生成器</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260612-3"></script>
+    <script defer src="./app.js?v=20260612-4"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
@@ -14,18 +14,28 @@
         <div class="activation-brand">
           <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="力量周期训练体系" />
           <div>
-            <p class="eyebrow">自定义力量周期训练体系</p>
+            <p class="eyebrow">JTS × SSTT 十五周</p>
             <h1>力量周期计划生成器</h1>
           </div>
         </div>
-        <figure class="activation-hero">
-          <img src="./assets/welcome-power.jpg" alt="力量周期训练体系欢迎图" />
-        </figure>
         <div class="activation-copy activation-disclaimer">
-          <p><strong>注意事项</strong> 建议重量和容量会随输入自动变化，实际训练按当天状态微调。</p>
-          <p><strong>适合人群</strong> 适合已掌握深蹲、卧推、硬拉基础动作，并希望按周期训练的人。</p>
-          <p><strong>风险声明</strong> 本工具不替代医疗、康复或现场教练；疼痛、动作变形或异常疲劳时请下调或暂停。</p>
+          <p><strong>注意事项</strong> 建议值随输入变化，训练时按当天状态微调。</p>
+          <p><strong>适合人群</strong> 已掌握三大项基础，并希望按周期安排训练的人。</p>
+          <p><strong>风险声明</strong> 不替代医疗、康复或现场教练；疼痛或异常疲劳时请下调或暂停。</p>
         </div>
+        <section class="generator-features" aria-label="生成器特色">
+          <div class="update-head">
+            <span>生成器特色</span>
+          </div>
+          <div class="feature-list">
+            <span>多体系模板</span>
+            <span>MEV/MRV 建议</span>
+            <span>RPE 估重</span>
+            <span>降重组拆分</span>
+            <span>BMR 计算器</span>
+            <span>PDF 导出</span>
+          </div>
+        </section>
         <label>
           激活码
           <input id="activationCodeInput" type="text" autocomplete="one-time-code" placeholder="woaijianshen" />
@@ -38,18 +48,19 @@
         <section class="activation-updates" aria-label="更新日志">
           <div class="update-head">
             <span>最新日志</span>
-            <a href="#historyLog">历史日志</a>
+            <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>2026-06-12 · 手机端训练页优化</strong>
+          <strong>v1.3 · 手机端训练页优化</strong>
           <ul>
-            <li>去掉完成百分比和每行动作勾选，训练行更紧凑。</li>
-            <li>修复 RPE 参考、阶段进度和 Week 滑动在手机端溢出的问题。</li>
-            <li>新增体系切换、辅助项分组筛选和欢迎页轻量图片。</li>
+            <li>训练行更紧凑，手机端更容易直接看到组、次、RPE 和重量。</li>
+            <li>新增右侧浮动 RPE 计算器和顶部 BMR 计算器。</li>
+            <li>首页信息、风险声明和日志面板压缩为小卡片。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
-            <p>2026-06-12：加入 Sheiko、Calgary、RTS、Westside、GZCL、Texas 基础模板。</p>
-            <p>2026-06-11：加入 PDF 导出、开把设置、RPE/e1RM 估重和降重组拆分。</p>
+            <p><strong>v1.2</strong> 加入 Sheiko、Calgary、RTS、Westside、GZCL、Texas 基础模板。</p>
+            <p><strong>v1.1</strong> 加入 PDF 导出、开把设置、RPE/e1RM 估重和降重组拆分。</p>
+            <p><strong>v1.0</strong> 加入激活、个人数据、问卷和训练周表生成。</p>
           </details>
         </section>
       </div>
@@ -189,11 +200,12 @@
                 查看训练表
               </button>
               <button class="language-toggle" data-language-toggle type="button">EN</button>
+              <button class="tool-button" data-bmr-open type="button" title="BMR 计算器">
+                <i data-lucide="calculator"></i>
+                BMR
+              </button>
             </div>
           </header>
-          <section class="hero-banner" aria-label="训练体系视觉横幅">
-            <img src="./assets/welcome-power.jpg" alt="力量周期训练体系横幅" />
-          </section>
           <section id="plannerMeetPrepStrip" class="meet-prep-strip" aria-label="周期状态"></section>
 
           <section class="planner-layout">
@@ -222,7 +234,7 @@
                   <label>
                     训练体系
                     <select id="programSystemInput">
-                      <option value="jtsSstt">自定义力量周期训练体系</option>
+                      <option value="jtsSstt">JTS × SSTT 十五周</option>
                       <option value="sheiko">Sheiko</option>
                       <option value="calgary">Calgary</option>
                       <option value="jts">JTS</option>
@@ -415,6 +427,10 @@
             </div>
             <div class="top-actions">
               <button class="language-toggle" data-language-toggle type="button">EN</button>
+              <button class="tool-button" data-bmr-open type="button" title="BMR 计算器">
+                <i data-lucide="calculator"></i>
+                BMR
+              </button>
               <button class="icon-button" id="showPlannerButton" type="button" title="返回计划生成器">
                 <i data-lucide="clipboard-list"></i>
               </button>
@@ -430,14 +446,7 @@
               </button>
             </div>
           </header>
-          <section class="hero-banner compact" aria-label="训练体系视觉横幅">
-            <img src="./assets/welcome-power.jpg" alt="力量周期训练体系横幅" />
-          </section>
           <section id="workoutMeetPrepStrip" class="meet-prep-strip compact" aria-label="周期状态"></section>
-
-          <section class="summary-grid">
-            <div class="metric rpe-reference" id="rpeReference"></div>
-          </section>
 
           <section id="amrapHint" class="amrap-hint hidden"></section>
 
@@ -473,6 +482,7 @@
             </div>
 
             <aside class="log-panel">
+              <div class="metric rpe-reference log-rpe-reference" id="rpeReference"></div>
               <div class="section-head compact">
                 <div>
                   <h3>当天日志</h3>
@@ -498,6 +508,109 @@
           </section>
         </section>
       </main>
+    </div>
+    <div class="floating-tools" aria-label="训练工具">
+      <button id="floatingRpeButton" class="floating-tool" type="button" title="RPE 计算器">
+        <i data-lucide="calculator"></i>
+        <span>RPE</span>
+      </button>
+    </div>
+    <div id="bmrModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="bmrModalTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">TRAINING TOOLS</span>
+            <h3 id="bmrModalTitle">BMR 计算器</h3>
+          </div>
+          <button class="icon-button" type="button" data-modal-close="bmrModal" title="关闭">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="calc-grid">
+          <label>
+            年龄
+            <input id="bmrAgeInput" type="number" min="15" max="90" value="25" />
+          </label>
+          <label>
+            性别
+            <select id="bmrSexInput">
+              <option value="male">男性</option>
+              <option value="female">女性</option>
+            </select>
+          </label>
+          <label>
+            身高 cm
+            <input id="bmrHeightInput" type="number" min="120" max="230" value="175" />
+          </label>
+          <label>
+            体重
+            <input id="bmrWeightInput" type="number" min="30" max="250" step="0.1" value="80" />
+          </label>
+          <label>
+            活动水平
+            <select id="bmrActivityInput">
+              <option value="1.2">久坐/很少运动</option>
+              <option value="1.375">每周运动 1-3 次</option>
+              <option value="1.55">每周运动 4-5 次</option>
+              <option value="1.725">每周高强度 6-7 次</option>
+              <option value="1.9">体力工作或非常高活动量</option>
+            </select>
+          </label>
+        </div>
+        <button id="bmrCalculateButton" type="button">计算 BMR</button>
+        <div id="bmrResult" class="calc-result">输入数据后计算基础代谢和维持热量。</div>
+      </div>
+    </div>
+    <div id="rpeModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rpeModalTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">TRAINING TOOLS</span>
+            <h3 id="rpeModalTitle">RPE 计算器</h3>
+          </div>
+          <button class="icon-button" type="button" data-modal-close="rpeModal" title="关闭">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <section class="calc-section">
+          <h4>预估 1RM</h4>
+          <div class="calc-grid">
+            <label>
+              完成重量
+              <input id="rpeLoadInput" type="number" min="0" step="0.5" placeholder="例如 170" />
+            </label>
+            <label>
+              完成次数
+              <input id="rpeRepsInput" type="number" min="1" max="15" placeholder="1-15" />
+            </label>
+            <label>
+              完成 RPE
+              <input id="rpeValueInput" type="number" min="5" max="10" step="0.5" placeholder="5-10" />
+            </label>
+          </div>
+          <button id="rpeE1rmButton" type="button">计算 1RM</button>
+          <div id="rpeE1rmResult" class="calc-result">按 RPE 表估算当天 e1RM。</div>
+        </section>
+        <section class="calc-section">
+          <h4>建议重量</h4>
+          <div class="calc-grid">
+            <label>
+              预估 1RM
+              <input id="targetE1rmInput" type="number" min="0" step="0.5" placeholder="例如 190" />
+            </label>
+            <label>
+              目标次数
+              <input id="targetRepsInput" type="number" min="1" max="15" placeholder="1-15" />
+            </label>
+            <label>
+              目标 RPE
+              <input id="targetRpeInput" type="number" min="5" max="10" step="0.5" placeholder="5-10" />
+            </label>
+          </div>
+          <button id="rpeLoadButton" type="button">计算建议重量</button>
+          <div id="rpeLoadResult" class="calc-result">输入 e1RM、次数和 RPE 后给出建议重量。</div>
+        </section>
+      </div>
     </div>
   </body>
 </html>
