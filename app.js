@@ -6919,9 +6919,11 @@ const EXERCISE_ZH = {
   "CABLE ROWS": "绳索划船",
   "CHEST SUPPORTED ROWS": "胸托划船",
   "CLOSE GRIP BENCH PRESS": "窄握卧推",
+  "AB WHEEL ROLLOUT": "腹轮",
   "DB ANTERIOR DELT PRESS": "哑铃前束推举",
   "DB HAMMER CURLS": "哑铃锤式弯举",
   "DB LATERAL RAISES": "哑铃侧平举",
+  "DEAD BUGS": "死虫",
   "DEADLIFT": "硬拉",
   "DEADLIFT VARIANT": "硬拉变式",
   "DECLINE DB PRESS": "下斜哑铃推",
@@ -6930,13 +6932,16 @@ const EXERCISE_ZH = {
   "GHD CORE ISO HOLD": "GHD 核心静力保持",
   "GHD CRUNCHES": "GHD 卷腹",
   "HATSFIELD SPLIT SQUAT": "哈特菲尔德分腿蹲",
+  "HANGING LEG RAISES": "悬垂举腿",
   "INCLINE DB PRESS": "上斜哑铃推",
   "LAT PULLDOWNS": "高位下拉",
   "LEG PRESS CALVE RAISES": "腿举机提踵",
   "MACHINE LATERAL RAISES": "器械侧平举",
   "NEUTRAL GRIP PULL-DOWNS": "中立握下拉",
   "NORDIC CURLS": "北欧腿弯举",
+  "PALLOF PRESS": "Pallof 抗旋推",
   "PENDLEY ROWS": "潘德雷划船",
+  "PLANK": "平板支撑",
   "PREACHER CURLS": "牧师凳弯举",
   "PRONE ROWS": "俯卧划船",
   "REAR DELT FLYS": "后束飞鸟",
@@ -6944,6 +6949,7 @@ const EXERCISE_ZH = {
   "SEAL ROWS": "俯卧划船",
   "SEATED CALVE RAISES": "坐姿提踵",
   "SINGLE ARM DB ROWS": "单臂哑铃划船",
+  "SIDE PLANK": "侧桥",
   "SKULL CRUSHERS": "仰卧臂屈伸",
   "SQUAT": "深蹲",
   "SQUAT VARIANT": "深蹲变式",
@@ -7170,6 +7176,18 @@ const ACCESSORY_GROUPS = {
     "WEIGHTED V-UPS",
     "CABLE CRUNCHES",
   ],
+  core: [
+    "CABLE CRUNCHES",
+    "WEIGHTED V-UPS",
+    "GHD CRUNCHES",
+    "GHD CORE ISO HOLD",
+    "HANGING LEG RAISES",
+    "AB WHEEL ROLLOUT",
+    "PLANK",
+    "SIDE PLANK",
+    "DEAD BUGS",
+    "PALLOF PRESS",
+  ],
 };
 
 const ACCESSORY_OPTIONS = [
@@ -7206,6 +7224,12 @@ const ACCESSORY_OPTIONS = [
   "GHD CORE ISO HOLD",
   "WEIGHTED V-UPS",
   "CABLE CRUNCHES",
+  "HANGING LEG RAISES",
+  "AB WHEEL ROLLOUT",
+  "PLANK",
+  "SIDE PLANK",
+  "DEAD BUGS",
+  "PALLOF PRESS",
 ];
 
 function isEnglish() {
@@ -7827,8 +7851,32 @@ function displayName(item) {
   return localizeExerciseName(item.name);
 }
 
+function lastAccessoryIndex(items) {
+  for (let cursor = items.length - 1; cursor >= 0; cursor -= 1) {
+    if (movementType(items[cursor]) === "accessory") return cursor;
+  }
+  return -1;
+}
+
+function isCoreAccessorySlot(items, index) {
+  const item = items[index];
+  if (!item || movementType(item) !== "accessory") return false;
+  const name = String(item.name || "").toUpperCase();
+  if (ACCESSORY_GROUPS.core.includes(name)) return true;
+  const lastIndex = lastAccessoryIndex(items);
+  if (index === lastIndex) return true;
+  const next = items[index + 1];
+  return (
+    index + 1 === lastIndex &&
+    next &&
+    movementType(next) === "accessory" &&
+    String(next.reps || "").toUpperCase().includes("AMRAP")
+  );
+}
+
 function accessoryContextForItem(items, index) {
   if (items[index]?.accessoryGroup) return items[index].accessoryGroup;
+  if (isCoreAccessorySlot(items, index)) return "core";
   for (let cursor = index - 1; cursor >= 0; cursor -= 1) {
     const type = movementType(items[cursor]);
     if (type === "bench" || type === "benchVariant") return "upper";
@@ -9882,6 +9930,9 @@ function bindActions() {
       renderAnalyticsCharts();
       toggleModal("analyticsModal", true);
     });
+  });
+  document.querySelectorAll("[data-changelog-open]").forEach((button) => {
+    button.addEventListener("click", () => toggleModal("changelogModal", true));
   });
   $("floatingRpeButton")?.addEventListener("click", () => toggleModal("rpeModal", true));
   document.querySelectorAll("[data-modal-close]").forEach((button) => {
