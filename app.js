@@ -8983,7 +8983,7 @@ function renderMeetPrepStrips() {
       </div>
       <div class="meet-prep-block">
         <span>阶段进度</span>
-        <div class="phase-rail">${phaseRailHtml(plan, activeWeek)}</div>
+        <div class="phase-rail" data-current-phase="${escapeHtml(phaseProgressSummary(status))}">${phaseRailHtml(plan, activeWeek)}</div>
         <small>${phaseProgressSummary(status)}</small>
       </div>
       ${openerBlock}

@@ -2076,19 +2076,39 @@ td {
     margin-bottom: 12px;
   }
 
+  .meet-prep-strip,
+  .meet-prep-strip.no-opener,
+  .meet-prep-strip.compact {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+
   .meet-prep-block strong {
     font-size: 18px;
   }
 
   .phase-rail {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
+    display: block;
   }
 
   .rail-step {
-    min-width: 0;
-    padding: 6px 10px;
+    display: none;
+  }
+
+  .phase-rail::before {
+    content: attr(data-current-phase);
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--accent);
+    font-size: 13px;
+    font-weight: 850;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .day-tab {
