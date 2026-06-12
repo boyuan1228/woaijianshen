@@ -6903,6 +6903,7 @@ const licenseState = {
   codeHash: "",
   activatedAt: "",
 };
+let startupChangelogShown = false;
 
 const $ = (id) => document.getElementById(id);
 
@@ -7452,6 +7453,12 @@ function hasActiveLicense() {
   if (!licenseState.active || !licenseState.codeHash) return false;
   if (LICENSE_VERIFY_ENDPOINT) return true;
   return LOCAL_LICENSE_HASHES.has(licenseState.codeHash);
+}
+
+function showStartupChangelogOnce() {
+  if (startupChangelogShown || !hasActiveLicense()) return;
+  startupChangelogShown = true;
+  window.setTimeout(() => toggleModal("changelogModal", true), 250);
 }
 
 function normalizeActivationCode(value) {
@@ -9439,6 +9446,7 @@ function render() {
   renderMeetPrepStrips();
   if (state.view === "workout") renderWorkout();
   if (window.lucide) window.lucide.createIcons();
+  showStartupChangelogOnce();
 }
 
 function markDayComplete() {

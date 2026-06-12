@@ -6,13 +6,13 @@
     <title>让卖计划的人没饭吃</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260612-7"></script>
+    <script defer src="./app.js?v=20260613-1"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.6">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.7">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -53,15 +53,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v1.6 · Logo 更新日志与核心动作池</strong>
-          <small class="update-time">2026-06-12 23:49 更新</small>
+          <strong>v1.7 · 激活后自动弹出更新日志</strong>
+          <small class="update-time">2026-06-13 00:07 更新</small>
           <ul>
-            <li>点击左上角 logo 可查看完整更新日志，鼠标悬停显示当前版本。</li>
-            <li>每天最后一个辅助动作缩小为核心训练动作池。</li>
-            <li>计划生成器下方加入疑问与建议入口。</li>
+            <li>用户通过激活页后，每次重新打开网页都会自动看到更新日志。</li>
+            <li>更新日志仍可通过左上角 logo 手动打开，鼠标悬停显示当前版本。</li>
+            <li>弹窗只在本次页面打开后自动出现一次，不影响页面内切换训练周。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v1.6</strong> 2026-06-12 23:49：Logo 可点击查看更新日志；每天最后一练改为核心动作池；计划生成器下方新增疑问与建议微信。</p>
             <p><strong>v1.5</strong> 2026-06-12 23:31：激活页改名，加入热身动作库、QA 和训练图表。</p>
             <p><strong>v1.4</strong> 2026-06-12 21:50：删除完成当天按钮，AMRAP 辅助行跟随上一行动作，新增垂直饮食法。</p>
             <p><strong>v1.3</strong> 2026-06-12 18:37：手机端训练行更紧凑，新增浮动 RPE 计算器和 BMR 计算器。</p>
@@ -89,7 +90,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.6">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.7">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -779,6 +780,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v1.7</strong><span>2026-06-13 00:07</span><p>激活后每次重新打开网页都会自动弹出更新日志；Logo 仍可手动打开完整日志。</p></article>
           <article><strong>v1.6</strong><span>2026-06-12 23:49</span><p>Logo 可点击查看更新日志，悬停显示版本；每天最后一练改为核心动作池；计划生成器下方新增疑问与建议微信。</p></article>
           <article><strong>v1.5</strong><span>2026-06-12 23:31</span><p>新增热身动作库、QA 和训练图表，包含三项周容量、体重变化和累计容量。</p></article>
           <article><strong>v1.4</strong><span>2026-06-12 21:50</span><p>删除完成当天按钮，AMRAP 辅助行跟随上一行动作，新增垂直饮食法。</p></article>
