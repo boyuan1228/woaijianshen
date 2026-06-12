@@ -6,7 +6,7 @@
     <title>力量周期计划生成器</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260612-4"></script>
+    <script defer src="./app.js?v=20260612-5"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
@@ -14,7 +14,6 @@
         <div class="activation-brand">
           <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="力量周期训练体系" />
           <div>
-            <p class="eyebrow">JTS × SSTT 十五周</p>
             <h1>力量周期计划生成器</h1>
           </div>
         </div>
@@ -50,14 +49,15 @@
             <span>最新日志</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v1.3 · 手机端训练页优化</strong>
+          <strong>v1.4 · 工具与训练页细节优化</strong>
           <ul>
-            <li>训练行更紧凑，手机端更容易直接看到组、次、RPE 和重量。</li>
-            <li>新增右侧浮动 RPE 计算器和顶部 BMR 计算器。</li>
-            <li>首页信息、风险声明和日志面板压缩为小卡片。</li>
+            <li>删除完成当天按钮，AMRAP 辅助行自动跟随上一行动作。</li>
+            <li>新增垂直饮食法说明，放在 BMR 旁边作为饮食参考。</li>
+            <li>阶段进度和 RPE 参考重新排版，避免手机端横向溢出。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v1.3</strong> 手机端训练行更紧凑，新增右侧浮动 RPE 计算器和顶部 BMR 计算器。</p>
             <p><strong>v1.2</strong> 加入 Sheiko、Calgary、RTS、Westside、GZCL、Texas 基础模板。</p>
             <p><strong>v1.1</strong> 加入 PDF 导出、开把设置、RPE/e1RM 估重和降重组拆分。</p>
             <p><strong>v1.0</strong> 加入激活、个人数据、问卷和训练周表生成。</p>
@@ -203,6 +203,10 @@
               <button class="tool-button" data-bmr-open type="button" title="BMR 计算器">
                 <i data-lucide="calculator"></i>
                 BMR
+              </button>
+              <button class="tool-button" data-diet-open type="button" title="推荐饮食方法">
+                <i data-lucide="utensils"></i>
+                饮食
               </button>
             </div>
           </header>
@@ -431,6 +435,10 @@
                 <i data-lucide="calculator"></i>
                 BMR
               </button>
+              <button class="tool-button" data-diet-open type="button" title="推荐饮食方法">
+                <i data-lucide="utensils"></i>
+                饮食
+              </button>
               <button class="icon-button" id="showPlannerButton" type="button" title="返回计划生成器">
                 <i data-lucide="clipboard-list"></i>
               </button>
@@ -459,10 +467,6 @@
                   <h3 id="dayTitle">Day 1</h3>
                   <p id="dayMeta">动作和建议强度</p>
                 </div>
-                <button id="markDayButton" type="button">
-                  <i data-lucide="check-check"></i>
-                  完成当天
-                </button>
               </div>
               <div class="table-wrap">
                 <table>
@@ -610,6 +614,51 @@
           <button id="rpeLoadButton" type="button">计算建议重量</button>
           <div id="rpeLoadResult" class="calc-result">输入 e1RM、次数和 RPE 后给出建议重量。</div>
         </section>
+      </div>
+    </div>
+    <div id="dietModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="dietModalTitle">
+      <div class="modal-card diet-card">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">NUTRITION METHOD</span>
+            <h3 id="dietModalTitle">垂直饮食法</h3>
+          </div>
+          <button class="icon-button" type="button" data-modal-close="dietModal" title="关闭">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p class="diet-lead">
+          垂直饮食法的核心是先用少量高营养密度食物打底，再用容易消化的主食把热量“垂直”加上去。它适合训练量高、需要稳定体重和恢复的人。
+        </p>
+        <div class="diet-steps">
+          <article>
+            <strong>1. 先定热量</strong>
+            <span>用 BMR 计算器估算维持热量。增肌期从维持 +200 到 +400 千卡开始；减脂期从维持 -200 到 -500 千卡开始。</span>
+          </article>
+          <article>
+            <strong>2. 蛋白质固定</strong>
+            <span>每天约 1.6-2.2 g/kg 体重。优先牛肉、鸡蛋、鱼、鸡胸、乳制品；肠胃不适就减少乳制品。</span>
+          </article>
+          <article>
+            <strong>3. 碳水向上加</strong>
+            <span>训练日前后用白米饭、土豆、米粉等易消化碳水补足热量。体重 7 天均值不上升，再每天加 25-50 g 碳水。</span>
+          </article>
+          <article>
+            <strong>4. 微量营养打底</strong>
+            <span>每天保留蔬菜、水果和电解质来源，比如菠菜、胡萝卜、橙子、盐、酸奶或高汤。不要只吃米饭和肉。</span>
+          </article>
+          <article>
+            <strong>5. 执行模板</strong>
+            <span>训练前 1.5-3 小时吃蛋白 + 碳水；训练后吃蛋白 + 碳水；睡前避免太油太撑，优先保证睡眠。</span>
+          </article>
+          <article>
+            <strong>6. 每周调整</strong>
+            <span>看体重 7 天均值、训练表现和消化状态。胃胀、睡差、训练沉重时，先减少脂肪和难消化食物，再调总热量。</span>
+          </article>
+        </div>
+        <div class="diet-warning">
+          有肾脏疾病、消化系统疾病、糖尿病或特殊饮食限制时，先咨询医生或营养师。这个方法是训练饮食框架，不是医疗建议。
+        </div>
       </div>
     </div>
   </body>

@@ -752,15 +752,14 @@ textarea:focus {
 }
 
 .phase-rail {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
   gap: 6px;
   min-width: 0;
 }
 
 .rail-step {
   min-width: 0;
-  flex: 1;
   padding: 7px 8px;
   border: 1px solid var(--line);
   border-radius: 7px;
@@ -1073,29 +1072,39 @@ mark,
 
 .log-rpe-reference {
   margin-bottom: 12px;
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-2);
   box-shadow: none;
 }
 
+.log-rpe-reference > span {
+  color: var(--ink);
+  font-weight: 850;
+}
+
 .rpe-reference .rpe-grid {
   display: grid;
-  grid-template-columns: repeat(8, minmax(62px, 1fr));
-  gap: 7px;
-  margin-top: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 7px;
 }
 
 .rpe-reference .rpe-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
   border-radius: 7px;
-  padding: 6px 7px;
-  background: var(--surface-2);
+  padding: 6px 8px;
+  background: #fff;
   font-size: 12px;
   line-height: 1.15;
+  white-space: nowrap;
 }
 
 .rpe-reference .rpe-chip b {
-  display: block;
   color: var(--ink);
 }
 
@@ -1236,6 +1245,54 @@ mark,
 .calc-result strong {
   color: var(--ok);
   font-size: 16px;
+}
+
+.diet-card {
+  width: min(680px, 100%);
+}
+
+.diet-lead {
+  margin: 0 0 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.diet-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.diet-steps article {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.diet-steps strong,
+.diet-steps span {
+  display: block;
+}
+
+.diet-steps strong {
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.diet-steps span,
+.diet-warning {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.diet-warning {
+  margin-top: 12px;
+  padding: 10px;
+  border-left: 4px solid var(--accent-2);
+  border-radius: 8px;
+  background: #fff8f4;
 }
 
 .projection-panel {
@@ -1658,12 +1715,11 @@ td {
   }
 
   .phase-rail {
-    overflow-x: auto;
-    padding-bottom: 2px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .rail-step {
-    min-width: 72px;
+    min-width: 0;
   }
 
   .grid-3 {
@@ -1729,14 +1785,13 @@ td {
   }
 
   .phase-rail {
-    overflow-x: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
   }
 
   .rail-step {
-    min-width: 66px;
-    flex: 0 0 auto;
+    min-width: 0;
     padding: 6px 10px;
   }
 
@@ -1746,14 +1801,12 @@ td {
   }
 
   .rpe-reference .rpe-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 3px;
   }
 
   .rpe-reference .rpe-chip {
-    min-width: 70px;
     padding: 6px 8px;
     white-space: nowrap;
   }
@@ -1912,6 +1965,10 @@ td {
   }
 
   .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diet-steps {
     grid-template-columns: 1fr;
   }
 

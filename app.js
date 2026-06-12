@@ -7847,11 +7847,22 @@ function accessoryOptionsForItem(item, index, items = currentDay()?.items || [])
 
 function selectedAccessoryName(item, index, log, items) {
   if (movementType(item) !== "accessory") return item.name;
+  if (isAccessoryAmrapContinuation(item, index, items)) {
+    return selectedAccessoryName(items[index - 1], index - 1, log, items);
+  }
   const options = accessoryOptionsForItem(item, index, items);
   const saved = log?.accessories?.[index];
   if (saved && options.includes(saved)) return saved;
   if (options.includes(item.name)) return item.name;
   return options[0] || item.name;
+}
+
+function isAccessoryAmrapContinuation(item, index, items) {
+  if (movementType(item) !== "accessory") return false;
+  if (!String(item.reps || "").toUpperCase().includes("AMRAP")) return false;
+  const previous = items[index - 1];
+  if (!previous || movementType(previous) !== "accessory") return false;
+  return accessoryContextForItem(items, index) === accessoryContextForItem(items, index - 1);
 }
 
 function displayNameForRow(item, index, log, items) {
@@ -9278,7 +9289,7 @@ function renderExercises() {
         <tr>
           <td>
             ${
-              type === "accessory"
+              type === "accessory" && !isAccessoryAmrapContinuation(item, index, day.items)
                 ? accessorySelectHtml(item, index, log, day.items)
                 : `<div class="exercise-name">${escapeHtml(rowName)}</div>`
             }
@@ -9695,6 +9706,9 @@ function bindActions() {
       toggleModal("bmrModal", true);
     });
   });
+  document.querySelectorAll("[data-diet-open]").forEach((button) => {
+    button.addEventListener("click", () => toggleModal("dietModal", true));
+  });
   $("floatingRpeButton")?.addEventListener("click", () => toggleModal("rpeModal", true));
   document.querySelectorAll("[data-modal-close]").forEach((button) => {
     button.addEventListener("click", () => toggleModal(button.dataset.modalClose, false));
@@ -9719,7 +9733,7 @@ function bindActions() {
   });
   $("goWeekButton").addEventListener("click", () => setView("workout"));
   $("showPlannerButton").addEventListener("click", () => setView("planner"));
-  $("markDayButton").addEventListener("click", markDayComplete);
+  $("markDayButton")?.addEventListener("click", markDayComplete);
   $("saveLogButton").addEventListener("click", saveDayLog);
   $("exportButton").addEventListener("click", exportPlanPdf);
   $("backupButton").addEventListener("click", () => {
