@@ -6,13 +6,13 @@
     <title>让卖计划的人没饭吃</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260613-3"></script>
+    <script defer src="./app.js?v=20260613-4"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.9">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.10">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -53,15 +53,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v1.9 · 前言小课堂与趋势图优化</strong>
-          <small class="update-time">2026-06-13 08:57 更新</small>
+          <strong>v1.10 · 双语工具栏与饮食 BMR 合并</strong>
+          <small class="update-time">2026-06-13 10:20 更新</small>
           <ul>
-            <li>左侧计划生成器上方加入前言小课堂，帮助用户先理解使用逻辑。</li>
-            <li>计划生成器顶部周期状态卡已删除，只在每周训练页显示。</li>
-            <li>训练可视图改为折线趋势图，并修正比赛周按日期倒推的计算方式。</li>
+            <li>顶部工具区改为图标按钮，主页入口移到语言键左侧，悬停显示说明。</li>
+            <li>BMR 计算器合并进饮食弹窗，页面顶部不再单独占一个按钮。</li>
+            <li>中文界面重量统一显示 kg，英文切换键改为 ZH，减少中英混杂。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v1.9</strong> 2026-06-13 08:57：加入前言小课堂，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p>
             <p><strong>v1.8</strong> 2026-06-13 00:28：手机端阶段进度收拢为当前阶段摘要，并修复周期状态卡横向溢出。</p>
             <p><strong>v1.7</strong> 2026-06-13 00:07：激活后每次重新打开网页自动弹出更新日志；Logo 仍可手动打开完整日志。</p>
             <p><strong>v1.6</strong> 2026-06-12 23:49：Logo 可点击查看更新日志；每天最后一练改为核心动作池；计划生成器下方新增疑问与建议微信。</p>
@@ -80,7 +81,7 @@
               <article><strong>降重组为什么显示 0？</strong><span>不是错误。0 代表这里由疲劳下降系统生成；你填入已完成组数后，系统会自动列出剩余降重组。</span></article>
               <article><strong>组间休息多久？</strong><span>主项和主项变式通常休息 3-5 分钟，特别重的日子可到 6 分钟；辅助项通常 1-2 分钟。</span></article>
               <article><strong>变式动作怎么估重？</strong><span>大多数变式可先按主项低 10-15% 估算，再根据推荐 RPE 和热身手感微调。</span></article>
-              <article><strong>RPE 做高了怎么办？</strong><span>后续工作组下调约 5-7.5 公斤，或重复同重量但减少组数，优先完成目标次数和动作质量。</span></article>
+              <article><strong>RPE 做高了怎么办？</strong><span>后续工作组下调约 5-7.5 kg，或重复同重量但减少组数，优先完成目标次数和动作质量。</span></article>
               <article><strong>本周工作组太难怎么办？</strong><span>直接降重约 5%，把目标次数、组数和动作质量放在第一位。</span></article>
               <article><strong>辅助项每周都要加重量吗？</strong><span>不一定。辅助项可以先加次数；如果上周太难，重复同重量即可。</span></article>
             </div>
@@ -92,7 +93,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.9">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v1.10">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -222,26 +223,21 @@
               <p id="plannerSubtitle">先填写基础信息、周期目标和训练天数，再生成训练周表。</p>
             </div>
             <div class="top-actions">
-              <button id="goWeekButton" class="secondary-button" type="button">
+              <button id="goWeekButton" class="tool-button primary-tool" type="button" title="查看训练表" aria-label="查看训练表">
                 <i data-lucide="calendar-days"></i>
-                查看训练表
               </button>
-              <button class="language-toggle" data-language-toggle type="button">EN</button>
-              <button class="tool-button" data-bmr-open type="button" title="BMR 计算器">
-                <i data-lucide="calculator"></i>
-                BMR
+              <button class="tool-button" data-home-button type="button" title="主页" aria-label="主页">
+                <i data-lucide="home"></i>
               </button>
-              <button class="tool-button" data-diet-open type="button" title="推荐饮食方法">
+              <button class="language-toggle" data-language-toggle type="button" title="切换语言" aria-label="切换语言">EN</button>
+              <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
                 <i data-lucide="utensils"></i>
-                饮食
               </button>
-              <button class="tool-button" data-analytics-open type="button" title="训练图表">
+              <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
                 <i data-lucide="bar-chart-3"></i>
-                图表
               </button>
-              <button class="tool-button" data-warmup-open type="button" title="热身动作">
+              <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
                 <i data-lucide="flame"></i>
-                热身
               </button>
             </div>
           </header>
@@ -345,28 +341,28 @@
                 <label>
                   深蹲水平
                   <select id="squatLevelInput">
-                    <option value="low">入门：低于体重 1.25 倍</option>
+                    <option value="low">入门：≤ 体重 1.25 倍</option>
                     <option value="medium">中级：约体重 1.25-1.75 倍</option>
                     <option value="high">高级：约体重 1.75-2.25 倍</option>
-                    <option value="veryHigh">精英：高于体重 2.25 倍</option>
+                    <option value="veryHigh">精英：≥ 体重 2.25 倍</option>
                   </select>
                 </label>
                 <label>
                   卧推水平
                   <select id="benchLevelInput">
-                    <option value="low">入门：低于体重 0.8 倍</option>
+                    <option value="low">入门：≤ 体重 0.8 倍</option>
                     <option value="medium">中级：约体重 0.8-1.2 倍</option>
                     <option value="high">高级：约体重 1.2-1.6 倍</option>
-                    <option value="veryHigh">精英：高于体重 1.6 倍</option>
+                    <option value="veryHigh">精英：≥ 体重 1.6 倍</option>
                   </select>
                 </label>
                 <label>
                   硬拉水平
                   <select id="deadliftLevelInput">
-                    <option value="low">入门：低于体重 1.5 倍</option>
+                    <option value="low">入门：≤ 体重 1.5 倍</option>
                     <option value="medium">中级：约体重 1.5-2 倍</option>
                     <option value="high">高级：约体重 2-2.5 倍</option>
-                    <option value="veryHigh">精英：高于体重 2.5 倍</option>
+                    <option value="veryHigh">精英：≥ 体重 2.5 倍</option>
                   </select>
                 </label>
                 <label>
@@ -467,30 +463,23 @@
               <p id="splitLabel">D1 - REST - D2 - REST - D3 - D4 - REST</p>
             </div>
             <div class="top-actions">
-              <button class="language-toggle" data-language-toggle type="button">EN</button>
-              <button class="tool-button" data-bmr-open type="button" title="BMR 计算器">
-                <i data-lucide="calculator"></i>
-                BMR
+              <button class="tool-button" id="showPlannerButton" data-home-button type="button" title="主页" aria-label="主页">
+                <i data-lucide="home"></i>
               </button>
-              <button class="tool-button" data-diet-open type="button" title="推荐饮食方法">
+              <button class="language-toggle" data-language-toggle type="button" title="切换语言" aria-label="切换语言">EN</button>
+              <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
                 <i data-lucide="utensils"></i>
-                饮食
               </button>
-              <button class="tool-button" data-analytics-open type="button" title="训练图表">
+              <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
                 <i data-lucide="bar-chart-3"></i>
-                图表
               </button>
-              <button class="tool-button" data-warmup-open type="button" title="热身动作">
+              <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
                 <i data-lucide="flame"></i>
-                热身
-              </button>
-              <button class="icon-button" id="showPlannerButton" type="button" title="返回计划生成器">
-                <i data-lucide="clipboard-list"></i>
               </button>
               <button class="icon-button" id="exportButton" type="button" title="导出 PDF 计划">
                 <i data-lucide="download"></i>
               </button>
-              <button class="icon-button" id="backupButton" type="button" title="备份/恢复数据">
+              <button class="icon-button hidden" id="backupButton" type="button" title="备份/恢复数据">
                 <i data-lucide="archive"></i>
               </button>
               <input id="restoreInput" type="file" accept="application/json,.json" hidden />
@@ -563,52 +552,6 @@
         <i data-lucide="calculator"></i>
         <span>RPE</span>
       </button>
-    </div>
-    <div id="bmrModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="bmrModalTitle">
-      <div class="modal-card">
-        <div class="modal-head">
-          <div>
-            <span class="eyebrow">TRAINING TOOLS</span>
-            <h3 id="bmrModalTitle">BMR 计算器</h3>
-          </div>
-          <button class="icon-button" type="button" data-modal-close="bmrModal" title="关闭">
-            <i data-lucide="x"></i>
-          </button>
-        </div>
-        <div class="calc-grid">
-          <label>
-            年龄
-            <input id="bmrAgeInput" type="number" min="15" max="90" value="25" />
-          </label>
-          <label>
-            性别
-            <select id="bmrSexInput">
-              <option value="male">男性</option>
-              <option value="female">女性</option>
-            </select>
-          </label>
-          <label>
-            身高 cm
-            <input id="bmrHeightInput" type="number" min="120" max="230" value="175" />
-          </label>
-          <label>
-            体重
-            <input id="bmrWeightInput" type="number" min="30" max="250" step="0.1" value="80" />
-          </label>
-          <label>
-            活动水平
-            <select id="bmrActivityInput">
-              <option value="1.2">久坐/很少运动</option>
-              <option value="1.375">每周运动 1-3 次</option>
-              <option value="1.55">每周运动 4-5 次</option>
-              <option value="1.725">每周高强度 6-7 次</option>
-              <option value="1.9">体力工作或非常高活动量</option>
-            </select>
-          </label>
-        </div>
-        <button id="bmrCalculateButton" type="button">计算 BMR</button>
-        <div id="bmrResult" class="calc-result">输入数据后计算基础代谢和维持热量。</div>
-      </div>
     </div>
     <div id="rpeModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rpeModalTitle">
       <div class="modal-card">
@@ -704,6 +647,42 @@
         <div class="diet-warning">
           有肾脏疾病、消化系统疾病、糖尿病或特殊饮食限制时，先咨询医生或营养师。这个方法是训练饮食框架，不是医疗建议。
         </div>
+        <section class="calc-section diet-bmr-section" aria-label="BMR 计算器">
+          <h4 id="bmrModalTitle">BMR 计算器</h4>
+          <div class="calc-grid">
+            <label>
+              年龄
+              <input id="bmrAgeInput" type="number" min="15" max="90" value="25" />
+            </label>
+            <label>
+              性别
+              <select id="bmrSexInput">
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+              </select>
+            </label>
+            <label>
+              身高 cm
+              <input id="bmrHeightInput" type="number" min="120" max="230" value="175" />
+            </label>
+            <label>
+              体重
+              <input id="bmrWeightInput" type="number" min="30" max="250" step="0.1" value="80" />
+            </label>
+            <label>
+              活动水平
+              <select id="bmrActivityInput">
+                <option value="1.2">久坐/很少运动</option>
+                <option value="1.375">每周运动 1-3 次</option>
+                <option value="1.55">每周运动 4-5 次</option>
+                <option value="1.725">每周高强度 6-7 次</option>
+                <option value="1.9">体力工作或非常高活动量</option>
+              </select>
+            </label>
+          </div>
+          <button id="bmrCalculateButton" type="button">计算 BMR</button>
+          <div id="bmrResult" class="calc-result">输入数据后计算基础代谢和维持热量。</div>
+        </section>
       </div>
     </div>
     <div id="warmupModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="warmupModalTitle">
@@ -782,6 +761,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v1.10</strong><span>2026-06-13 10:20</span><p>顶部工具区改为图标按钮，主页入口移到语言键左侧，BMR 计算器合并进饮食弹窗，中文重量统一显示 kg。</p></article>
           <article><strong>v1.9</strong><span>2026-06-13 08:57</span><p>加入前言小课堂，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p></article>
           <article><strong>v1.8</strong><span>2026-06-13 00:28</span><p>手机端阶段进度收拢为当前阶段摘要，并修复周期状态卡横向溢出。</p></article>
           <article><strong>v1.7</strong><span>2026-06-13 00:07</span><p>激活后每次重新打开网页都会自动弹出更新日志；Logo 仍可手动打开完整日志。</p></article>

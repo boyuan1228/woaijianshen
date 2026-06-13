@@ -7263,7 +7263,7 @@ function displayMass(kg, digits = 1) {
     return `${rounded} lbs`;
   }
   const rounded = Math.round(numeric * 2) / 2;
-  return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(digits)} 公斤`;
+  return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(digits)} kg`;
 }
 
 function formatLoadText(value) {
@@ -7325,9 +7325,83 @@ function populateVariantOptions() {
 
 function renderLanguage() {
   document.querySelectorAll("[data-language-toggle]").forEach((button) => {
-    button.textContent = isEnglish() ? "中文" : "EN";
+    button.textContent = isEnglish() ? "ZH" : "EN";
+    button.title = isEnglish() ? "Switch to Chinese" : "切换语言";
+    button.setAttribute("aria-label", button.title);
   });
+  renderToolLanguage();
   if (document.documentElement) document.documentElement.lang = isEnglish() ? "en" : "zh-CN";
+}
+
+function setButtonLanguage(selector, zh, en) {
+  document.querySelectorAll(selector).forEach((button) => {
+    const label = isEnglish() ? en : zh;
+    button.title = label;
+    button.setAttribute("aria-label", label);
+  });
+}
+
+function setTextLanguage(id, zh, en) {
+  const node = $(id);
+  if (node) node.textContent = isEnglish() ? en : zh;
+}
+
+function setInputLabelLanguage(inputId, zh, en) {
+  const input = $(inputId);
+  const label = input?.closest("label");
+  if (!label) return;
+  const text = isEnglish() ? en : zh;
+  const node = Array.from(label.childNodes).find(
+    (child) => child.nodeType === Node.TEXT_NODE && child.nodeValue.trim()
+  );
+  if (node) node.nodeValue = `\n              ${text}\n              `;
+}
+
+function setSelectOptionsLanguage(id, labels) {
+  const select = $(id);
+  if (!select) return;
+  Array.from(select.options).forEach((option) => {
+    const label = labels[option.value];
+    if (label) option.textContent = isEnglish() ? label.en : label.zh;
+  });
+}
+
+function renderToolLanguage() {
+  setButtonLanguage("#goWeekButton", "查看训练表", "Open training table");
+  setButtonLanguage("[data-home-button]", "主页", "Home");
+  setButtonLanguage("[data-diet-open]", "饮食与 BMR", "Nutrition and BMR");
+  setButtonLanguage("[data-analytics-open]", "训练图表", "Training charts");
+  setButtonLanguage("[data-warmup-open]", "热身动作", "Warm-up drills");
+  setButtonLanguage("#exportButton", "导出 PDF", "Export PDF");
+  setButtonLanguage("#resetButton", "删除日志", "Delete logs");
+  setButtonLanguage("#backupButton", "备份/恢复数据", "Backup or restore data");
+  setButtonLanguage("#floatingRpeButton", "RPE 计算器", "RPE calculator");
+  setButtonLanguage("[data-modal-close]", "关闭", "Close");
+  setTextLanguage("dietModalTitle", "垂直饮食法", "Vertical Diet");
+  setTextLanguage("bmrModalTitle", "BMR 计算器", "BMR Calculator");
+  setTextLanguage("bmrCalculateButton", "计算 BMR", "Calculate BMR");
+  setInputLabelLanguage("bmrAgeInput", "年龄", "Age");
+  setInputLabelLanguage("bmrSexInput", "性别", "Sex");
+  setInputLabelLanguage("bmrHeightInput", "身高 cm", "Height cm");
+  setInputLabelLanguage("bmrWeightInput", "体重", "Bodyweight");
+  setInputLabelLanguage("bmrActivityInput", "活动水平", "Activity level");
+  setSelectOptionsLanguage("bmrSexInput", {
+    male: { zh: "男性", en: "Male" },
+    female: { zh: "女性", en: "Female" },
+  });
+  setSelectOptionsLanguage("bmrActivityInput", {
+    1.2: { zh: "久坐/很少运动", en: "Sedentary" },
+    1.375: { zh: "每周运动 1-3 次", en: "Exercise 1-3 days/week" },
+    1.55: { zh: "每周运动 4-5 次", en: "Exercise 4-5 days/week" },
+    1.725: { zh: "每周高强度 6-7 次", en: "Hard exercise 6-7 days/week" },
+    1.9: { zh: "体力工作或非常高活动量", en: "Physical job or very high activity" },
+  });
+  const bmrResult = $("bmrResult");
+  if (bmrResult && !bmrResult.dataset.calculated) {
+    bmrResult.textContent = isEnglish()
+      ? "Enter values to calculate basal metabolic rate and estimated maintenance calories."
+      : "输入数据后计算基础代谢和维持热量。";
+  }
 }
 
 function renderSystemChrome() {
@@ -7345,6 +7419,16 @@ function renderSystemChrome() {
   $("plannerSubtitle").textContent = usesJts
     ? "先填写基础信息、周期目标和训练天数，再生成训练周表。"
     : "先选择体系、比赛或测试日期、训练天数和基础水平，再生成对应风格的训练周表。";
+  $("sidebarBrandSub").textContent = isEnglish()
+    ? "Plan builder · Training log · PDF export"
+    : "计划生成 · 训练记录 · PDF 导出";
+  $("plannerEyebrow").textContent = isEnglish()
+    ? `${system.short} training system`
+    : `${system.short} 训练体系`;
+  $("plannerTitle").textContent = isEnglish() ? `${brandTitle} Plan Builder` : `${brandTitle} 计划生成器`;
+  $("plannerSubtitle").textContent = isEnglish()
+    ? "Fill in baseline data, cycle target, and weekly training days, then generate the weekly plan."
+    : "先填写基础信息、周期目标和训练天数，再生成训练周表。";
   const sidebarLesson = $("sidebarLesson");
   if (sidebarLesson) {
     sidebarLesson.innerHTML = isEnglish()
@@ -8206,7 +8290,7 @@ function localizeNote(note) {
     .replace(/PR SINGLE/g, "测试单次")
     .replace(/TUCK YOUR PELVIS AND SQUEEZE THE GLUTES\./gi, "骨盆后倾并收紧臀部。")
     .replace(/SUPERSET ALL 3 MOVEMENTS\./gi, "三个动作超级组。")
-    .replace(/kg/g, "公斤")
+    .replace(/kg/g, "kg")
     .trim();
 }
 
@@ -9727,6 +9811,7 @@ function calculateBmr() {
   const activity = Number($("bmrActivityInput")?.value || 1.2);
   const target = $("bmrResult");
   if (!target) return;
+  target.dataset.calculated = "true";
   if (!age || !height || !weight) {
     target.textContent = isEnglish() ? "Enter age, height, and body weight." : "请输入年龄、身高和体重。";
     return;
@@ -9950,7 +10035,7 @@ function volumeBarsHtml(title, rows) {
 
 function bodyweightChartHtml(rows) {
   const title = isEnglish() ? "Bodyweight Change" : "体重变化";
-  const unit = isEnglish() ? "lbs" : "公斤";
+  const unit = isEnglish() ? "lbs" : "kg";
   if (!rows.length) {
     return `<section class="chart-card">
       <div class="chart-head"><h4>${title}</h4></div>
@@ -10016,14 +10101,14 @@ function bindActions() {
   document.querySelectorAll("[data-language-toggle]").forEach((button) => {
     button.addEventListener("click", toggleLanguage);
   });
-  document.querySelectorAll("[data-bmr-open]").forEach((button) => {
+  document.querySelectorAll("[data-diet-open]").forEach((button) => {
     button.addEventListener("click", () => {
       seedBmrModal();
-      toggleModal("bmrModal", true);
+      toggleModal("dietModal", true);
     });
   });
-  document.querySelectorAll("[data-diet-open]").forEach((button) => {
-    button.addEventListener("click", () => toggleModal("dietModal", true));
+  document.querySelectorAll("[data-home-button]").forEach((button) => {
+    button.addEventListener("click", () => setView("planner"));
   });
   document.querySelectorAll("[data-warmup-open]").forEach((button) => {
     button.addEventListener("click", () => toggleModal("warmupModal", true));
@@ -10060,7 +10145,7 @@ function bindActions() {
     render();
   });
   $("goWeekButton").addEventListener("click", () => setView("workout"));
-  $("showPlannerButton").addEventListener("click", () => setView("planner"));
+  $("showPlannerButton")?.addEventListener("click", () => setView("planner"));
   $("markDayButton")?.addEventListener("click", markDayComplete);
   $("saveLogButton").addEventListener("click", saveDayLog);
   $("exportButton").addEventListener("click", exportPlanPdf);

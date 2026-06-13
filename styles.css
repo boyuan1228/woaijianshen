@@ -640,7 +640,7 @@ textarea:focus {
 }
 
 .language-toggle {
-  min-width: 54px;
+  min-width: 46px;
   height: 42px;
   border-radius: 7px;
   border: 1px solid var(--line);
@@ -650,7 +650,8 @@ textarea:focus {
 }
 
 .tool-button {
-  min-width: 58px;
+  width: 42px;
+  min-width: 42px;
   height: 42px;
   display: inline-flex;
   align-items: center;
@@ -661,6 +662,12 @@ textarea:focus {
   background: var(--surface);
   color: var(--ink);
   font-weight: 850;
+}
+
+.tool-button.primary-tool {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 .tool-button svg {
@@ -2375,7 +2382,8 @@ td {
   }
 
   .tool-button {
-    min-width: 52px;
-    padding: 0 9px;
+    width: 42px;
+    min-width: 42px;
+    padding: 0;
   }
 }
