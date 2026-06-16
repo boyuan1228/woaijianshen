@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260616-v21" />
+    <link rel="stylesheet" href="./styles.css?v=20260616-v22-2159" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260616-v21"></script>
+    <script defer src="./app.js?v=20260616-v22-2159"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.1">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.2">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -60,22 +60,23 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.1 · 体系分流与变式笔记</strong>
-          <small class="update-time">2026-06-16 更新</small>
+          <strong>v2.2 · 肌肥大界面净化</strong>
+          <small class="update-time">2026-06-16 21:59 更新</small>
           <ul>
-            <li>健美式肌肥大和专属力训体系分开；肌肥大不再询问比赛日期或测试 PR。</li>
-            <li>肌肥大周期加入基础容量期、渐进超负荷期和减量评估期。</li>
-            <li>力量举三项技术笔记新增深蹲、卧推、硬拉变式选择与使用说明。</li>
+            <li>肌肥大移除比赛、测试、开把、三项 PR 和剩余周倒计时等力量举遗留项。</li>
+            <li>侧边栏改为知识库 / 力量参数：肌肥大显示知识检索，力量举体系才显示三项 PR 和变式。</li>
+            <li>科普内容增加小字来源标注，整体界面改成更清爽的科技工具风格。</li>
             <li>v2 继续使用样本模式：输入激活码后直接进入，刷新后自动清空临时训练数据。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.1</strong> 2026-06-16：健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p>
             <p><strong>v2.0</strong> 2026-06-16：保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p>
-            <p><strong>v1.13</strong> 2026-06-13 12:35：英文模式补齐动态生成区域：阶段、频率、周布局、开把、日志和 RPE 工具；右上角主页图标改为进入三项技术笔记页；前言小课堂改为通用说明。</p>
+            <p><strong>v1.13</strong> 2026-06-13 12:35：英文模式补齐动态生成区域：阶段、频率、周布局、开把、日志和 RPE 工具；右上角主页图标改为进入三项技术笔记页；顶部说明改为通用说明。</p>
             <p><strong>v1.12</strong> 2026-06-13 10:48：顶部工具按钮改为功能配色；训练表页导出和清空按钮加入独立颜色；CSS 加版本号避免旧缓存。</p>
             <p><strong>v1.11</strong> 2026-06-13 10:38：英文模式补齐主要静态表单、弹窗、QA、热身和饮食文案；语言键英文状态显示 ZH，中文状态显示 EN。</p>
             <p><strong>v1.10</strong> 2026-06-13 10:20：顶部工具区改为图标按钮，主页入口移到语言键左侧，BMR 计算器合并进饮食弹窗，中文重量统一显示 kg。</p>
-            <p><strong>v1.9</strong> 2026-06-13 08:57：加入前言小课堂，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p>
+            <p><strong>v1.9</strong> 2026-06-13 08:57：加入顶部训练说明，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p>
             <p><strong>v1.8</strong> 2026-06-13 00:28：手机端阶段进度收拢为当前阶段摘要，并修复周期状态卡横向溢出。</p>
             <p><strong>v1.7</strong> 2026-06-13 00:07：激活后每次重新打开网页自动弹出更新日志；Logo 仍可手动打开完整日志。</p>
             <p><strong>v1.6</strong> 2026-06-12 23:49：Logo 可点击查看更新日志；每天最后一练改为核心动作池；计划生成器下方新增疑问与建议微信。</p>
@@ -84,7 +85,7 @@
             <p><strong>v1.3</strong> 2026-06-12 18:37：手机端训练行更紧凑，新增浮动 RPE 计算器和 BMR 计算器。</p>
             <p><strong>v1.2</strong> 2026-06-12 17:37：加入 Sheiko、Calgary、RTS、Westside、GZCL、Texas 基础模板。</p>
             <p><strong>v1.1</strong> 2026-06-11 23:30：加入 PDF 导出、开把设置、RPE/e1RM 估重和降重组拆分。</p>
-            <p><strong>v1.0</strong> 2026-06-07 18:00：加入激活、个人数据、问卷和训练周表生成。</p>
+            <p><strong>v1.0</strong> 2026-06-07 18:00：加入激活、基础参数、问卷和训练周表生成。</p>
           </details>
         </section>
         <section class="activation-faq" aria-label="常见问题">
@@ -106,7 +107,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.1">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.2">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -117,19 +118,20 @@
 
         <button class="profile-toggle" id="profileToggle" type="button">
           <i data-lucide="sliders-horizontal"></i>
-          个人数据
+          <span id="profileToggleLabel">知识库 / 参数</span>
         </button>
 
         <section class="profile-panel">
           <div class="panel-title desktop-only">
-            <i data-lucide="user-round"></i>
-            <span>个人数据</span>
+            <i data-lucide="scan-search"></i>
+            <span id="contextPanelTitle">知识库 / 参数</span>
           </div>
-          <label>
+          <section id="knowledgePanel" class="knowledge-panel" aria-label="知识快速检索"></section>
+          <label class="profile-name-field hidden">
             姓名
             <input id="nameInput" type="text" placeholder="你的名字" />
           </label>
-          <div class="grid-3">
+          <div class="grid-3 sbd-profile-fields">
             <label>
               深蹲
               <input id="squatInput" type="number" min="0" step="0.5" placeholder="1RM" />
@@ -164,7 +166,7 @@
               </label>
             </div>
           </div>
-          <div class="variant-stack">
+          <div class="variant-stack sbd-profile-fields">
             <details>
               <summary>卧推变式</summary>
               <label>
@@ -222,7 +224,7 @@
           </div>
         </section>
 
-        <section id="sidebarLesson" class="sidebar-lesson" aria-label="前言小课堂"></section>
+        <section id="sidebarLesson" class="sidebar-lesson" aria-label="知识提示"></section>
 
         <nav class="week-nav" id="weekNav" aria-label="页面与周选择"></nav>
       </aside>
@@ -261,7 +263,7 @@
                   <h3>开始前问卷</h3>
                   <p>这些输入用于自动给出容量、阶段比例和频率建议。</p>
                 </div>
-                <div class="section-actions">
+                <div class="section-actions strength-only">
                   <button id="testPrToggle" class="mini-toggle" type="button" aria-pressed="false">需要测试 PR</button>
                 </div>
               </div>
@@ -305,7 +307,7 @@
                 <section id="systemQuestionnaire" class="system-questionnaire hidden" aria-label="体系参数"></section>
               </div>
               <div class="question-grid">
-                <label>
+                <label class="strength-only">
                   拟定比赛日期
                   <input id="meetDateInput" type="date" />
                 </label>
@@ -474,7 +476,7 @@
             <div>
               <p class="eyebrow" id="phaseLabel">Build</p>
               <h2 id="weekTitle">Week 1</h2>
-              <p id="splitLabel">D1 - REST - D2 - REST - D3 - D4 - REST</p>
+              <p id="splitLabel">当前分化会根据训练体系生成。</p>
             </div>
             <div class="top-actions">
               <button class="tool-button" id="showPlannerButton" data-home-button type="button" title="主页" aria-label="主页">
@@ -632,6 +634,7 @@
           <button id="rpeLoadButton" type="button">计算建议重量</button>
           <div id="rpeLoadResult" class="calc-result">输入 e1RM、次数和 RPE 后给出建议重量。</div>
         </section>
+        <small class="source-note" data-source-note="training">来源：ACSM 阻力训练立场声明、NSCA 力量训练基础、RPE 训练公开资料。估重仅作训练参考。</small>
       </div>
     </div>
     <div id="dietModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="dietModalTitle">
@@ -677,6 +680,7 @@
         <div class="diet-warning">
           有肾脏疾病、消化系统疾病、糖尿病或特殊饮食限制时，先咨询医生或营养师。这个方法是训练饮食框架，不是医疗建议。
         </div>
+        <small class="source-note" data-source-note="nutrition">来源：Stan Efferding Vertical Diet 公开资料、ACSM 运动营养建议、ISSN 蛋白质摄入立场声明。饮食内容不是医疗建议。</small>
         <section class="calc-section diet-bmr-section" aria-label="BMR 计算器">
           <h4 id="bmrModalTitle">BMR 计算器</h4>
           <div class="calc-grid">
@@ -763,6 +767,7 @@
             </ol>
           </section>
         </div>
+        <small class="source-note" data-source-note="warmup">来源：NSCA 动态热身原则、ACSM 运动测试与处方指南、NASM 动作准备框架。根据疼痛和活动受限情况调整。</small>
       </div>
     </div>
     <div id="analyticsModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="analyticsModalTitle">
@@ -791,13 +796,14 @@
           </button>
         </div>
         <div class="changelog-list">
-          <article><strong>v2.1</strong><span>2026-06-16</span><p>健美式肌肥大和专属力训体系分开；肌肥大不再询问比赛日期或测试 PR，并使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p></article>
+          <article><strong>v2.2</strong><span>2026-06-16 21:59</span><p>肌肥大移除比赛、测试、开把、三项 PR、剩余周倒计时和休息日排布遗留项；侧边栏改为知识库 / 力量参数，肌肥大显示快速知识检索，力量举体系才显示三项 PR 和变式；科普内容补充来源小字，UI 收紧为更简洁的科技训练工具风格。</p></article>
+          <article><strong>v2.1</strong><span>2026-06-16</span><p>健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p></article>
           <article><strong>v2.0</strong><span>2026-06-16</span><p>保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p></article>
-          <article><strong>v1.13</strong><span>2026-06-13 12:35</span><p>英文模式补齐动态生成区域，主页图标改为三项技术笔记页，前言小课堂改为通用说明。</p></article>
+          <article><strong>v1.13</strong><span>2026-06-13 12:35</span><p>英文模式补齐动态生成区域，主页图标改为三项技术笔记页，顶部说明改为通用说明。</p></article>
           <article><strong>v1.12</strong><span>2026-06-13 10:48</span><p>顶部工具按钮改为功能配色，训练表页导出和清空按钮也加入独立颜色，并给 CSS 加版本号避免旧缓存。</p></article>
           <article><strong>v1.11</strong><span>2026-06-13 10:38</span><p>英文模式补齐主要静态表单、弹窗、QA、热身和饮食文案；语言键英文状态显示 ZH，中文状态显示 EN。</p></article>
           <article><strong>v1.10</strong><span>2026-06-13 10:20</span><p>顶部工具区改为图标按钮，主页入口移到语言键左侧，BMR 计算器合并进饮食弹窗，中文重量统一显示 kg。</p></article>
-          <article><strong>v1.9</strong><span>2026-06-13 08:57</span><p>加入前言小课堂，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p></article>
+          <article><strong>v1.9</strong><span>2026-06-13 08:57</span><p>加入顶部训练说明，删除生成器顶部周期卡，训练可视图改为折线趋势图，并修正比赛周倒推。</p></article>
           <article><strong>v1.8</strong><span>2026-06-13 00:28</span><p>手机端阶段进度收拢为当前阶段摘要，并修复周期状态卡横向溢出。</p></article>
           <article><strong>v1.7</strong><span>2026-06-13 00:07</span><p>激活后每次重新打开网页都会自动弹出更新日志；Logo 仍可手动打开完整日志。</p></article>
           <article><strong>v1.6</strong><span>2026-06-12 23:49</span><p>Logo 可点击查看更新日志，悬停显示版本；每天最后一练改为核心动作池；计划生成器下方新增疑问与建议微信。</p></article>
@@ -806,7 +812,7 @@
           <article><strong>v1.3</strong><span>2026-06-12 18:37</span><p>手机端训练行更紧凑，新增浮动 RPE 计算器和 BMR 计算器。</p></article>
           <article><strong>v1.2</strong><span>2026-06-12 17:37</span><p>新增多训练体系基础模板和辅助项分组筛选。</p></article>
           <article><strong>v1.1</strong><span>2026-06-11 23:30</span><p>加入 PDF 导出、开把设置、RPE/e1RM 估重和降重组拆分。</p></article>
-          <article><strong>v1.0</strong><span>2026-06-07 18:00</span><p>加入激活、个人数据、问卷和训练周表生成。</p></article>
+          <article><strong>v1.0</strong><span>2026-06-07 18:00</span><p>加入激活、基础参数、问卷和训练周表生成。</p></article>
         </div>
       </div>
     </div>

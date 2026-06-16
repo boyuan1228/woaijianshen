@@ -1,7 +1,7 @@
 window.PROGRAM_DATA = {
   "title": "RHTS SSTT Training Plan",
   "source": "C:\\Users\\allen\\Desktop\\RHTS SSTT-1.xlsx",
-  "split": "D1 - REST - D2 - REST - D3 - D4 - REST",
+  "split": "Generated from selected system",
   "weeks": [
     {
       "number": 1,
@@ -7439,6 +7439,11 @@ function phaseDisplayName(phase) {
   return isEnglish() ? localizePlanText(phase.name || planPhaseLabel(phase.key)) : phase.name || planPhaseLabel(phase.key);
 }
 
+function phaseDisplayNameForPlan(plan, key) {
+  const phase = plan?.phases?.find((item) => item.key === key);
+  return phaseDisplayName(phase || { key });
+}
+
 function displayMass(kg, digits = 1) {
   const numeric = Number(kg);
   if (!numeric) return "";
@@ -7583,6 +7588,9 @@ function renderToolLanguage() {
   const rpeSectionTitles = document.querySelectorAll("#rpeModal .calc-section h4");
   if (rpeSectionTitles[0]) rpeSectionTitles[0].textContent = isEnglish() ? "Estimated 1RM" : "预估 1RM";
   if (rpeSectionTitles[1]) rpeSectionTitles[1].textContent = isEnglish() ? "Suggested Load" : "建议重量";
+  document.querySelectorAll("[data-source-note]").forEach((node) => {
+    node.textContent = sourceText(node.dataset.sourceNote || "training");
+  });
   setTextLanguage("dayLogTitle", "当天日志", "Daily Log");
   setTextLanguage("dayLogSubtitle", "保存到本机浏览器", "Saved in this browser");
   setIconButtonTextLanguage("saveLogButton", "保存日志", "Save Log");
@@ -7612,6 +7620,7 @@ function renderToolLanguage() {
     1.9: { zh: "体力工作或非常高活动量", en: "Physical job or very high activity" },
   });
   setSelectOptionsLanguage("programSystemInput", {
+    bodybuilding: { zh: "健美式肌肥大", en: "Bodybuilding Hypertrophy" },
     jtsSstt: { zh: "JTS × SSTT 十五周", en: "JTS × SSTT 15-Week" },
     sheiko: { zh: "Sheiko", en: "Sheiko" },
     calgary: { zh: "Calgary", en: "Calgary" },
@@ -7668,7 +7677,7 @@ const STATIC_I18N = new Map(
     "不一定。辅助项可以先加次数；如果上周太难，重复同重量即可。": "Not always. Progress accessories with reps first. If last week was too hard, repeat the load.",
     "力量周期": "Strength Cycle",
     "计划生成 · 训练记录 · PDF 导出": "Plan Builder · Training Log · PDF Export",
-    "个人数据": "Profile",
+    "知识库 / 参数": "Knowledge / Inputs",
     "姓名": "Name",
     "深蹲": "Squat",
     "卧推": "Bench",
@@ -7852,11 +7861,11 @@ const STATIC_I18N = new Map(
   ["样本模式", "Sample Mode"],
   ["刷新清空", "Clears on Refresh"],
   ["v2.1 · 体系分流与变式笔记", "v2.1 · System Split and Variation Notes"],
-  ["健美式肌肥大和专属力训体系分开；肌肥大不再询问比赛日期或测试 PR。", "Bodybuilding hypertrophy is separated from strength systems; hypertrophy no longer asks for meet date or PR testing."],
+  ["健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期。", "Bodybuilding hypertrophy is separated from strength systems and uses a 12-week base-volume, progressive-overload, and recovery-review sample cycle."],
   ["肌肥大周期加入基础容量期、渐进超负荷期和减量评估期。", "Hypertrophy now uses base volume, progressive-overload, and taper-assessment phases."],
   ["力量举三项技术笔记新增深蹲、卧推、硬拉变式选择与使用说明。", "Powerlifting technique notes now include squat, bench, and deadlift variation selection and usage guidance."],
   ["v2 继续使用样本模式：输入激活码后直接进入，刷新后自动清空临时训练数据。", "v2 stays in sample mode: enter the activation code directly, and temporary training data clears on refresh."],
-  ["健美式肌肥大和专属力训体系分开；肌肥大不再询问比赛日期或测试 PR，并使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。", "Bodybuilding hypertrophy is separated from strength systems; hypertrophy no longer asks for meet date or PR testing and uses a 12-week base-volume, progressive-overload, taper-assessment sample cycle; technique notes add SBD variation guidance; generator highlights add system split, sample mode, weak-point feedback, and variation library."],
+  ["健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。", "Bodybuilding hypertrophy is separated from strength systems and uses a 12-week base-volume, progressive-overload, recovery-review sample cycle; technique notes add SBD variation guidance; generator highlights add system split, sample mode, weak-point feedback, and variation library."],
   ["v2.0 · 样本模式与临时数据", "v2.0 · Sample Mode and Temporary Data"],
   ["2026-06-16 更新", "Updated 2026-06-16"],
   ["v2 继续使用样本模式：输入激活码后直接进入计划生成器，不出现登录或注册。", "v2 stays in sample mode: enter the activation code to open the planner directly, with no login or registration."],
@@ -7867,8 +7876,8 @@ const STATIC_I18N = new Map(
   ["2026-06-13 12:35 更新", "Updated 2026-06-13 12:35"],
   ["英文模式补齐动态生成区域：阶段、频率、周布局、开把、日志和 RPE 工具。", "English mode now covers generated phase, frequency, weekly layout, openers, logs, and RPE tool text."],
   ["右上角主页图标改为进入三项技术笔记页，内容覆盖深蹲、硬拉和卧推。", "The top-right home icon now opens a three-lift technique notes page covering squat, deadlift, and bench."],
-  ["前言小课堂改为通用说明，MEV/MRV 只保留在 JTS 相关输出中。", "The primer is now general guidance; MEV/MRV stays only in JTS-related output."],
-  ["英文模式补齐动态生成区域，主页图标改为三项技术笔记页，前言小课堂改为通用说明。", "English mode now covers dynamic generated text, the home icon opens technique notes, and the primer is now general guidance."],
+  ["顶部说明改为通用说明，MEV/MRV 只保留在 JTS 相关输出中。", "The top note is now general guidance; MEV/MRV stays only in JTS-related output."],
+  ["英文模式补齐动态生成区域，主页图标改为三项技术笔记页，顶部说明改为通用说明。", "English mode now covers dynamic generated text, the home icon opens technique notes, and the top note is now general guidance."],
   ["v1.12 · 顶部工具按钮功能配色", "v1.12 · Functional Colors for Top Tools"],
   ["顶部工具按钮改为功能配色：主页、语言、饮食、图表、热身各自有区分。", "Top tool buttons now use functional colors for Home, Language, Nutrition, Charts, and Warm-up."],
   ["训练表页的导出和清空按钮也加入独立颜色，减少一排白按钮的廉价感。", "The training page export and clear buttons also get distinct colors to avoid a row of plain white buttons."],
@@ -7910,8 +7919,13 @@ function renderSystemChrome() {
     state.survey.testPr = false;
   }
   document.body.dataset.system = state.survey.programSystem || "bodybuilding";
+  document.body.dataset.trainingMode = isBodybuilding ? "bodybuilding" : "strength";
   const brandTitle = systemDisplayTitle(system);
   const displayShort = systemShortText(system);
+  renderKnowledgePanel();
+  document.querySelectorAll(".sbd-profile-fields").forEach((node) => node.classList.toggle("hidden", isBodybuilding));
+  setTextLanguage("contextPanelTitle", isBodybuilding ? "知识库" : "知识库 / 力量参数", isBodybuilding ? "Knowledge Base" : "Knowledge / Strength Inputs");
+  setTextLanguage("profileToggleLabel", isBodybuilding ? "知识库" : "知识库 / 参数", isBodybuilding ? "Knowledge" : "Knowledge / Inputs");
   $("sidebarBrandTitle").textContent = displayShort;
   $("sidebarBrandSub").textContent = isEnglish()
     ? "Plan builder · Training log · PDF export"
@@ -7934,7 +7948,7 @@ function renderSystemChrome() {
   const sidebarLesson = $("sidebarLesson");
   if (sidebarLesson) {
     sidebarLesson.innerHTML = isEnglish()
-      ? `<span class="lesson-kicker">Primer</span>
+      ? `<span class="lesson-kicker">Training Note</span>
         <strong>Read this before generating</strong>
         <p>This tool turns your maxes, dates, weekly training days, exercise selections, and logs into a structured training cycle. Different systems use different rules, so the questionnaire only appears when that system needs it.</p>
         <ul>
@@ -7942,7 +7956,7 @@ function renderSystemChrome() {
           <li>Keep the main lift goal clear before adding accessory work.</li>
           <li>Use logs to judge trends in bodyweight, fatigue, and weekly volume.</li>
         </ul>`
-      : `<span class="lesson-kicker">前言小课堂</span>
+      : `<span class="lesson-kicker">训练提示</span>
         <strong>生成前先看这三点</strong>
         <p>这个工具会把你的最大重量、日期、每周训练天数、动作选择和训练日志转成周期结构。不同训练体系使用不同规则，所以只有需要问卷的体系才会显示对应问卷。</p>
         <ul>
@@ -7950,6 +7964,29 @@ function renderSystemChrome() {
           <li>先明确主项目标，再决定辅助项怎么补弱点。</li>
           <li>训练日志用来看体重、疲劳和周容量趋势，而不是只记录完成没完成。</li>
         </ul>`;
+    if (isBodybuilding) {
+      sidebarLesson.innerHTML = isEnglish()
+        ? `<span class="lesson-kicker">Knowledge Base</span>
+          <strong>Hypertrophy sample rules</strong>
+          <p>This mode builds a physique-focused sample from goal, split, weekly days, weak-point feedback, logbook trend, and recovery.</p>
+          <ul>
+            <li>Progress by reps, load, tempo quality, or effective sets.</li>
+            <li>Keep target muscles clear before adding more exercises.</li>
+            <li>Use photos, measurements, pumps, joint comfort, and logbook trend together.</li>
+          </ul>
+          <small class="source-note">${sourceText("hypertrophy")}</small>`
+        : `<span class="lesson-kicker">知识库</span>
+          <strong>肌肥大样本规则</strong>
+          <p>这个模式按目标、分化、训练天数、弱项反馈、训练日志趋势和恢复情况生成体态导向样本。</p>
+          <ul>
+            <li>进展可以来自次数、重量、节奏质量或有效组数。</li>
+            <li>先明确目标肌群，再增加动作数量。</li>
+            <li>照片、围度、泵感、关节舒适度和训练日志趋势要一起看。</li>
+          </ul>
+          <small class="source-note">${sourceText("hypertrophy")}</small>`;
+    } else {
+      sidebarLesson.insertAdjacentHTML("beforeend", `<small class="source-note">${sourceText("training")}</small>`);
+    }
   }
   document.querySelectorAll(".jts-only").forEach((node) => node.classList.toggle("hidden", !usesJts));
   document.querySelectorAll(".jts-sstt-only").forEach((node) =>
@@ -8033,6 +8070,7 @@ function renderSystemChrome() {
                 <option value="high">High: specialization block</option>
               </select>
             </label>
+            <small class="source-note">${sourceText("hypertrophy")}</small>
           </div>
         `
           : `
@@ -8086,6 +8124,7 @@ function renderSystemChrome() {
                 <option value="high">高：专项强化小周期</option>
               </select>
             </label>
+            <small class="source-note">${sourceText("hypertrophy")}</small>
           </div>
         `;
         bindDynamicSurveyFields(systemQuestionnaire);
@@ -8096,6 +8135,7 @@ function renderSystemChrome() {
           <article><span>Questionnaire</span><strong>Core inputs</strong><p>This system uses test date, experience, weekly training days, and SBD maxes. It does not use the JTS sleep, stress, or MEV/MRV survey.</p></article>
           <article><span>Variations</span><strong>System-specific</strong><p>Bench, squat, and deadlift variations switch with the selected system, and the training table follows that system's lift order.</p></article>
           <article><span>Model</span><strong>${escapeHtml(displayShort)}</strong><p>Linear, alternating, and low-medium-high models only apply to the custom JTS-style cycle. This system uses its own weekly structure.</p></article>
+          <small class="source-note">${sourceText("training")}</small>
         </div>
       `
         : `
@@ -8103,6 +8143,7 @@ function renderSystemChrome() {
           <article><span>问卷</span><strong>核心参数</strong><p>该体系只使用比赛/测试日期、训练经验、每周训练天数和三项 PR，不套用 JTS 睡眠、压力、MEV/MRV 问卷。</p></article>
           <article><span>变式</span><strong>按体系切换</strong><p>卧推、深蹲、硬拉变式会随体系切换，训练表按该体系的主项顺序生成。</p></article>
           <article><span>模型</span><strong>${escapeHtml(system.short)}</strong><p>线性、交替、低中高模型只用于自定义周期；当前体系使用自身周结构。</p></article>
+          <small class="source-note">${sourceText("training")}</small>
         </div>
       `;
       }
@@ -8115,12 +8156,23 @@ function renderProgramIntro() {
   if (!target) return;
   const system = currentProgramSystem();
   const usesJts = Boolean(system.usesJtsSurvey);
-  const statusLabel = isEnglish() ? (usesJts ? "MEV/MRV" : "System Template") : usesJts ? "MEV/MRV" : "体系模板";
+  const isBodybuilding = Boolean(system.isBodybuilding);
+  const statusLabel = isEnglish()
+    ? isBodybuilding
+      ? "Hypertrophy sample"
+      : usesJts ? "MEV/MRV" : "System Template"
+    : isBodybuilding
+      ? "肌肥大样本"
+      : usesJts ? "MEV/MRV" : "体系模板";
   const statusNote = isEnglish()
-    ? usesJts
+    ? isBodybuilding
+      ? "Uses split, weekly days, weak-point feedback, progressive overload, and recovery review to build a physique-focused sample."
+      : usesJts
       ? "Uses the built-in volume questionnaire, frequency logic, deloads, peaking, and backdown/test-week structure."
       : "Uses this system's own weekly structure and simplified progression. JTS questionnaire fields are hidden for this system."
-    : usesJts
+    : isBodybuilding
+      ? "使用分化、训练天数、弱项反馈、渐进超负荷和恢复评估生成体态导向样本。"
+      : usesJts
       ? "使用内置容量问卷、频率逻辑、减载、冲刺和降重/测试周结构。"
       : "使用该体系自己的周结构和简化进展逻辑；JTS 的睡眠、压力、MEV/MRV 问卷不会套用到这个体系。";
   target.innerHTML = `
@@ -8133,7 +8185,78 @@ function renderProgramIntro() {
       <mark>${escapeHtml(statusLabel)}</mark>
     </div>
     <p class="program-note">${escapeHtml(statusNote)}</p>
+    <small class="source-note">${sourceText(isBodybuilding ? "hypertrophy" : "training")}</small>
   `;
+}
+
+function sourceText(type = "training") {
+  const zh = {
+    training: "参考：ACSM 阻力训练立场声明、NSCA Essentials of Strength Training and Conditioning、NASM OPT 模型、JTS Strength 训练资料。内容为训练教育摘要，不替代医疗或现场教练。",
+    hypertrophy: "参考：ACSM/NSCA 阻力训练原则、NASM OPT 模型、Brad Schoenfeld 肌肥大训练综述。内容为训练教育摘要。",
+    rehab: "参考：ACSM 运动测试与处方指南、NSCA 训练基础、NASM Corrective Exercise 思路。疼痛或伤病请咨询医生/康复师。",
+    technique: "参考：JTS Strength 三项变式说明、NSCA 力量训练基础、IPF 技术规则公开资料。内容为技术教育摘要。",
+    nutrition: "参考：Stan Efferding Vertical Diet 公开资料、ACSM 运动营养建议、ISSN 蛋白质摄入立场声明。饮食内容不是医疗建议。",
+    warmup: "参考：NSCA 动态热身原则、ACSM 运动测试与处方指南、NASM 动作准备框架。根据疼痛和活动受限情况调整。",
+  };
+  const en = {
+    training: "Sources: ACSM resistance-training position stands, NSCA Essentials of Strength Training and Conditioning, NASM OPT model, and JTS Strength material. Educational summary only.",
+    hypertrophy: "Sources: ACSM/NSCA resistance-training principles, NASM OPT model, and Brad Schoenfeld hypertrophy literature. Educational summary only.",
+    rehab: "Sources: ACSM exercise testing and prescription guidance, NSCA training foundations, and NASM corrective-exercise concepts. Consult a clinician for pain or injury.",
+    technique: "Sources: JTS Strength variation guides, NSCA strength-training foundations, and public IPF technical rules. Educational summary only.",
+    nutrition: "Sources: Stan Efferding Vertical Diet public material, ACSM sports nutrition guidance, and ISSN protein-position stand. Not medical advice.",
+    warmup: "Sources: NSCA dynamic warm-up principles, ACSM exercise guidance, and NASM movement-preparation framework. Adjust for pain or limitations.",
+  };
+  return (isEnglish() ? en : zh)[type] || (isEnglish() ? en.training : zh.training);
+}
+
+function knowledgeCards() {
+  return isEnglish()
+    ? [
+        { tag: "Anatomy", title: "Scapula and pressing", body: "For pressing, keep the shoulder blades stable against the bench or rib cage before chasing load.", source: "NSCA Essentials; NASM OPT" },
+        { tag: "Anatomy", title: "Hip hinge", body: "A hinge loads hamstrings and glutes while keeping the trunk braced; it is not a rounded-back reach.", source: "NSCA Essentials; NASM CES" },
+        { tag: "Hypertrophy", title: "Double progression", body: "Add reps first inside the target range, then add load when all sets stay within the target RPE/RIR.", source: "ACSM; Schoenfeld hypertrophy review" },
+        { tag: "Hypertrophy", title: "Weak-point volume", body: "A weak-point block should add targeted weekly sets without turning every session into the same muscle day.", source: "NSCA; NASM OPT" },
+        { tag: "Rehab", title: "Pain rule", body: "Pain that sharpens, changes technique, or persists after training should reduce load, range, or volume.", source: "ACSM guidelines; NASM CES" },
+        { tag: "Recovery", title: "Fatigue check", body: "Sleep, appetite, joint comfort, and performance trend together matter more than one isolated workout.", source: "NSCA; ACSM" },
+      ]
+    : [
+        { tag: "解剖学", title: "肩胛与推类动作", body: "推类动作先稳定肩胛和胸廓，再追重量；卧推是上背平台、胸廓张力和腿驱动共同工作。", source: "NSCA Essentials；NASM OPT" },
+        { tag: "解剖学", title: "髋铰链", body: "髋铰链用腘绳肌和臀部承受张力，躯干保持支撑；不是弯腰去够地面。", source: "NSCA Essentials；NASM CES" },
+        { tag: "肌肥大", title: "双进展逻辑", body: "先在目标次数区间内加次数；所有组都落在目标 RPE/RIR 后，再小幅加重量。", source: "ACSM；Schoenfeld 肌肥大综述" },
+        { tag: "肌肥大", title: "弱项补量", body: "弱项小周期只给目标肌群额外周组数，不应该把每一天都变成同一个肌群日。", source: "NSCA；NASM OPT" },
+        { tag: "康复学", title: "疼痛规则", body: "疼痛变尖锐、改变动作、或训练后持续存在时，优先降重量、降行程或降容量。", source: "ACSM 指南；NASM CES" },
+        { tag: "恢复", title: "疲劳判断", body: "睡眠、食欲、关节舒适度和表现趋势要一起看，不要只用一次训练好坏做判断。", source: "NSCA；ACSM" },
+      ];
+}
+
+function renderKnowledgePanel() {
+  const root = $("knowledgePanel");
+  if (!root) return;
+  const cards = knowledgeCards();
+  root.innerHTML = `
+    <label class="knowledge-search">
+      ${isEnglish() ? "Knowledge Search" : "快速知识检索"}
+      <input id="knowledgeSearchInput" type="search" placeholder="${isEnglish() ? "Search anatomy, rehab, hypertrophy..." : "搜索解剖、康复、肌肥大..."}" />
+    </label>
+    <div class="knowledge-list">
+      ${cards
+        .map((card) => `<article class="knowledge-card" data-knowledge-text="${escapeHtml(`${card.tag} ${card.title} ${card.body}`.toLowerCase())}">
+          <span>${escapeHtml(card.tag)}</span>
+          <strong>${escapeHtml(card.title)}</strong>
+          <p>${escapeHtml(card.body)}</p>
+          <small>${isEnglish() ? "Source" : "来源"}：${escapeHtml(card.source)}</small>
+        </article>`)
+        .join("")}
+    </div>
+    <small class="source-note">${sourceText("training")}</small>
+  `;
+  const input = $("knowledgeSearchInput");
+  input?.addEventListener("input", () => {
+    const query = input.value.trim().toLowerCase();
+    root.querySelectorAll(".knowledge-card").forEach((card) => {
+      card.classList.toggle("hidden", Boolean(query) && !card.dataset.knowledgeText.includes(query));
+    });
+  });
 }
 
 function toggleLanguage() {
@@ -8650,9 +8773,9 @@ function systemTestDayItems(dayNumber, systemKey = state.survey.programSystem) {
 function systemVirtualWeek(index) {
   const plan = makePlanner();
   const weekNumber = index + 1;
-  const isTestWeek = index === plan.totalWeeks - 1;
+  const isTestWeek = plan.systemKey !== "bodybuilding" && index === plan.totalWeeks - 1;
   const phase = isTestWeek
-    ? { key: "test", name: plan.systemKey === "bodybuilding" ? "评估周" : "测试周" }
+    ? { key: "test", name: "测试周" }
     : phaseForWeek(weekNumber, plan.phases);
   const days = Array.from({ length: plan.days }, (_, dayIndex) => ({
     day: `W${weekNumber}D${dayIndex + 1}`,
@@ -8663,7 +8786,7 @@ function systemVirtualWeek(index) {
   }));
   return {
     number: weekNumber,
-    label: `Week ${weekNumber}${isTestWeek ? (plan.systemKey === "bodybuilding" ? " / Assessment" : " / Test") : ""}`,
+    label: `Week ${weekNumber}${isTestWeek ? " / Test" : ""}`,
     phase: isTestWeek ? "test" : phase.key,
     days,
   };
@@ -9358,7 +9481,7 @@ function allocatePhaseWeeks(totalWeeks) {
 }
 
 function allocateSystemPhaseWeeks(totalWeeks, systemKey = state.survey.programSystem) {
-  const trainingWeeks = Math.max(3, totalWeeks - 1);
+  const trainingWeeks = systemKey === "bodybuilding" ? Math.max(3, totalWeeks) : Math.max(3, totalWeeks - 1);
   if (systemKey === "bodybuilding") {
     const ratios = [0.45, 0.4, 0.15];
     let base = Math.max(1, Math.round(trainingWeeks * ratios[0]));
@@ -9369,9 +9492,9 @@ function allocateSystemPhaseWeeks(totalWeeks, systemKey = state.survey.programSy
       overload = Math.max(1, trainingWeeks - base - deload);
     }
     return [
-      { key: "hypertrophy", name: "基础容量期", weeks: base, note: "建立动作选择、目标肌群感受和可恢复周容量。" },
-      { key: "strength", name: "渐进超负荷期", weeks: overload, note: "优先递增次数、重量或有效组数，弱项肌群获得额外容量。" },
-      { key: "peaking", name: "减量评估期", weeks: deload, note: "降低疲劳，保留泵感和动作质量，用照片、围度和训练记录评估下一轮。" },
+      { key: "hypertrophy", name: "基础增肌期", weeks: base, note: "建立动作选择、目标肌群感受和可恢复周容量。" },
+      { key: "strength", name: "增肌超负荷期", weeks: overload, note: "优先递增次数、重量或有效组数，弱项肌群获得额外容量。" },
+      { key: "peaking", name: "恢复评估期", weeks: deload, note: "降低疲劳，保留泵感和动作质量，用照片、围度和训练记录评估下一轮。" },
     ].filter((phase) => phase.weeks > 0);
   }
   const ratios = {
@@ -9679,6 +9802,12 @@ function phaseForWeek(weekNumber, phases) {
 
 function phaseProgress(phase, localWeek, capacities) {
   if (!["hypertrophy", "strength", "peaking"].includes(phase.key)) return isEnglish() ? "Recovery / bridge" : "恢复/桥接";
+  if ((state.survey.programSystem || "bodybuilding") === "bodybuilding") {
+    const zh = { hypertrophy: "容量累积", strength: "渐进超负荷", peaking: "恢复评估" };
+    const en = { hypertrophy: "Volume build", strength: "Progressive overload", peaking: "Recovery review" };
+    const label = (isEnglish() ? en : zh)[phase.key] || (isEnglish() ? "Hypertrophy" : "增肌");
+    return `${label} ${localWeek}/${phase.weeks || localWeek}`;
+  }
   const pattern = mesoPattern(averageGap(capacities, phase.key));
   const cycleLength = pattern.overload + pattern.deload;
   const pos = ((localWeek - 1) % cycleLength) + 1;
@@ -9686,10 +9815,7 @@ function phaseProgress(phase, localWeek, capacities) {
 }
 
 function weekStatusFor(index, plan) {
-  if (index === plan.totalWeeks - 1) {
-    if (plan.systemKey === "bodybuilding") {
-      return { phase: { key: "test", name: isEnglish() ? "Assessment Week" : "评估周" }, progress: isEnglish() ? "Assessment" : "评估", isDeload: false };
-    }
+  if (plan.systemKey !== "bodybuilding" && index === plan.totalWeeks - 1) {
     return { phase: { key: "test", name: "测试周" }, progress: isEnglish() ? "Meet / test" : "比赛/测试", isDeload: false };
   }
   const phase = phaseForWeek(index + 1, plan.phases);
@@ -9842,7 +9968,7 @@ function renderWeeks() {
       .map((week, index) => {
         const active = state.view === "workout" && index === state.weekIndex ? "active" : "";
         const status = weekStatusFor(index, plan);
-        const phaseLabel = planPhaseLabel(status.phase?.key);
+        const phaseLabel = phaseDisplayNameForPlan(plan, status.phase?.key);
         const phaseClass = status.isDeload ? "deload" : planPhaseClass(status.phase?.key);
         const progress = phaseProgressText(status);
         return `
@@ -9870,8 +9996,8 @@ function renderWeeks() {
 function meetDateText(plan) {
   if (plan.systemKey === "bodybuilding") {
     return isEnglish()
-      ? "Bodybuilding sample cycle: no meet date or PR-test setup"
-      : "健美式肌肥大样本周期：不询问比赛日期或测试 PR";
+      ? "Hypertrophy sample"
+      : "肌肥大样本";
   }
   if (!state.survey.meetDate) {
     return isEnglish()
@@ -9920,21 +10046,26 @@ function phaseRailHtml(plan, activeWeek) {
   return visibleKeys
     .map((key) => {
       const active = activeStatus.phase?.key === key ? "active" : "";
-      return `<span class="rail-step ${active}">${planPhaseLabel(key)}</span>`;
+      return `<span class="rail-step ${active}">${phaseDisplayNameForPlan(plan, key)}</span>`;
     })
     .join("");
 }
 
-function phaseProgressSummary(status) {
+function phaseProgressSummary(status, plan = makePlanner()) {
   const key = status.phase?.key;
   if (["hypertrophy", "strength", "peaking"].includes(key)) {
-    return `${planPhaseLabel(key)} · ${phaseProgressText(status)}`;
+    return `${phaseDisplayNameForPlan(plan, key)} · ${phaseProgressText(status)}`;
   }
   return isEnglish() ? "Follow the current week's training table" : "按当前周训练表执行";
 }
 
 function renderMeetPrepStrips() {
   const plan = makePlanner();
+  if (plan.systemKey === "bodybuilding") {
+    ["plannerMeetPrepStrip", "workoutMeetPrepStrip"].forEach((id) => $(id)?.classList.add("hidden"));
+    return;
+  }
+  ["plannerMeetPrepStrip", "workoutMeetPrepStrip"].forEach((id) => $(id)?.classList.remove("hidden"));
   const system = currentProgramSystem();
   const plannerWeek = 1;
   const workoutWeek = Math.min(state.weekIndex + 1, plan.totalWeeks);
@@ -9975,8 +10106,8 @@ function renderMeetPrepStrips() {
       </div>
       <div class="meet-prep-block">
         <span>${isEnglish() ? "Phase Progress" : "阶段进度"}</span>
-        <div class="phase-rail" data-current-phase="${escapeHtml(phaseProgressSummary(status))}">${phaseRailHtml(plan, activeWeek)}</div>
-        <small>${phaseProgressSummary(status)}</small>
+        <div class="phase-rail" data-current-phase="${escapeHtml(phaseProgressSummary(status, plan))}">${phaseRailHtml(plan, activeWeek)}</div>
+        <small>${phaseProgressSummary(status, plan)}</small>
       </div>
       ${openerBlock}
     `;
@@ -10035,14 +10166,14 @@ function renderSystemPlanner(plan) {
   const reasons = isBodybuildingPlan
     ? isEnglish()
       ? [
-          "This v2 system is for hypertrophy and bodybuilding-style training, so it does not use SBD MEV/MRV or meet openers.",
+          "This v2 system is for hypertrophy and bodybuilding-style training, driven by muscle-group volume, split structure, and recovery review.",
           "Weekly layout is driven by training days, split preference, weak-point feedback, and recoverable muscle-group volume.",
           "The base progression follows broad resistance-training textbook principles: repeated exposure, progressive overload, planned recovery, and technique consistency.",
           "Weak-point priority adds targeted weekly sets. For example, rear-delt feedback adds rear-delt isolation volume without turning every day into a shoulder day.",
           "Use actual logbook performance, pumps, joint comfort, photos, and measurements to adjust the next block.",
         ]
       : [
-          "这个 v2 体系服务于肌肥大和健美式训练，不套用三项 MEV/MRV，也不使用开把逻辑。",
+          "这个 v2 体系服务于肌肥大和健美式训练，按肌群容量、分化结构和恢复复盘生成。",
           "周安排由训练天数、分化偏好、弱项反馈和可恢复肌群容量共同决定。",
           "基础进展参考阻力训练通用教材原则：重复暴露、渐进超负荷、计划恢复和动作一致性。",
           "弱项优先级会增加对应肌群周组数。例如裁判反馈三角肌后束不足，就增加后束孤立容量，而不是把每天都改成练肩。",
@@ -10089,8 +10220,8 @@ function renderPlanner() {
   const plan = makePlanner();
   if (plan.systemKey === "bodybuilding") {
     $("planLengthLabel").textContent = isEnglish()
-      ? "Hypertrophy sample mode: generating a 12-week cycle from split, weekly days, progression, and weak-point feedback."
-      : "肌肥大样本模式：按分化、训练天数、渐进超负荷和弱项反馈生成 12 周周期。";
+      ? "12-week hypertrophy sample: generated from split, weekly days, progression, and weak-point feedback."
+      : "12 周肌肥大样本：按分化、训练天数、渐进超负荷和弱项反馈生成。";
   } else {
     $("planLengthLabel").textContent = state.survey.meetDate
     ? isEnglish()
@@ -10099,6 +10230,17 @@ function renderPlanner() {
     : isEnglish()
       ? `No meet date set: generating the default ${weeksText(DEFAULT_PLAN_WEEKS)}.`
       : `未填写比赛日期：默认生成 ${DEFAULT_PLAN_WEEKS} 周。`;
+  }
+  const plannerDisclaimer = document.querySelector(".planner-disclaimer");
+  if (plannerDisclaimer) {
+    const text = plan.systemKey === "bodybuilding"
+      ? isEnglish()
+        ? "Use the plan as a training sample. Adjust load, reps, or sets when pump, joint comfort, sleep, or performance trend changes."
+        : "这是训练样本。泵感、关节舒适度、睡眠或表现趋势变化时，优先调整重量、次数或组数。"
+      : isEnglish()
+        ? "All loads and volumes are suggestions. If pain, technique breakdown, or high RPE appears, reduce load or sets first."
+        : "所有重量和容量都是建议值。当天疼痛、动作变形或 RPE 明显偏高时，应优先下调重量或减少组数。";
+    plannerDisclaimer.innerHTML = `${escapeHtml(text)} <small class="source-note">${sourceText(plan.systemKey === "bodybuilding" ? "hypertrophy" : "training")}</small>`;
   }
   if (plan.systemKey !== "jtsSstt") {
     renderSystemPlanner(plan);
@@ -10276,6 +10418,10 @@ function renderAmrapHint(day) {
 }
 
 function splitTextForPlan(plan) {
+  if (plan.systemKey === "bodybuilding") {
+    const split = plan.weeklyLayout.map((day) => day.items.map(localizePlanText).join(" + ")).join(" · ");
+    return isEnglish() ? `Split: ${split}` : `分化：${split}`;
+  }
   const days = Array.from({ length: plan.days }, (_, index) => `D${index + 1}`);
   if (plan.days === 3) return `${days[0]} - REST - ${days[1]} - REST - ${days[2]} - REST - REST`;
   if (plan.days === 4) return `${days[0]} - REST - ${days[1]} - REST - ${days[2]} - ${days[3]} - REST`;
@@ -10480,8 +10626,9 @@ function renderWorkout() {
   const planPhase = phaseForWeek(state.weekIndex + 1, plan.phases);
   state.dayIndex = Math.min(state.dayIndex, week.days.length - 1);
 
-  $("phaseLabel").textContent = planPhaseLabel(planPhase?.key);
-  $("weekTitle").textContent = `${week.label} · ${planPhaseLabel(planPhase?.key)}`;
+  const phaseName = phaseDisplayName(planPhase);
+  $("phaseLabel").textContent = plan.systemKey === "bodybuilding" ? (isEnglish() ? "Hypertrophy" : "增肌训练") : phaseName;
+  $("weekTitle").textContent = `${week.label} · ${phaseName}`;
   $("splitLabel").textContent = splitTextForPlan(plan);
   $("dayTitle").textContent = day.day;
   $("dayMeta").textContent = isEnglish()
@@ -10887,6 +11034,7 @@ function renderTechniqueNotes() {
   target.innerHTML = `
     <section class="technique-intro">
       ${data.intro.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
+      <small class="source-note">${sourceText("technique")}</small>
     </section>
     ${data.sections.map((section) => techniqueSection(section.title, section.subtitle, section.groups)).join("")}
   `;
@@ -11012,12 +11160,24 @@ function weekPrintLabel(week) {
 function exportPlanPdf() {
   const plan = makePlanner();
   const weeks = pdfPlanWeeks();
+  const isBodybuildingPlan = plan.systemKey === "bodybuilding";
+  const printTitle = isBodybuildingPlan
+    ? isEnglish() ? "Hypertrophy Sample Plan" : "肌肥大样本计划"
+    : isEnglish() ? "Strength Cycle Plan" : "力量周期计划";
+  const printSubline = isBodybuildingPlan
+    ? isEnglish()
+      ? `Total ${plan.totalWeeks} weeks · Split ${state.survey.bodybuildingSplit || "auto"} · Weak point ${bodybuildingWeakPointLabel()}`
+      : `共 ${plan.totalWeeks} 周 · 分化 ${state.survey.bodybuildingSplit || "auto"} · 弱项 ${bodybuildingWeakPointLabel()}`
+    : `${isEnglish() ? "Total" : "共"} ${plan.totalWeeks} ${isEnglish() ? "weeks" : "周"} · ${isEnglish() ? "Meet date" : "比赛日期"}：${state.survey.meetDate || (isEnglish() ? "Unset" : "未填写")}`;
+  const printMeta = isBodybuildingPlan
+    ? sourceText("hypertrophy")
+    : `PR：${isEnglish() ? "Sq" : "蹲"} ${escapeHtml(state.profile.squat || "-")} / ${isEnglish() ? "Bench" : "推"} ${escapeHtml(state.profile.bench || "-")} / ${isEnglish() ? "Dead" : "拉"} ${escapeHtml(state.profile.deadlift || "-")} · ${isEnglish() ? "Openers" : "开把"}：${isEnglish() ? "Sq" : "蹲"} ${escapeHtml(state.profile.squatOpener || "-")} / ${isEnglish() ? "Bench" : "推"} ${escapeHtml(state.profile.benchOpener || "-")} / ${isEnglish() ? "Dead" : "拉"} ${escapeHtml(state.profile.deadliftOpener || "-")}`;
   const weekCards = weeks
     .map(({ week, status, days }) => `
       <section class="week-card">
         <header>
           <strong>${escapeHtml(weekPrintLabel(week))}</strong>
-          <span>${escapeHtml(planPhaseLabel(status.phase?.key))} · ${escapeHtml(status.progress)}</span>
+          <span>${escapeHtml(phaseDisplayNameForPlan(plan, status.phase?.key))} · ${escapeHtml(status.progress)}</span>
         </header>
         <div class="day-grid">
           ${days
@@ -11052,7 +11212,7 @@ function exportPlanPdf() {
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>${isEnglish() ? "Strength Cycle Plan" : "力量周期计划"}</title>
+  <title>${escapeHtml(printTitle)}</title>
   <style>
     @page { size: A3 landscape; margin: 8mm; }
     * { box-sizing: border-box; }
@@ -11084,10 +11244,10 @@ function exportPlanPdf() {
 <body>
   <div class="print-head">
     <div>
-      <h1>${isEnglish() ? "Strength Cycle Plan" : "力量周期计划"}</h1>
-      <p>${isEnglish() ? "Total" : "共"} ${plan.totalWeeks} ${isEnglish() ? "weeks" : "周"} · ${isEnglish() ? "Meet date" : "比赛日期"}：${escapeHtml(state.survey.meetDate || (isEnglish() ? "Unset" : "未填写"))}</p>
+      <h1>${escapeHtml(printTitle)}</h1>
+      <p>${escapeHtml(printSubline)}</p>
     </div>
-    <div class="meta">PR：${isEnglish() ? "Sq" : "蹲"} ${escapeHtml(state.profile.squat || "-")} / ${isEnglish() ? "Bench" : "推"} ${escapeHtml(state.profile.bench || "-")} / ${isEnglish() ? "Dead" : "拉"} ${escapeHtml(state.profile.deadlift || "-")} · ${isEnglish() ? "Openers" : "开把"}：${isEnglish() ? "Sq" : "蹲"} ${escapeHtml(state.profile.squatOpener || "-")} / ${isEnglish() ? "Bench" : "推"} ${escapeHtml(state.profile.benchOpener || "-")} / ${isEnglish() ? "Dead" : "拉"} ${escapeHtml(state.profile.deadliftOpener || "-")}</div>
+    <div class="meta">${escapeHtml(printMeta)}</div>
   </div>
   <main class="weeks">${weekCards}</main>
   <script>window.addEventListener("load", () => setTimeout(() => window.print(), 250));<\/script>
