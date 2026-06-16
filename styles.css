@@ -539,6 +539,9 @@ textarea:focus {
 .knowledge-list {
   display: grid;
   gap: 8px;
+  max-height: 330px;
+  overflow: auto;
+  padding-right: 2px;
 }
 
 .knowledge-card {
@@ -577,6 +580,59 @@ textarea:focus {
   color: #8ea29c;
   font-size: 11px;
   line-height: 1.35;
+}
+
+.knowledge-ai {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 7px;
+  padding: 9px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.knowledge-ai summary {
+  cursor: pointer;
+  color: #dce8e6;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.knowledge-ai textarea {
+  width: 100%;
+  margin-top: 8px;
+  resize: vertical;
+  min-height: 72px;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.knowledge-ai textarea::placeholder {
+  color: #8ea29c;
+}
+
+.knowledge-ai button {
+  width: 100%;
+  min-height: 36px;
+  margin-top: 8px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 850;
+}
+
+.knowledge-ai p {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  color: #b8c7c2;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.knowledge-ai p strong,
+.knowledge-ai p span {
+  display: block;
 }
 
 .source-note {

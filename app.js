@@ -6839,6 +6839,7 @@ window.PROGRAM_DATA = {
 const STORAGE_KEY = "rhts-sstt-app-state-v2";
 const LICENSE_STORAGE_KEY = "rhts-sstt-license-v1";
 const LICENSE_VERIFY_ENDPOINT = "";
+const AI_PROXY_ENDPOINT = window.FORGEPLAN_AI_ENDPOINT || "";
 const LOCAL_LICENSE_HASHES = new Set([
   "4b70c76b31ea5a34470636185efa192e957612a26a6fc86f43ccb2a9f268aad0",
 ]);
@@ -7858,6 +7859,12 @@ const STATIC_I18N = new Map(
 );
 
 [
+  ["v2.5 · 知识库与 DeepSeek 代理", "v2.5 · Knowledge Base and DeepSeek Proxy"],
+  ["2026-06-16 23:18 更新", "Updated 2026-06-16 23:18"],
+  ["快速知识检索加入翼状肩胛、胸曲变直、拇外翻、骨盆前倾、圆肩、膝内扣、足弓塌陷、髋内旋等词条。", "Knowledge Search now includes winged scapula, flat thoracic curve, hallux valgus, anterior pelvic tilt, rounded shoulders, knee valgus, collapsed arch, hip internal rotation, and related terms."],
+  ["知识库高度收紧，避免侧栏过长。", "Knowledge Base height is tightened so the sidebar stays compact."],
+  ["新增 DeepSeek AI 查询入口；默认需要服务端代理，前端不保存 API key。", "Adds a DeepSeek AI lookup entry; it requires a server-side proxy and never stores the API key in front-end code."],
+  ["快速知识检索加入热门体态/康复词条，侧栏列表限制高度；新增 DeepSeek AI 查询入口和 Cloudflare Worker 代理模板，API key 只放服务端环境变量。", "Knowledge Search adds popular posture and corrective-exercise terms with a capped sidebar list; adds a DeepSeek AI lookup entry and Cloudflare Worker proxy template so the API key stays server-side."],
   ["v2.4 · 修复右上主页按钮", "v2.4 · Top Home Button Fix"],
   ["2026-06-16 23:02 更新", "Updated 2026-06-16 23:02"],
   ["修复计划生成器右上角房子按钮点了没反应的问题。", "Fixed the planner top-right home icon not responding."],
@@ -8227,6 +8234,14 @@ function knowledgeCards() {
         { tag: "Anatomy", title: "Hip hinge", body: "A hinge loads hamstrings and glutes while keeping the trunk braced; it is not a rounded-back reach.", source: "NSCA Essentials; NASM CES" },
         { tag: "Hypertrophy", title: "Double progression", body: "Add reps first inside the target range, then add load when all sets stay within the target RPE/RIR.", source: "ACSM; Schoenfeld hypertrophy review" },
         { tag: "Hypertrophy", title: "Weak-point volume", body: "A weak-point block should add targeted weekly sets without turning every session into the same muscle day.", source: "NSCA; NASM OPT" },
+        { tag: "Posture", title: "Winged scapula", body: "Often shows as the inner shoulder-blade edge lifting from the rib cage. Train serratus control, pressing setup, and pain-free shoulder motion; persistent winging needs professional assessment.", source: "NASM CES; ACSM" },
+        { tag: "Posture", title: "Flat thoracic curve", body: "A flatter upper-back curve may limit rib-cage and scapular motion. Use breathing, thoracic rotation/extension, and rowing control rather than forcing a big arch.", source: "NASM CES; NSCA" },
+        { tag: "Foot", title: "Hallux valgus", body: "A big-toe angle issue can change squat stance, balance, and toe-off. Start with shoe width, toe-spread tolerance, foot tripod, and pain-free calf/foot work.", source: "ACSM; NASM CES" },
+        { tag: "Pelvis", title: "Anterior pelvic tilt", body: "Usually a position strategy, not a diagnosis by itself. Coach rib-pelvis stacking, glute/hamstring strength, hip-flexor tolerance, and bracing before blaming one muscle.", source: "NASM CES; NSCA" },
+        { tag: "Posture", title: "Rounded shoulders", body: "Look at thoracic position, scapular control, pec/lats tone, and rowing volume. Do not just stretch the front and ignore pulling mechanics.", source: "NASM CES" },
+        { tag: "Knee", title: "Knee valgus", body: "Knees drifting inward can come from stance, foot pressure, hip control, load, or fatigue. Reduce load and rebuild consistent foot-knee-hip tracking.", source: "NSCA Essentials; NASM CES" },
+        { tag: "Foot", title: "Collapsed arch", body: "Train tripod foot pressure and calf/foot capacity. Some pronation is normal; the issue is pain, loss of control, or performance drop.", source: "ACSM; NASM CES" },
+        { tag: "Hip", title: "Hip internal rotation", body: "Limited or poorly controlled hip rotation can affect squat depth and gait. Use controlled mobility plus strength in the new range, not aggressive stretching only.", source: "NASM CES; NSCA" },
         { tag: "Rehab", title: "Pain rule", body: "Pain that sharpens, changes technique, or persists after training should reduce load, range, or volume.", source: "ACSM guidelines; NASM CES" },
         { tag: "Recovery", title: "Fatigue check", body: "Sleep, appetite, joint comfort, and performance trend together matter more than one isolated workout.", source: "NSCA; ACSM" },
       ]
@@ -8235,9 +8250,58 @@ function knowledgeCards() {
         { tag: "解剖学", title: "髋铰链", body: "髋铰链用腘绳肌和臀部承受张力，躯干保持支撑；不是弯腰去够地面。", source: "NSCA Essentials；NASM CES" },
         { tag: "肌肥大", title: "双进展逻辑", body: "先在目标次数区间内加次数；所有组都落在目标 RPE/RIR 后，再小幅加重量。", source: "ACSM；Schoenfeld 肌肥大综述" },
         { tag: "肌肥大", title: "弱项补量", body: "弱项小周期只给目标肌群额外周组数，不应该把每一天都变成同一个肌群日。", source: "NSCA；NASM OPT" },
+        { tag: "体态", title: "翼状肩胛", body: "常见表现是肩胛骨内侧缘翘起。先看前锯肌控制、推类动作肩胛稳定和无痛肩关节活动；明显或持续翼状要找专业评估。", source: "NASM CES；ACSM" },
+        { tag: "体态", title: "胸曲变直", body: "胸椎曲度偏平可能影响胸廓和肩胛运动。优先做呼吸、胸椎旋转/伸展和划船控制，不是硬凹大幅度反弓。", source: "NASM CES；NSCA" },
+        { tag: "足踝", title: "拇外翻", body: "大脚趾角度会影响深蹲站距、平衡和蹬地。先检查鞋楦宽度、脚趾展开、足底三点支撑和无痛小腿/足底训练。", source: "ACSM；NASM CES" },
+        { tag: "骨盆", title: "骨盆前倾", body: "它通常是一种姿势策略，不等于单一肌肉有问题。先练胸廓-骨盆叠放、臀腿力量、髋屈肌耐受和腹压。", source: "NASM CES；NSCA" },
+        { tag: "体态", title: "圆肩", body: "要同时看胸椎位置、肩胛控制、胸/背阔张力和划船容量；不要只拉伸胸前侧，忽略拉类动作质量。", source: "NASM CES" },
+        { tag: "膝", title: "膝内扣", body: "膝盖内扣可能来自站距、足底压力、髋控制、重量或疲劳。先降重量，重建脚-膝-髋同向发力。", source: "NSCA Essentials；NASM CES" },
+        { tag: "足踝", title: "足弓塌陷", body: "训练足底三点和小腿/足底容量。适度旋前很正常；真正需要处理的是疼痛、失控或表现下降。", source: "ACSM；NASM CES" },
+        { tag: "髋", title: "髋内旋受限", body: "髋旋转受限或控制差会影响深蹲深度和步态。用可控活动度加新范围力量，不要只做暴力拉伸。", source: "NASM CES；NSCA" },
         { tag: "康复学", title: "疼痛规则", body: "疼痛变尖锐、改变动作、或训练后持续存在时，优先降重量、降行程或降容量。", source: "ACSM 指南；NASM CES" },
         { tag: "恢复", title: "疲劳判断", body: "睡眠、食欲、关节舒适度和表现趋势要一起看，不要只用一次训练好坏做判断。", source: "NSCA；ACSM" },
       ];
+}
+
+function deepseekProxyHelpText() {
+  return isEnglish()
+    ? "AI lookup is optional. Configure a server-side proxy first; never put a DeepSeek key in GitHub Pages front-end code."
+    : "AI 查询是可选增强。需要先配置服务端代理；不要把 DeepSeek key 写进 GitHub Pages 前端代码。";
+}
+
+async function askKnowledgeAi() {
+  const input = $("knowledgeAiInput");
+  const result = $("knowledgeAiResult");
+  if (!input || !result) return;
+  const question = input.value.trim();
+  if (!question) {
+    result.textContent = isEnglish() ? "Enter a question first." : "先输入要查询的问题。";
+    return;
+  }
+  if (!AI_PROXY_ENDPOINT) {
+    result.innerHTML = `<strong>${isEnglish() ? "Proxy not configured" : "未配置代理"}</strong><span>${deepseekProxyHelpText()}</span>`;
+    return;
+  }
+  result.textContent = isEnglish() ? "Asking DeepSeek..." : "正在询问 DeepSeek...";
+  try {
+    const response = await fetch(AI_PROXY_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question,
+        language: isEnglish() ? "en" : "zh-CN",
+        context: "training knowledge base",
+      }),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    const answer = data.answer || data.content || "";
+    result.textContent = answer || (isEnglish() ? "No answer returned." : "没有返回内容。");
+  } catch (error) {
+    result.textContent = isEnglish()
+      ? `AI request failed. Check proxy and network. ${error.message || ""}`
+      : `AI 请求失败。请检查代理和网络。${error.message || ""}`;
+  }
 }
 
 function renderKnowledgePanel() {
@@ -8259,6 +8323,12 @@ function renderKnowledgePanel() {
         </article>`)
         .join("")}
     </div>
+    <details class="knowledge-ai">
+      <summary>${isEnglish() ? "Ask AI" : "AI 深入查询"}</summary>
+      <textarea id="knowledgeAiInput" rows="3" placeholder="${isEnglish() ? "Example: how should I train with winged scapula?" : "例如：翼状肩胛训练要注意什么？"}"></textarea>
+      <button id="knowledgeAiButton" type="button">${isEnglish() ? "Ask DeepSeek" : "询问 DeepSeek"}</button>
+      <p id="knowledgeAiResult">${deepseekProxyHelpText()}</p>
+    </details>
     <small class="source-note">${sourceText("training")}</small>
   `;
   const input = $("knowledgeSearchInput");
@@ -8268,6 +8338,7 @@ function renderKnowledgePanel() {
       card.classList.toggle("hidden", Boolean(query) && !card.dataset.knowledgeText.includes(query));
     });
   });
+  $("knowledgeAiButton")?.addEventListener("click", askKnowledgeAi);
 }
 
 function toggleLanguage() {
