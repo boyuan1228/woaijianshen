@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260616-v25-2318" />
+    <link rel="stylesheet" href="./styles.css?v=20260618-v26-0051" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260616-v25-2318"></script>
+    <script defer src="./app.js?v=20260618-v26-0051"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.5">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.6">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -60,16 +60,18 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.5 · 知识库与 DeepSeek 代理</strong>
-          <small class="update-time">2026-06-16 23:18 更新</small>
+          <strong>v2.6 · 身体档案对比反馈</strong>
+          <small class="update-time">2026-06-18 00:51 更新</small>
           <ul>
-            <li>快速知识检索加入翼状肩胛、胸曲变直、拇外翻、骨盆前倾、圆肩、膝内扣、足弓塌陷、髋内旋等词条。</li>
-            <li>知识库高度收紧，避免侧栏过长。</li>
-            <li>新增 DeepSeek AI 查询入口；默认需要服务端代理，前端不保存 API key。</li>
-            <li>v2 继续使用样本模式：输入激活码后直接进入，刷新后自动清空临时训练数据。</li>
+            <li>身体档案按问卷性别切换男性/女性人体模型。</li>
+            <li>身体档案首次保存前可选择男性/女性模型，保存后锁定，并加入大腿围。</li>
+            <li>新增围度对比反馈：第二次及之后记录会高亮显示相对上次的体重、腰围、臂围、腹围、臀围和大腿围变化。</li>
+            <li>保存前也会预览本次数据与上次记录的差值，方便教练给学员解释真实反馈。</li>
+            <li>手机端差值卡片自动换行，避免围度数据挤在一起。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.5</strong> 2026-06-16 23:18：快速知识检索加入热门体态/康复词条，侧栏列表限制高度；新增 DeepSeek AI 查询入口和 Cloudflare Worker 代理模板，API key 只放服务端环境变量。</p>
             <p><strong>v2.4</strong> 2026-06-16 23:02：修复计划生成器右上角房子按钮无反馈：计划生成器页的房子按钮进入技术笔记页，训练表页的房子按钮返回计划生成器。</p>
             <p><strong>v2.3</strong> 2026-06-16 22:36：新增建立档案按钮，支持按日期记录体重、腰围、臂围、腹围和臀围；弹窗加入人体围度模型，4 个围度以 cm 展示，底部体重以 kg 展示；顶部工具顺序调整为主页、训练表、翻译、建立档案、饮食、图表、热身。</p>
             <p><strong>v2.2</strong> 2026-06-16 21:59：肌肥大移除比赛、测试、开把、三项 PR、剩余周倒计时和休息日排布遗留项；侧边栏改为知识库 / 力量参数，肌肥大显示快速知识检索，力量举体系才显示三项 PR 和变式；科普内容补充来源小字，UI 收紧为更简洁的科技训练工具风格。</p>
@@ -110,7 +112,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.5">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.6">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -822,6 +824,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.6</strong><span>2026-06-18 00:51</span><p>身体档案首次保存前可选择男性/女性人体模型，保存后锁定；新增大腿围和围度对比反馈，第二次及之后记录会高亮显示体重、腰围、臂围、腹围、臀围和大腿围相对上次的变化。</p></article>
           <article><strong>v2.5</strong><span>2026-06-16 23:18</span><p>快速知识检索加入热门体态/康复词条，侧栏列表限制高度；新增 DeepSeek AI 查询入口和 Cloudflare Worker 代理模板，API key 只放服务端环境变量。</p></article>
           <article><strong>v2.4</strong><span>2026-06-16 23:02</span><p>修复计划生成器右上角房子按钮无反馈：计划生成器页的房子按钮进入技术笔记页，训练表页的房子按钮返回计划生成器。</p></article>
           <article><strong>v2.3</strong><span>2026-06-16 22:36</span><p>新增建立档案按钮，支持按日期记录体重、腰围、臂围、腹围和臀围；弹窗加入人体围度模型，4 个围度以 cm 展示，底部体重以 kg 展示；顶部工具顺序调整为主页、训练表、翻译、建立档案、饮食、图表、热身。</p></article>

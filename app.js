@@ -7859,6 +7859,14 @@ const STATIC_I18N = new Map(
 );
 
 [
+  ["v2.6 · 身体档案对比反馈", "v2.6 · Body Profile Comparison Feedback"],
+  ["2026-06-18 00:51 更新", "Updated 2026-06-18 00:51"],
+  ["身体档案按问卷性别切换男性/女性人体模型。", "Body profiles now switch the body model between male and female based on the questionnaire sex."],
+  ["身体档案首次保存前可选择男性/女性模型，保存后锁定，并加入大腿围。", "The body profile lets you select a male or female model before the first save, then locks it; thigh circumference is also added."],
+  ["新增围度对比反馈：第二次及之后记录会高亮显示相对上次的体重、腰围、臂围、腹围、臀围和大腿围变化。", "Adds measurement comparison feedback: from the second record onward, bodyweight, waist, arm, abdomen, hip, and thigh changes are highlighted versus the previous record."],
+  ["保存前也会预览本次数据与上次记录的差值，方便教练给学员解释真实反馈。", "Before saving, the form previews the difference from the previous record so coaches can explain real feedback to the athlete."],
+  ["手机端差值卡片自动换行，避免围度数据挤在一起。", "On mobile, difference cards wrap automatically so measurement data does not crowd together."],
+  ["身体档案首次保存前可选择男性/女性人体模型，保存后锁定；新增大腿围和围度对比反馈，第二次及之后记录会高亮显示体重、腰围、臂围、腹围、臀围和大腿围相对上次的变化。", "Body profiles can select a male or female model before the first save, then lock it; thigh circumference and comparison feedback now highlight bodyweight, waist, arm, abdomen, hip, and thigh changes from the previous record."],
   ["v2.5 · 知识库与 DeepSeek 代理", "v2.5 · Knowledge Base and DeepSeek Proxy"],
   ["2026-06-16 23:18 更新", "Updated 2026-06-16 23:18"],
   ["快速知识检索加入翼状肩胛、胸曲变直、拇外翻、骨盆前倾、圆肩、膝内扣、足弓塌陷、髋内旋等词条。", "Knowledge Search now includes winged scapula, flat thoracic curve, hallux valgus, anterior pelvic tilt, rounded shoulders, knee valgus, collapsed arch, hip internal rotation, and related terms."],
@@ -11407,22 +11415,133 @@ function latestBodyProfile() {
   return [...(state.bodyProfiles || [])].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))[0] || {};
 }
 
+const BODY_PROFILE_KEYS = ["weight", "waist", "arm", "abdomen", "hip", "thigh"];
+const BODY_MODEL_KEYS = ["arm", "waist", "abdomen", "hip", "thigh"];
+
+function sortedBodyProfiles() {
+  return [...(state.bodyProfiles || [])].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+}
+
+function baselineBodyProfile() {
+  const records = sortedBodyProfiles();
+  return records[records.length - 1] || {};
+}
+
+function lockedBodyProfileSex() {
+  const baseline = baselineBodyProfile();
+  const sex = baseline.sex || state.survey.sex;
+  return sex === "male" ? "male" : "female";
+}
+
+function hasLockedBodyProfileSex() {
+  return (state.bodyProfiles || []).length > 0;
+}
+
+function bodyProfileSex(record = null) {
+  if (hasLockedBodyProfileSex()) return lockedBodyProfileSex();
+  const inputSex = $("bodySexInput")?.value;
+  const sex = inputSex || record?.sex || state.survey.sex;
+  return sex === "male" ? "male" : "female";
+}
+
+function bodyProfileSexLabel(record = null) {
+  if (isEnglish()) return bodyProfileSex(record) === "male" ? "Male model" : "Female model";
+  return bodyProfileSex(record) === "male" ? "男性模型" : "女性模型";
+}
+
+function bodyProfileFormatNumber(value) {
+  const numeric = Number(value || 0);
+  return numeric > 0 ? numeric.toFixed(1) : "";
+}
+
 function bodyProfileValue(record, key) {
-  const value = record?.[key];
+  const value = bodyProfileFormatNumber(record?.[key]);
   return value ? `${escapeHtml(value)}${key === "weight" ? " kg" : " cm"}` : key === "weight" ? "-- kg" : "-- cm";
+}
+
+function bodyProfileRawNumber(record, key) {
+  const value = Number(record?.[key] || 0);
+  return value > 0 ? value : 0;
 }
 
 function bodyProfileNumber(id) {
   const value = Number($(id)?.value || 0);
-  return value > 0 ? String(value) : "";
+  return value > 0 ? value.toFixed(1) : "";
+}
+
+function previousBodyProfileForDate(date) {
+  const records = sortedBodyProfiles().filter((item) => item.date !== date);
+  if (!records.length) return null;
+  const earlier = records.find((item) => String(item.date || "") < String(date || ""));
+  return earlier || records[0];
+}
+
+function bodyProfileDelta(record, previous, key) {
+  const current = bodyProfileRawNumber(record, key);
+  const before = bodyProfileRawNumber(previous, key);
+  if (!current || !before) return "";
+  const diff = Math.round((current - before) * 10) / 10;
+  if (!diff) return isEnglish() ? "No change" : "无变化";
+  const sign = diff > 0 ? "+" : "";
+  return `${sign}${diff}${key === "weight" ? " kg" : " cm"}`;
+}
+
+function bodyProfileDeltaClass(record, previous, key) {
+  const current = bodyProfileRawNumber(record, key);
+  const before = bodyProfileRawNumber(previous, key);
+  if (!current || !before) return "empty";
+  const diff = Math.round((current - before) * 10) / 10;
+  if (diff > 0) return "up";
+  if (diff < 0) return "down";
+  return "same";
+}
+
+function bodyProfileMetricLabel(key) {
+  const labels = {
+    waist: ["Waist", "腰围"],
+    arm: ["Arm", "臂围"],
+    abdomen: ["Abdomen", "腹围"],
+    hip: ["Hip", "臀围"],
+    thigh: ["Thigh", "大腿围"],
+    weight: ["Weight", "体重"],
+  };
+  const label = labels[key] || [key, key];
+  return isEnglish() ? label[0] : label[1];
+}
+
+function bodyProfileMetricCard(record, previous, key) {
+  const delta = bodyProfileDelta(record, previous, key);
+  const deltaClass = bodyProfileDeltaClass(record, previous, key);
+  return `<span class="body-metric ${deltaClass}">
+    <small>${bodyProfileMetricLabel(key)}</small>
+    <b>${bodyProfileValue(record, key)}</b>
+    <em>${delta || (isEnglish() ? "No baseline" : "无上次数据")}</em>
+  </span>`;
+}
+
+function bodyProfileComparison(record, previous) {
+  const hasAnyValue = BODY_PROFILE_KEYS.some((key) => bodyProfileRawNumber(record, key));
+  if (!hasAnyValue) {
+    return `<p class="body-compare-empty">${isEnglish() ? "Enter measurements to preview feedback." : "填写围度后会预览和上次记录的差异。"}</p>`;
+  }
+  if (!previous) {
+    return `<p class="body-compare-empty">${isEnglish() ? "First record: save it as the baseline." : "首次记录：保存后会作为后续对比基准。"}</p>`;
+  }
+  return `<div class="body-compare-grid">
+    ${BODY_PROFILE_KEYS.map((key) => bodyProfileMetricCard(record, previous, key)).join("")}
+  </div>`;
 }
 
 function updateBodyModelPreview() {
+  const date = $("bodyProfileDateInput")?.value || todayDateValue();
   const record = {
+    date,
+    sex: bodyProfileSex(),
     waist: $("bodyWaistInput")?.value || "",
     arm: $("bodyArmInput")?.value || "",
     abdomen: $("bodyAbdomenInput")?.value || "",
     hip: $("bodyHipInput")?.value || "",
+    thigh: $("bodyThighInput")?.value || "",
     weight: $("bodyWeightInput")?.value || "",
   };
   const map = {
@@ -11430,25 +11549,43 @@ function updateBodyModelPreview() {
     bodyPreviewArm: "arm",
     bodyPreviewAbdomen: "abdomen",
     bodyPreviewHip: "hip",
+    bodyPreviewThigh: "thigh",
     bodyPreviewWeight: "weight",
   };
+  const previous = previousBodyProfileForDate(date);
+  const model = $("bodyProfileModel");
+  if (model) {
+    model.classList.toggle("sex-male", record.sex === "male");
+    model.classList.toggle("sex-female", record.sex !== "male");
+  }
+  const sexLabel = $("bodyModelSexLabel");
+  if (sexLabel) sexLabel.textContent = bodyProfileSexLabel(record);
   Object.entries(map).forEach(([id, key]) => {
     const target = $(id);
     if (target) target.textContent = bodyProfileValue(record, key);
   });
+  BODY_MODEL_KEYS.forEach((key) => {
+    document.querySelectorAll(`[data-body-part="${key}"]`).forEach((part) => {
+      part.classList.remove("up", "down", "same", "empty");
+      part.classList.add(bodyProfileDeltaClass(record, previous, key));
+    });
+  });
+  const comparison = $("bodyProfileComparison");
+  if (comparison) {
+    comparison.innerHTML = bodyProfileComparison(record, previous);
+  }
 }
 
-function bodyProfileRecordCard(record) {
-  const detail = [
-    `${isEnglish() ? "Waist" : "腰围"} ${bodyProfileValue(record, "waist")}`,
-    `${isEnglish() ? "Arm" : "臂围"} ${bodyProfileValue(record, "arm")}`,
-    `${isEnglish() ? "Abdomen" : "腹围"} ${bodyProfileValue(record, "abdomen")}`,
-    `${isEnglish() ? "Hip" : "臀围"} ${bodyProfileValue(record, "hip")}`,
-    `${isEnglish() ? "Weight" : "体重"} ${bodyProfileValue(record, "weight")}`,
-  ].join(" · ");
+function bodyProfileRecordCard(record, index, records) {
+  const previous = records[index + 1] || null;
   return `<article class="body-record-card">
-    <strong>${escapeHtml(record.date || "-")}</strong>
-    <span>${detail}</span>
+    <div class="body-record-head">
+      <strong>${escapeHtml(record.date || "-")}</strong>
+      <small>${previous ? (isEnglish() ? "vs previous" : "对比上次") : (isEnglish() ? "baseline" : "基准")}</small>
+    </div>
+    <div class="body-record-metrics">
+      ${BODY_PROFILE_KEYS.map((key) => bodyProfileMetricCard(record, previous, key)).join("")}
+    </div>
   </article>`;
 }
 
@@ -11456,16 +11593,34 @@ function renderBodyProfileModal() {
   const root = $("bodyProfileContent");
   if (!root) return;
   const latest = latestBodyProfile();
-  const date = latest.date || todayDateValue();
-  const records = [...(state.bodyProfiles || [])].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+  const date = todayDateValue();
+  const records = sortedBodyProfiles();
+  const modelPrevious = records[1] || null;
+  const isModelLocked = hasLockedBodyProfileSex();
   root.innerHTML = `
     <section class="body-model-panel" aria-label="${isEnglish() ? "Body measurement model" : "人体围度模型"}">
-      <div class="body-model">
-        <div class="body-silhouette" aria-hidden="true"></div>
+      <div id="bodyProfileModel" class="body-model sex-${bodyProfileSex(latest)}">
+        <div id="bodyModelSexLabel" class="body-model-sex">${bodyProfileSexLabel(latest)}</div>
+        <div class="body-figure" aria-hidden="true">
+          <div class="figure-head"></div>
+          <div class="figure-arm left ${bodyProfileDeltaClass(latest, modelPrevious, "arm")}" data-body-part="arm"></div>
+          <div class="figure-arm right ${bodyProfileDeltaClass(latest, modelPrevious, "arm")}" data-body-part="arm"></div>
+          <div class="figure-torso">
+            <div class="figure-chest"></div>
+            <div class="figure-waist ${bodyProfileDeltaClass(latest, modelPrevious, "waist")}" data-body-part="waist"></div>
+            <div class="figure-abdomen ${bodyProfileDeltaClass(latest, modelPrevious, "abdomen")}" data-body-part="abdomen"></div>
+            <div class="figure-hip ${bodyProfileDeltaClass(latest, modelPrevious, "hip")}" data-body-part="hip"></div>
+          </div>
+          <div class="figure-thigh left ${bodyProfileDeltaClass(latest, modelPrevious, "thigh")}" data-body-part="thigh"></div>
+          <div class="figure-thigh right ${bodyProfileDeltaClass(latest, modelPrevious, "thigh")}" data-body-part="thigh"></div>
+          <div class="figure-leg left"></div>
+          <div class="figure-leg right"></div>
+        </div>
         <div class="body-line arm"><span>${isEnglish() ? "Arm" : "臂围"} <b id="bodyPreviewArm">${bodyProfileValue(latest, "arm")}</b></span><small>${isEnglish() ? "cm" : "单位 cm"}</small></div>
         <div class="body-line waist"><span>${isEnglish() ? "Waist" : "腰围"} <b id="bodyPreviewWaist">${bodyProfileValue(latest, "waist")}</b></span><small>${isEnglish() ? "cm" : "单位 cm"}</small></div>
         <div class="body-line abdomen"><span>${isEnglish() ? "Abdomen" : "腹围"} <b id="bodyPreviewAbdomen">${bodyProfileValue(latest, "abdomen")}</b></span><small>${isEnglish() ? "cm" : "单位 cm"}</small></div>
         <div class="body-line hip"><span>${isEnglish() ? "Hip" : "臀围"} <b id="bodyPreviewHip">${bodyProfileValue(latest, "hip")}</b></span><small>${isEnglish() ? "cm" : "单位 cm"}</small></div>
+        <div class="body-line thigh"><span>${isEnglish() ? "Thigh" : "大腿围"} <b id="bodyPreviewThigh">${bodyProfileValue(latest, "thigh")}</b></span><small>${isEnglish() ? "cm" : "单位 cm"}</small></div>
       </div>
       <div class="body-weight-readout">
         <span>${isEnglish() ? "Body weight" : "体重"}</span>
@@ -11477,6 +11632,14 @@ function renderBodyProfileModal() {
         <label>
           ${isEnglish() ? "Record Date" : "记录日期"}
           <input id="bodyProfileDateInput" type="date" value="${escapeHtml(date)}" />
+        </label>
+        <label>
+          ${isEnglish() ? "Body Model" : "人体模型"}
+          <select id="bodySexInput"${isModelLocked ? " disabled" : ""}>
+            <option value="male"${bodyProfileSex(latest) === "male" ? " selected" : ""}>${isEnglish() ? "Male" : "男性"}</option>
+            <option value="female"${bodyProfileSex(latest) === "female" ? " selected" : ""}>${isEnglish() ? "Female" : "女性"}</option>
+          </select>
+          <small class="locked-model-note">${isModelLocked ? (isEnglish() ? "Locked by the first saved record. Clear records to rebuild this profile." : "已按首次保存记录锁定；如需更换，请清空记录后重新建档。") : (isEnglish() ? "Choose once before saving the first record." : "首次保存前选择，保存后将锁定。")}</small>
         </label>
         <label>
           ${isEnglish() ? "Body Weight kg" : "体重 kg"}
@@ -11498,23 +11661,33 @@ function renderBodyProfileModal() {
           ${isEnglish() ? "Hip cm" : "臀围 cm"}
           <input id="bodyHipInput" type="number" min="0" step="0.1" value="${escapeHtml(latest.hip || "")}" placeholder="cm" />
         </label>
+        <label>
+          ${isEnglish() ? "Thigh cm" : "大腿围 cm"}
+          <input id="bodyThighInput" type="number" min="0" step="0.1" value="${escapeHtml(latest.thigh || "")}" placeholder="cm" />
+        </label>
       </div>
       <div class="body-profile-actions">
         <button id="saveBodyProfileButton" type="button"><i data-lucide="save"></i>${isEnglish() ? "Save Profile" : "保存档案"}</button>
         <button id="clearBodyProfilesButton" class="secondary" type="button"><i data-lucide="trash-2"></i>${isEnglish() ? "Clear Records" : "清空记录"}</button>
+      </div>
+      <div class="body-profile-comparison">
+        <h4>${isEnglish() ? "Feedback vs previous record" : "真实反馈对比"}</h4>
+        <div id="bodyProfileComparison"></div>
       </div>
       <small class="source-note">${isEnglish() ? "Session sample: records stay in the current page session and clear after refresh." : "v2 样本模式：档案只保留在当前页面会话中，刷新后清空。"}</small>
     </section>
     <section class="body-records" aria-label="${isEnglish() ? "Body profile records" : "档案记录"}">
       <h4>${isEnglish() ? "Date Records" : "日期记录"}</h4>
       <div class="body-record-list">
-        ${records.length ? records.map(bodyProfileRecordCard).join("") : `<p class="body-record-empty">${isEnglish() ? "No body profile records yet." : "还没有围度档案记录。"}</p>`}
+        ${records.length ? records.map((record, index) => bodyProfileRecordCard(record, index, records)).join("") : `<p class="body-record-empty">${isEnglish() ? "No body profile records yet." : "还没有围度档案记录。"}</p>`}
       </div>
     </section>
   `;
-  ["bodyWeightInput", "bodyWaistInput", "bodyArmInput", "bodyAbdomenInput", "bodyHipInput"].forEach((id) => {
+  ["bodyWeightInput", "bodyWaistInput", "bodyArmInput", "bodyAbdomenInput", "bodyHipInput", "bodyThighInput"].forEach((id) => {
     $(id)?.addEventListener("input", updateBodyModelPreview);
   });
+  $("bodyProfileDateInput")?.addEventListener("input", updateBodyModelPreview);
+  $("bodySexInput")?.addEventListener("change", updateBodyModelPreview);
   $("saveBodyProfileButton")?.addEventListener("click", saveBodyProfileRecord);
   $("clearBodyProfilesButton")?.addEventListener("click", clearBodyProfileRecords);
   updateBodyModelPreview();
@@ -11523,21 +11696,26 @@ function renderBodyProfileModal() {
 
 function saveBodyProfileRecord() {
   const date = $("bodyProfileDateInput")?.value || todayDateValue();
+  const sex = bodyProfileSex();
   const record = {
     date,
+    sex,
     weight: bodyProfileNumber("bodyWeightInput"),
     waist: bodyProfileNumber("bodyWaistInput"),
     arm: bodyProfileNumber("bodyArmInput"),
     abdomen: bodyProfileNumber("bodyAbdomenInput"),
     hip: bodyProfileNumber("bodyHipInput"),
+    thigh: bodyProfileNumber("bodyThighInput"),
     createdAt: new Date().toISOString(),
   };
-  if (!record.weight && !record.waist && !record.arm && !record.abdomen && !record.hip) {
+  if (!BODY_PROFILE_KEYS.some((key) => record[key])) {
     alert(isEnglish() ? "Enter at least one measurement." : "至少填写一个围度或体重。");
     return;
   }
   const others = (state.bodyProfiles || []).filter((item) => item.date !== date);
-  state.bodyProfiles = [record, ...others].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+  state.bodyProfiles = [record, ...others]
+    .map((item) => ({ ...item, sex: item.sex || sex }))
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
   if (record.weight) state.survey.bodyweight = record.weight;
   saveState();
   renderBodyProfileModal();

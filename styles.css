@@ -1689,6 +1689,19 @@ mark,
   overflow: hidden;
 }
 
+.body-model-sex {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(17, 25, 31, 0.08);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+}
+
 .body-silhouette {
   position: absolute;
   left: 50%;
@@ -1722,6 +1735,229 @@ mark,
   border: 2px solid #11191f;
   border-radius: 48px 48px 40px 40px / 72px 72px 42px 42px;
   background: linear-gradient(180deg, #f7fbfa, #edf5f2);
+}
+
+.body-model.sex-male .body-silhouette {
+  width: 150px;
+}
+
+.body-model.sex-male .body-silhouette::after {
+  width: 124px;
+  border-radius: 62px 62px 34px 34px / 78px 78px 38px 38px;
+  background: linear-gradient(180deg, #f7fbfa 0%, #e8f3f0 52%, #f4f7f7 100%);
+}
+
+.body-model.sex-female .body-silhouette {
+  width: 136px;
+}
+
+.body-model.sex-female .body-silhouette::after {
+  width: 104px;
+  border-radius: 52px 52px 58px 58px / 74px 74px 66px 66px;
+  clip-path: polygon(13% 0, 87% 0, 78% 38%, 92% 100%, 8% 100%, 22% 38%);
+  background: linear-gradient(180deg, #fff9f8 0%, #edf7f4 54%, #f7eef2 100%);
+}
+
+.body-figure {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: 190px;
+  height: 306px;
+  transform: translateX(-50%);
+  --figure-line: #11191f;
+  --figure-base: #f7fbfa;
+  --figure-soft: #edf5f2;
+}
+
+.body-figure > div {
+  position: absolute;
+  border: 2px solid var(--figure-line);
+  background: linear-gradient(180deg, var(--figure-base), var(--figure-soft));
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.figure-head {
+  left: 50%;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.figure-torso {
+  left: 50%;
+  top: 58px;
+  width: 96px;
+  height: 142px;
+  border-radius: 44px 44px 34px 34px / 56px 56px 28px 28px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  z-index: 3;
+}
+
+.figure-chest,
+.figure-waist,
+.figure-abdomen,
+.figure-hip {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 0;
+  background: linear-gradient(180deg, var(--figure-base), var(--figure-soft));
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.figure-chest {
+  top: 0;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.figure-waist {
+  top: 48px;
+  height: 26px;
+}
+
+.figure-abdomen {
+  top: 74px;
+  height: 36px;
+}
+
+.figure-hip {
+  top: 110px;
+  height: 34px;
+}
+
+.figure-arm {
+  top: 78px;
+  width: 30px;
+  height: 126px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.figure-arm.left {
+  left: 18px;
+  transform: rotate(7deg);
+}
+
+.figure-arm.right {
+  right: 18px;
+  transform: rotate(-7deg);
+}
+
+.figure-thigh {
+  top: 194px;
+  width: 42px;
+  height: 76px;
+  border-radius: 22px 22px 16px 16px;
+  z-index: 2;
+}
+
+.figure-thigh.left {
+  left: 51px;
+  transform: rotate(2deg);
+}
+
+.figure-thigh.right {
+  right: 51px;
+  transform: rotate(-2deg);
+}
+
+.figure-leg {
+  top: 260px;
+  width: 32px;
+  height: 44px;
+  border-radius: 16px 16px 12px 12px;
+  z-index: 1;
+}
+
+.figure-leg.left {
+  left: 58px;
+}
+
+.figure-leg.right {
+  right: 58px;
+}
+
+.body-model.sex-male .body-figure {
+  width: 208px;
+}
+
+.body-model.sex-male .figure-torso {
+  width: 116px;
+  border-radius: 56px 56px 30px 30px / 58px 58px 26px 26px;
+}
+
+.body-model.sex-male .figure-arm {
+  width: 34px;
+}
+
+.body-model.sex-male .figure-arm.left {
+  left: 16px;
+}
+
+.body-model.sex-male .figure-arm.right {
+  right: 16px;
+}
+
+.body-model.sex-male .figure-thigh {
+  width: 46px;
+}
+
+.body-model.sex-male .figure-thigh.left {
+  left: 54px;
+}
+
+.body-model.sex-male .figure-thigh.right {
+  right: 54px;
+}
+
+.body-model.sex-female .figure-torso {
+  width: 104px;
+  border-radius: 48px 48px 44px 44px / 58px 58px 38px 38px;
+  clip-path: polygon(11% 0, 89% 0, 78% 36%, 92% 100%, 8% 100%, 22% 36%);
+}
+
+.body-model.sex-female .figure-hip {
+  height: 38px;
+}
+
+.body-model.sex-female .figure-thigh {
+  width: 40px;
+  border-radius: 24px 24px 16px 16px;
+}
+
+.figure-arm.up,
+.figure-waist.up,
+.figure-abdomen.up,
+.figure-hip.up,
+.figure-thigh.up {
+  background: linear-gradient(180deg, #d8f8e9, #a7f3d0);
+  box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.12);
+}
+
+.figure-arm.down,
+.figure-waist.down,
+.figure-abdomen.down,
+.figure-hip.down,
+.figure-thigh.down {
+  background: linear-gradient(180deg, #ffe9df, #fecab6);
+  box-shadow: 0 0 0 4px rgba(182, 62, 33, 0.12);
+}
+
+.figure-arm.same,
+.figure-waist.same,
+.figure-abdomen.same,
+.figure-hip.same,
+.figure-thigh.same {
+  background: linear-gradient(180deg, #f8fafc, #e5edf3);
 }
 
 .body-line {
@@ -1768,6 +2004,11 @@ mark,
   top: 254px;
 }
 
+.body-line.thigh {
+  right: 16px;
+  top: 286px;
+}
+
 .body-weight-readout {
   display: grid;
   gap: 4px;
@@ -1798,6 +2039,20 @@ mark,
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.locked-model-note {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.body-profile-form select:disabled {
+  cursor: not-allowed;
+  color: var(--muted);
+  background: #edf2f6;
+}
+
 .body-profile-actions {
   display: flex;
   gap: 8px;
@@ -1820,6 +2075,80 @@ mark,
   color: var(--ink);
 }
 
+.body-profile-comparison {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.body-profile-comparison h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.body-compare-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.body-compare-grid,
+.body-record-metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.body-metric {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-2);
+}
+
+.body-metric small,
+.body-metric em {
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.body-metric b {
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.body-metric.up {
+  border-color: rgba(0, 143, 115, 0.35);
+  background: #eefaf5;
+}
+
+.body-metric.up em {
+  color: #047857;
+}
+
+.body-metric.down {
+  border-color: rgba(216, 79, 42, 0.32);
+  background: #fff4ef;
+}
+
+.body-metric.down em {
+  color: #b63e21;
+}
+
+.body-metric.same {
+  background: #f7fafc;
+}
+
 .body-records {
   grid-column: 1 / -1;
   padding: 12px;
@@ -1838,22 +2167,28 @@ mark,
 
 .body-record-card {
   display: grid;
-  grid-template-columns: minmax(110px, 0.8fr) minmax(0, 1fr);
-  gap: 8px;
+  gap: 9px;
   padding: 9px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: #fff;
 }
 
-.body-record-card strong {
+.body-record-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.body-record-head strong {
   color: var(--ink);
 }
 
-.body-record-card span {
+.body-record-head small {
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.45;
+  font-weight: 850;
 }
 
 .body-record-empty {
@@ -2936,6 +3271,11 @@ td {
   .body-profile-form .calc-grid,
   .body-record-card {
     grid-template-columns: 1fr;
+  }
+
+  .body-compare-grid,
+  .body-record-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .body-model-panel {
