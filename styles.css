@@ -2861,6 +2861,68 @@ td {
   font-size: 13px;
 }
 
+.injury-controls {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #f1b9a2;
+  border-radius: 8px;
+  background: #fff7f2;
+}
+
+.injury-controls > div:first-child {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.injury-controls strong {
+  font-size: 13px;
+}
+
+.injury-controls span,
+.injury-controls small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.injury-control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.log-panel .injury-control-buttons button {
+  width: auto;
+  flex: 1 1 130px;
+  min-height: 36px;
+  margin-top: 0;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid #f1b9a2;
+  background: #fff;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.log-panel .injury-control-buttons button.active {
+  background: #df4b2f;
+  border-color: #df4b2f;
+  color: #fff;
+}
+
+.injury-filter-row td,
+.filtered-empty-row td {
+  padding: 10px 12px;
+  background: #fff7f2;
+  color: #9a3412;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
 .log-panel button {
   width: 100%;
   margin-top: 14px;

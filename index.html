@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260619-v27-1045" />
+    <link rel="stylesheet" href="./styles.css?v=20260619-v28-1120" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260619-v27-1045"></script>
+    <script defer src="./app.js?v=20260619-v28-1120"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.7">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.8">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -60,16 +60,17 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.7 · 训练反馈与自动调整建议</strong>
-          <small class="update-time">2026-06-19 10:45 更新</small>
+          <strong>v2.8 · 受限部位一键过滤</strong>
+          <small class="update-time">2026-06-19 11:20 更新</small>
           <ul>
-            <li>当天日志新增结构化训练反馈：状态、睡眠、疼痛、受限部位、完成度、实际最高 RPE 和技术质量。</li>
-            <li>保存日志时自动生成下一次训练建议：加重、维持、下调重量、减少组数、替换动作或临时改成上肢/无痛训练。</li>
-            <li>训练反馈会保存到本机浏览器，和当前周/当前训练日绑定。</li>
+            <li>JTS / MEV-MRV 体系新增两个临时按钮：本周移除下肢训练、本周移除上肢训练。</li>
+            <li>受限过滤只隐藏受伤部位相关动作，不会建议把另一侧直接练到极限。</li>
+            <li>加入自愿使用和非医学/非康复建议提示，避免把训练调整误当治疗方案。</li>
             <li>免费工具方向保留，不加入付费、会员或权限限制。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.7</strong> 2026-06-19 10:45：当天日志新增状态、睡眠、疼痛、受限部位、完成度、实际最高 RPE 和技术质量；保存后自动给出下一次训练调整建议，支持下肢受限时临时改为上肢和无痛训练，继续保持免费工具方向。</p>
             <p><strong>v2.6</strong> 2026-06-18 00:51：身体档案首次保存前可选择男性/女性人体模型，保存后锁定；新增大腿围和围度对比反馈，第二次及之后记录会高亮显示体重、腰围、臂围、腹围、臀围和大腿围相对上次的变化。</p>
             <p><strong>v2.5</strong> 2026-06-16 23:18：快速知识检索加入热门体态/康复词条，侧栏列表限制高度；新增 DeepSeek AI 查询入口和 Cloudflare Worker 代理模板，API key 只放服务端环境变量。</p>
             <p><strong>v2.4</strong> 2026-06-16 23:02：修复计划生成器右上角房子按钮无反馈：计划生成器页的房子按钮进入技术笔记页，训练表页的房子按钮返回计划生成器。</p>
@@ -112,7 +113,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.7">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.8">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -623,6 +624,18 @@
                   </select>
                 </label>
               </div>
+              <div id="injurySwapControls" class="injury-controls hidden">
+                <div>
+                  <strong>受限训练调整</strong>
+                  <span>仅 JTS / MEV-MRV 体系显示</span>
+                </div>
+                <div class="injury-control-buttons">
+                  <button id="removeLowerTrainingButton" type="button">本周移除下肢训练</button>
+                  <button id="removeUpperTrainingButton" type="button">本周移除上肢训练</button>
+                  <button id="clearInjuryFilterButton" type="button">恢复原计划</button>
+                </div>
+                <small>仅作为自愿训练调整，不替代医学诊断、康复建议或现场教练判断；疼痛加重请停止相关动作。</small>
+              </div>
               <label>
                 训练反馈
                 <textarea id="dayNotesInput" rows="8" placeholder="记录实际重量、RPE、疲劳或需要调整的内容"></textarea>
@@ -886,6 +899,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.8</strong><span>2026-06-19 11:20</span><p>JTS / MEV-MRV 体系新增本周移除下肢训练、本周移除上肢训练两个按钮；用于临时隐藏受限部位动作，并加入非医学/非康复建议提示。</p></article>
           <article><strong>v2.7</strong><span>2026-06-19 10:45</span><p>当天日志新增状态、睡眠、疼痛、受限部位、完成度、实际最高 RPE 和技术质量；保存后自动给出下一次训练调整建议，支持下肢受限时临时改为上肢和无痛训练，继续保持免费工具方向。</p></article>
           <article><strong>v2.6</strong><span>2026-06-18 00:51</span><p>身体档案首次保存前可选择男性/女性人体模型，保存后锁定；新增大腿围和围度对比反馈，第二次及之后记录会高亮显示体重、腰围、臂围、腹围、臀围和大腿围相对上次的变化。</p></article>
           <article><strong>v2.5</strong><span>2026-06-16 23:18</span><p>快速知识检索加入热门体态/康复词条，侧栏列表限制高度；新增 DeepSeek AI 查询入口和 Cloudflare Worker 代理模板，API key 只放服务端环境变量。</p></article>

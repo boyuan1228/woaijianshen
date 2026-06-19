@@ -6898,6 +6898,7 @@ const state = {
     bodybuildingWeakPriority: "medium",
   },
   logs: {},
+  injuryFilters: {},
   bodyProfiles: [],
   settings: {
     language: "zh",
@@ -7859,6 +7860,18 @@ const STATIC_I18N = new Map(
 );
 
 [
+  ["v2.8 · 受限部位一键过滤", "v2.8 · One-Tap Limitation Filter"],
+  ["2026-06-19 11:20 更新", "Updated 2026-06-19 11:20"],
+  ["JTS / MEV-MRV 体系新增两个临时按钮：本周移除下肢训练、本周移除上肢训练。", "JTS / MEV-MRV systems now include two temporary buttons: remove lower-body training this week and remove upper-body training this week."],
+  ["受限过滤只隐藏受伤部位相关动作，不会建议把另一侧直接练到极限。", "The limitation filter hides movements related to the injured area and does not recommend pushing the other side directly to the limit."],
+  ["加入自愿使用和非医学/非康复建议提示，避免把训练调整误当治疗方案。", "Adds voluntary-use and non-medical/non-rehab notices so training adjustments are not mistaken for treatment."],
+  ["JTS / MEV-MRV 体系新增本周移除下肢训练、本周移除上肢训练两个按钮；用于临时隐藏受限部位动作，并加入非医学/非康复建议提示。", "JTS / MEV-MRV systems add two buttons to remove lower-body or upper-body training for the week, temporarily hiding limited-area movements with a non-medical/non-rehab notice."],
+  ["受限训练调整", "Limitation Adjustment"],
+  ["仅 JTS / MEV-MRV 体系显示", "Only shown for JTS / MEV-MRV systems"],
+  ["本周移除下肢训练", "Remove lower body this week"],
+  ["本周移除上肢训练", "Remove upper body this week"],
+  ["恢复原计划", "Restore original plan"],
+  ["仅作为自愿训练调整，不替代医学诊断、康复建议或现场教练判断；疼痛加重请停止相关动作。", "Voluntary training adjustment only. It does not replace medical diagnosis, rehab guidance, or in-person coaching; stop the related movement if pain worsens."],
   ["v2.7 · 训练反馈与自动调整建议", "v2.7 · Training Feedback and Auto Adjustment"],
   ["2026-06-19 10:45 更新", "Updated 2026-06-19 10:45"],
   ["当天日志新增结构化训练反馈：状态、睡眠、疼痛、受限部位、完成度、实际最高 RPE 和技术质量。", "Daily logs now include structured feedback: readiness, sleep, pain, training limitation, completion, actual top RPE, and technique quality."],
@@ -9016,6 +9029,66 @@ function accessoryOptionsForItem(item, index, items = currentDay()?.items || [])
   const group = accessoryContextForItem(items, index);
   const options = ACCESSORY_GROUPS[group] || ACCESSORY_OPTIONS;
   return [...new Set(options)];
+}
+
+function usesJtsVolumeControls(plan = makePlanner()) {
+  return plan.systemKey === "jtsSstt" || plan.systemKey === "jts" || plan.usesJtsVolume;
+}
+
+function injuryFilterKey(weekIndex = state.weekIndex) {
+  return `w${weekIndex + 1}`;
+}
+
+function currentWeekInjuryFilter(weekIndex = state.weekIndex) {
+  state.injuryFilters ||= {};
+  return state.injuryFilters[injuryFilterKey(weekIndex)] || "";
+}
+
+function activeWeekInjuryFilter(plan = makePlanner(), weekIndex = state.weekIndex) {
+  return usesJtsVolumeControls(plan) ? currentWeekInjuryFilter(weekIndex) : "";
+}
+
+function setWeekInjuryFilter(filter) {
+  state.injuryFilters ||= {};
+  const key = injuryFilterKey();
+  if (filter) state.injuryFilters[key] = filter;
+  else delete state.injuryFilters[key];
+
+  const log = currentLog();
+  log.feedback ||= {};
+  if (filter === "lower" || filter === "upper") log.feedback.limitation = filter;
+  if (!filter && ["lower", "upper"].includes(log.feedback.limitation)) log.feedback.limitation = "none";
+  log.adjustment = trainingAdjustmentAdvice(log.feedback, currentDay());
+  saveState();
+  renderWorkout();
+}
+
+function itemRegion(item, index, items = currentDay()?.items || []) {
+  const type = movementType(item);
+  if (type === "bench" || type === "benchVariant") return "upper";
+  if (type === "squat" || type === "squatVariant" || type === "deadlift" || type === "deadliftVariant") return "lower";
+
+  const name = String(item.name || "").toUpperCase();
+  if (ACCESSORY_GROUPS.core.includes(name) || /CRUNCH|V-UP|PLANK|DEAD BUG|PALLOF|AB WHEEL|CORE/.test(name)) return "core";
+  if (/SQUAT|DEADLIFT|BELT|HAT(S)?FIELD|NORDIC|HYPER|LEG|CALF|HAMSTRING|GLUTE|QUAD|LUNGE|SPLIT/.test(name)) return "lower";
+  if (/BENCH|PRESS|PULL|ROW|CURL|TRICEP|SKULL|DELT|RAISE|PEC|LAT|CHEST|SHOULDER|BICEP/.test(name)) return "upper";
+  if (item.accessoryGroup === "upper" || item.accessoryGroup === "lower" || item.accessoryGroup === "core") return item.accessoryGroup;
+  return accessoryContextForItem(items, index);
+}
+
+function shouldHideForInjuryFilter(item, index, items, filter = currentWeekInjuryFilter()) {
+  if (!filter) return false;
+  const region = itemRegion(item, index, items);
+  if (filter === "lower") return region === "lower";
+  if (filter === "upper") return region === "upper";
+  return false;
+}
+
+function visibleItemsForDay(day = currentDay(), filter = currentWeekInjuryFilter()) {
+  const items = (day.items || []).map((item, index) => ({ ...item, __sourceIndex: index }));
+  const activeFilter = usesJtsVolumeControls() ? filter : "";
+  if (!activeFilter) return items;
+  return items.filter((item) => !shouldHideForInjuryFilter(item, item.__sourceIndex, day.items, activeFilter));
 }
 
 function selectedAccessoryName(item, index, log, items) {
@@ -10490,13 +10563,16 @@ function renderPlanner() {
 
 function renderTabs() {
   const week = currentWeek();
+  const plan = makePlanner();
+  const filter = activeWeekInjuryFilter(plan);
   $("dayTabs").innerHTML = week.days
     .map((day, index) => {
       const active = index === state.dayIndex ? "active" : "";
+      const count = visibleItemsForDay(day, filter).length;
       return `
         <button class="day-tab ${active}" type="button" data-day="${index}">
           <strong>${day.day}</strong><br />
-          <span>${day.items.length} ${isEnglish() ? "items" : "项"}</span>
+          <span>${count} ${isEnglish() ? "items" : "项"}</span>
         </button>
       `;
     })
@@ -10648,8 +10724,22 @@ function isBackdownRow(item) {
 function renderExercises() {
   const day = currentDay();
   const log = currentLog();
-  $("exerciseRows").innerHTML = day.items
-    .flatMap((item, index) => {
+  const plan = makePlanner();
+  const filter = activeWeekInjuryFilter(plan);
+  const visibleItems = visibleItemsForDay(day, filter);
+  if (!visibleItems.length) {
+    $("exerciseRows").innerHTML = `
+      <tr class="filtered-empty-row">
+        <td colspan="6">${escapeHtml(isEnglish()
+          ? "All movements in this day are hidden by the current injury filter. Restore the original plan or choose a pain-free session."
+          : "当天动作已被当前受限过滤全部隐藏。可恢复原计划，或改为无痛训练。")}</td>
+      </tr>
+    `;
+    return;
+  }
+  $("exerciseRows").innerHTML = visibleItems
+    .flatMap((item, visibleIndex) => {
+      const index = item.__sourceIndex ?? visibleIndex;
       const estimate = estimatedLoadWithContext(item, index, day.items);
       const type = movementType(item);
       const editableNote = noteForItem(day.items, index, log);
@@ -10718,6 +10808,17 @@ function renderExercises() {
     })
     .join("");
 
+  if (filter) {
+    $("exerciseRows").insertAdjacentHTML(
+      "afterbegin",
+      `<tr class="injury-filter-row"><td colspan="6">${escapeHtml(
+        filter === "lower"
+          ? (isEnglish() ? "Lower-body movements are hidden for this week. Keep upper-body work controlled; do not turn it into a max-out week." : "本周已隐藏下肢相关动作。上肢可以训练，但建议保持可控中高强度，不要直接变成冲极限周。")
+          : (isEnglish() ? "Upper-body movements are hidden for this week. Keep lower-body work pain-free and controlled." : "本周已隐藏上肢相关动作。下肢训练只保留无痛且可控的内容。")
+      )}</td></tr>`
+    );
+  }
+
   document.querySelectorAll("[data-note]").forEach((note) => {
     note.addEventListener("input", () => {
       currentLog().itemNotes[note.dataset.note] = note.value;
@@ -10783,14 +10884,14 @@ function trainingAdjustmentAdvice(feedback = currentLog().feedback || {}, day = 
 
   if (feedback.limitation === "lower") {
     return isEnglish()
-      ? "Temporary adjustment: skip squats, deadlifts, heavy leg work, and painful lower-body variations. Keep upper-body training if pain-free: bench or bench variation, rows/pulldowns, shoulders, arms, and trunk work. Use pain-free mobility or rehab work for the lower body. Return with 80-90% of the planned load and 1-2 fewer hard sets after symptoms do not worsen for 48 hours."
-      : "临时调整：暂停深蹲、硬拉、重下肢和所有会诱发疼痛的下肢变式。若无痛，可以保留上肢训练：卧推或卧推变式、划船/下拉、肩部、手臂和核心；下肢只做无痛活动度或康复容量。症状 48 小时不加重后，再用原计划 80-90% 重量、少 1-2 个高压力组回归。";
+      ? "Temporary adjustment: skip squats, deadlifts, heavy leg work, and painful lower-body variations. Keep pain-free upper-body training, but do not max out; cap most work around RPE 7-8.5 and avoid large extra volume. Use pain-free mobility or rehab work for the lower body. Return with 80-90% of the planned load and 1-2 fewer hard sets after symptoms do not worsen for 48 hours."
+      : "临时调整：暂停深蹲、硬拉、重下肢和所有会诱发疼痛的下肢变式。无痛上肢可以练，但不要直接冲极限；多数训练控制在 RPE 7-8.5，避免大幅额外加量。下肢只做无痛活动度或康复容量。症状 48 小时不加重后，再用原计划 80-90% 重量、少 1-2 个高压力组回归。";
   }
 
   if (feedback.limitation === "upper") {
     return isEnglish()
-      ? "Temporary adjustment: skip pressing, heavy upper-body pulling, and movements that reproduce pain. Keep pain-free lower-body work, single-leg work, trunk work, and light blood-flow work. Return upper-body loading with 80-90% of the planned load and fewer hard sets after symptoms settle."
-      : "临时调整：暂停推举、重上肢拉和所有会复现疼痛的动作。可以保留无痛下肢训练、单腿动作、核心和轻泵感训练。症状稳定后，上肢从原计划 80-90% 重量、减少高压力组开始回归。";
+      ? "Temporary adjustment: skip pressing, heavy upper-body pulling, and movements that reproduce pain. Keep pain-free lower-body work, but do not turn it into a max-out block; cap most work around RPE 7-8.5 and keep volume recoverable. Return upper-body loading with 80-90% of the planned load and fewer hard sets after symptoms settle."
+      : "临时调整：暂停推举、重上肢拉和所有会复现疼痛的动作。可以保留无痛下肢训练，但不要把它变成冲极限小周期；多数训练控制在 RPE 7-8.5，并保持可恢复容量。症状稳定后，上肢从原计划 80-90% 重量、减少高压力组开始回归。";
   }
 
   if (feedback.limitation === "back") {
@@ -10876,6 +10977,26 @@ function renderAdjustmentHint() {
   target.textContent = log.adjustment || trainingAdjustmentAdvice(log.feedback || {}, currentDay());
 }
 
+function renderInjuryControls() {
+  const controls = $("injurySwapControls");
+  if (!controls) return;
+  const plan = makePlanner();
+  const enabled = usesJtsVolumeControls(plan);
+  controls.classList.toggle("hidden", !enabled);
+  if (!enabled) return;
+
+  const active = currentWeekInjuryFilter();
+  const lowerButton = $("removeLowerTrainingButton");
+  const upperButton = $("removeUpperTrainingButton");
+  const clearButton = $("clearInjuryFilterButton");
+  lowerButton?.classList.toggle("active", active === "lower");
+  upperButton?.classList.toggle("active", active === "upper");
+  clearButton?.classList.toggle("active", !active);
+  if (lowerButton) lowerButton.onclick = () => setWeekInjuryFilter(active === "lower" ? "" : "lower");
+  if (upperButton) upperButton.onclick = () => setWeekInjuryFilter(active === "upper" ? "" : "upper");
+  if (clearButton) clearButton.onclick = () => setWeekInjuryFilter("");
+}
+
 function renderLog() {
   const log = currentLog();
   const feedback = log.feedback || {};
@@ -10889,6 +11010,7 @@ function renderLog() {
   if ($("actualRpeInput")) $("actualRpeInput").value = feedback.actualRpe || "";
   if ($("techniqueQualityInput")) $("techniqueQualityInput").value = feedback.technique || "";
   renderAdjustmentHint();
+  renderInjuryControls();
   const updateTrainingFeedback = () => {
     const log = currentLog();
     log.feedback = collectTrainingFeedback();
@@ -11554,6 +11676,7 @@ function backupData() {
     profile: state.profile,
     survey: state.survey,
     logs: state.logs,
+    injuryFilters: state.injuryFilters,
     bodyProfiles: state.bodyProfiles,
   };
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
@@ -11575,6 +11698,7 @@ function restoreData(file) {
       Object.assign(state.profile, payload.profile);
       Object.assign(state.survey, payload.survey);
       state.logs = payload.logs || {};
+      state.injuryFilters = payload.injuryFilters || {};
       state.bodyProfiles = payload.bodyProfiles || [];
       state.weekIndex = 0;
       state.dayIndex = 0;
