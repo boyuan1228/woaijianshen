@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260625-v213-ui" />
+    <link rel="stylesheet" href="./styles.css?v=20260625-v214-supabase" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260625-v213-ui"></script>
+    <script defer src="./app.js?v=20260625-v214-supabase"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.13">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.14">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -60,16 +60,17 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.13 · UI 工作台升级</strong>
+          <strong>v2.14 · 云端配置提示</strong>
           <small class="update-time">2026-06-25 更新</small>
           <ul>
-            <li>重做 v2.13 UI 皮肤：深色侧栏、浅色工作区、卡片阴影和训练表层级更清晰。</li>
-            <li>顶部工具按钮按功能重新配色，手机端自动排成紧凑网格。</li>
-            <li>手机端训练表继续保持动作、组、次、RPE、重量同排可读，并修复组/次/重量标签编码。</li>
-            <li>更新 CSS 和 App 缓存版本号，减少旧样式缓存导致看不到更新的问题。</li>
+            <li>根目录 Supabase 版本新增 URL 自动纠错：误填 /rest/v1 时会自动改回项目地址。</li>
+            <li>学员档案/计划表不存在时，提示用户执行 supabase/schema.sql，不再只显示英文报错。</li>
+            <li>连接失败时提示检查 URL、publishable/anon key 和 Supabase 项目状态。</li>
+            <li>线上样本版同步更新缓存版本号，减少旧包导致的误报。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.14</strong> 2026-06-25：根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p>
             <p><strong>v2.13</strong> 2026-06-25：重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p>
             <p><strong>v2.12</strong> 2026-06-21 00:10：根据 Juggernaut Powerlifting Clinic Manual 中文版改写新增训练诊断小课堂；知识库加入最低有效剂量、专项优先、PR 不只加重量、弱点变式选择、疼痛后回归和生病训练调整；三项技术笔记补充深蹲、卧推、硬拉的诊断检查点。</p>
             <p><strong>v2.11</strong> 2026-06-20 00:15：新增高质量训练体系小课堂，面向训练者解释专项性、可恢复容量、强度分布、进展规则、反馈闭环和人群适配，并补充 JTS/SBS 类体系为什么强。</p>
@@ -119,7 +120,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.13">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.14">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -919,6 +920,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.14</strong><span>2026-06-25</span><p>根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p></article>
           <article><strong>v2.13</strong><span>2026-06-25</span><p>重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p></article>
           <article><strong>v2.12</strong><span>2026-06-21 00:10</span><p>根据 Juggernaut Powerlifting Clinic Manual 中文版改写新增训练诊断小课堂；知识库加入最低有效剂量、专项优先、PR 不只加重量、弱点变式选择、疼痛后回归和生病训练调整；三项技术笔记补充深蹲、卧推、硬拉的诊断检查点。</p></article>
           <article><strong>v2.11</strong><span>2026-06-20 00:15</span><p>新增高质量训练体系小课堂，面向训练者解释专项性、可恢复容量、强度分布、进展规则、反馈闭环和人群适配，并补充 JTS/SBS 类体系为什么强。</p></article>
