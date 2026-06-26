@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260626-v215-mobile-layout" />
+    <link rel="stylesheet" href="./styles.css?v=20260626-v217-mobile-polish" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260626-v215-mobile-layout"></script>
+    <script defer src="./app.js?v=20260626-v217-mobile-polish"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.15">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.17">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -60,19 +60,21 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.15 · 移动端执行布局</strong>
-          <small class="update-time">2026-06-26 更新</small>
+          <strong>v2.17 · 移动端排版精修</strong>
+          <small class="update-time">2026-06-26 23:59 更新</small>
           <ul>
-            <li>手机端新增底部固定导航：主页、训练表、语言、档案、饮食、图表不用再回到顶部找。</li>
-            <li>训练日表格改成更清晰的执行卡片，动作、组、次数、RPE、重量同屏可读。</li>
-            <li>阶段进度在窄屏只显示当前阶段摘要，减少横向溢出和视觉噪音。</li>
-            <li>RPE 参考、备注和当天日志间距重新整理，手机浏览更紧凑。</li>
+            <li>手机端训练表继续收紧，动作、组、次数、RPE 和重量在一行里更稳。</li>
+            <li>RPE 参考卡增加内边距和横向滑动保护，避免贴边或把页面撑宽。</li>
+            <li>顶部工具 Dock 重新做功能配色和触控反馈，按钮更像 App 工具区。</li>
+            <li>中英文模式下移动端表格小标签会跟随语言切换。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
-            <p><strong>v2.15</strong> 2026-06-26：手机端新增底部固定导航；训练表行改成执行卡片；阶段进度窄屏只显示当前阶段摘要；RPE 参考、备注和当天日志间距重新整理。</p>
-            <p><strong>v2.14</strong> 2026-06-25：根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p>
-            <p><strong>v2.13</strong> 2026-06-25：重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p>
+            <p><strong>v2.17</strong> 2026-06-26 23:59：手机端训练表继续收紧；RPE 参考卡增加内边距和横向滑动保护；顶部工具 Dock 重做功能配色；移动端表格小标签跟随中英文切换。</p>
+            <p><strong>v2.16</strong> 2026-06-26 16:34：训练表页补强导出 PDF 入口；顶部工具区改成可横向滑动的 App 工具胶囊；卧推变式新增木板卧推；更新日志统一补齐到分钟。</p>
+            <p><strong>v2.15</strong> 2026-06-26 08:28：手机端新增底部固定导航；训练表行改成执行卡片；阶段进度窄屏只显示当前阶段摘要；RPE 参考、备注和当天日志间距重新整理。</p>
+            <p><strong>v2.14</strong> 2026-06-25 21:27：根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p>
+            <p><strong>v2.13</strong> 2026-06-25 20:40：重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p>
             <p><strong>v2.12</strong> 2026-06-21 00:10：根据 Juggernaut Powerlifting Clinic Manual 中文版改写新增训练诊断小课堂；知识库加入最低有效剂量、专项优先、PR 不只加重量、弱点变式选择、疼痛后回归和生病训练调整；三项技术笔记补充深蹲、卧推、硬拉的诊断检查点。</p>
             <p><strong>v2.11</strong> 2026-06-20 00:15：新增高质量训练体系小课堂，面向训练者解释专项性、可恢复容量、强度分布、进展规则、反馈闭环和人群适配，并补充 JTS/SBS 类体系为什么强。</p>
             <p><strong>v2.10</strong> 2026-06-20 00:05：新增 Calgary 16/8、Bullmastiff、Kizen、Candito、Juggernaut、Greg Nuckols、nSuns、5/3/1、Madcow 5x5 等改写模板，并把 JTS × SSTT 标记为推荐。</p>
@@ -84,8 +86,8 @@
             <p><strong>v2.4</strong> 2026-06-16 23:02：修复计划生成器右上角房子按钮无反馈：计划生成器页的房子按钮进入技术笔记页，训练表页的房子按钮返回计划生成器。</p>
             <p><strong>v2.3</strong> 2026-06-16 22:36：新增建立档案按钮，支持按日期记录体重、腰围、臂围、腹围和臀围；弹窗加入人体围度模型，4 个围度以 cm 展示，底部体重以 kg 展示；顶部工具顺序调整为主页、训练表、翻译、建立档案、饮食、图表、热身。</p>
             <p><strong>v2.2</strong> 2026-06-16 21:59：肌肥大移除比赛、测试、开把、三项 PR、剩余周倒计时和休息日排布遗留项；侧边栏改为知识库 / 力量参数，肌肥大显示快速知识检索，力量举体系才显示三项 PR 和变式；科普内容补充来源小字，UI 收紧为更简洁的科技训练工具风格。</p>
-            <p><strong>v2.1</strong> 2026-06-16：健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p>
-            <p><strong>v2.0</strong> 2026-06-16：保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p>
+            <p><strong>v2.1</strong> 2026-06-16 20:40：健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p>
+            <p><strong>v2.0</strong> 2026-06-16 19:30：保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p>
             <p><strong>v1.13</strong> 2026-06-13 12:35：英文模式补齐动态生成区域：阶段、频率、周布局、开把、日志和 RPE 工具；右上角主页图标改为进入三项技术笔记页；顶部说明改为通用说明。</p>
             <p><strong>v1.12</strong> 2026-06-13 10:48：顶部工具按钮改为功能配色；训练表页导出和清空按钮加入独立颜色；CSS 加版本号避免旧缓存。</p>
             <p><strong>v1.11</strong> 2026-06-13 10:38：英文模式补齐主要静态表单、弹窗、QA、热身和饮食文案；语言键英文状态显示 ZH，中文状态显示 EN。</p>
@@ -121,7 +123,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.15">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.17">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -191,6 +193,7 @@
                   <option>Close Grip Bench Press</option>
                   <option>Tempo Bench Press</option>
                   <option>Floor Press</option>
+                  <option>Board Press</option>
                   <option>Pin Press</option>
                 </select>
               </label>
@@ -553,6 +556,12 @@
                 <div>
                   <h3 id="dayTitle">Day 1</h3>
                   <p id="dayMeta">动作和建议强度</p>
+                </div>
+                <div class="section-actions workout-shortcuts">
+                  <button class="mini-action export-action" id="exportQuickButton" type="button" title="导出 PDF 计划">
+                    <i data-lucide="download"></i>
+                    <span>导出 PDF</span>
+                  </button>
                 </div>
               </div>
               <div class="table-wrap">
@@ -944,9 +953,11 @@
           </button>
         </div>
         <div class="changelog-list">
-          <article><strong>v2.15</strong><span>2026-06-26</span><p>手机端新增底部固定导航；训练表行改成执行卡片；阶段进度窄屏只显示当前阶段摘要；RPE 参考、备注和当天日志间距重新整理。</p></article>
-          <article><strong>v2.14</strong><span>2026-06-25</span><p>根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p></article>
-          <article><strong>v2.13</strong><span>2026-06-25</span><p>重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p></article>
+          <article><strong>v2.17</strong><span>2026-06-26 23:59</span><p>手机端训练表继续收紧；RPE 参考卡增加内边距和横向滑动保护；顶部工具 Dock 重做功能配色；移动端表格小标签跟随中英文切换。</p></article>
+          <article><strong>v2.16</strong><span>2026-06-26 16:34</span><p>训练表页补强导出 PDF 入口；顶部工具区改成可横向滑动的 App 工具胶囊；卧推变式新增木板卧推；更新日志统一补齐到分钟。</p></article>
+          <article><strong>v2.15</strong><span>2026-06-26 08:28</span><p>手机端新增底部固定导航；训练表行改成执行卡片；阶段进度窄屏只显示当前阶段摘要；RPE 参考、备注和当天日志间距重新整理。</p></article>
+          <article><strong>v2.14</strong><span>2026-06-25 21:27</span><p>根目录 Supabase 版本新增 URL 自动纠错、表缺失提示和连接失败提示；线上样本版同步更新缓存版本号。</p></article>
+          <article><strong>v2.13</strong><span>2026-06-25 20:40</span><p>重做 UI 工作台皮肤，优化深色侧栏、浅色工作区、功能按钮配色、卡片阴影、移动端按钮网格和训练表可读性；更新 CSS/App 缓存版本号。</p></article>
           <article><strong>v2.12</strong><span>2026-06-21 00:10</span><p>根据 Juggernaut Powerlifting Clinic Manual 中文版改写新增训练诊断小课堂；知识库加入最低有效剂量、专项优先、PR 不只加重量、弱点变式选择、疼痛后回归和生病训练调整；三项技术笔记补充深蹲、卧推、硬拉的诊断检查点。</p></article>
           <article><strong>v2.11</strong><span>2026-06-20 00:15</span><p>新增高质量训练体系小课堂，面向训练者解释专项性、可恢复容量、强度分布、进展规则、反馈闭环和人群适配，并补充 JTS/SBS 类体系为什么强。</p></article>
           <article><strong>v2.10</strong><span>2026-06-20 00:05</span><p>新增 Calgary 16/8、Bullmastiff、Kizen、Candito、Juggernaut、Greg Nuckols、nSuns、5/3/1、Madcow 5x5 等改写模板，并把 JTS × SSTT 标记为推荐。</p></article>
@@ -958,8 +969,8 @@
           <article><strong>v2.4</strong><span>2026-06-16 23:02</span><p>修复计划生成器右上角房子按钮无反馈：计划生成器页的房子按钮进入技术笔记页，训练表页的房子按钮返回计划生成器。</p></article>
           <article><strong>v2.3</strong><span>2026-06-16 22:36</span><p>新增建立档案按钮，支持按日期记录体重、腰围、臂围、腹围和臀围；弹窗加入人体围度模型，4 个围度以 cm 展示，底部体重以 kg 展示；顶部工具顺序调整为主页、训练表、翻译、建立档案、饮食、图表、热身。</p></article>
           <article><strong>v2.2</strong><span>2026-06-16 21:59</span><p>肌肥大移除比赛、测试、开把、三项 PR、剩余周倒计时和休息日排布遗留项；侧边栏改为知识库 / 力量参数，肌肥大显示快速知识检索，力量举体系才显示三项 PR 和变式；科普内容补充来源小字，UI 收紧为更简洁的科技训练工具风格。</p></article>
-          <article><strong>v2.1</strong><span>2026-06-16</span><p>健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p></article>
-          <article><strong>v2.0</strong><span>2026-06-16</span><p>保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p></article>
+          <article><strong>v2.1</strong><span>2026-06-16 20:40</span><p>健美式肌肥大和专属力训体系分开；肌肥大使用 12 周基础容量、渐进超负荷、减量评估样本周期；技术笔记新增三项变式选择与使用说明；生成器特色补充体系分流、样本模式、弱项反馈和三项变式库。</p></article>
+          <article><strong>v2.0</strong><span>2026-06-16 19:30</span><p>保留 v2 样本模式：输入激活码后直接进入计划生成器；训练数据只在当前页面内临时保存，刷新后自动清空；登录注册和云端学员档案留到 v3。</p></article>
           <article><strong>v1.13</strong><span>2026-06-13 12:35</span><p>英文模式补齐动态生成区域，主页图标改为三项技术笔记页，顶部说明改为通用说明。</p></article>
           <article><strong>v1.12</strong><span>2026-06-13 10:48</span><p>顶部工具按钮改为功能配色，训练表页导出和清空按钮也加入独立颜色，并给 CSS 加版本号避免旧缓存。</p></article>
           <article><strong>v1.11</strong><span>2026-06-13 10:38</span><p>英文模式补齐主要静态表单、弹窗、QA、热身和饮食文案；语言键英文状态显示 ZH，中文状态显示 EN。</p></article>

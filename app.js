@@ -6968,6 +6968,7 @@ const EXERCISE_ZH = {
   "PAUSED BENCH PRESS": "暂停卧推",
   "TEMPO BENCH PRESS": "节奏卧推",
   "FLOOR PRESS": "地板卧推",
+  "BOARD PRESS": "木板卧推",
   "PIN PRESS": "架上卧推",
   "PAUSED SQUAT": "暂停深蹲",
   "TEMPO SQUAT": "节奏深蹲",
@@ -6989,6 +6990,7 @@ const VARIANT_OPTIONS = {
     "Close Grip Bench Press",
     "Tempo Bench Press",
     "Floor Press",
+    "Board Press",
     "Pin Press",
   ],
   squatVariantInput: ["Belt Squat", "Paused Squat", "Tempo Squat", "Front Squat", "Safety Bar Squat", "Hatfield Squat"],
@@ -7004,47 +7006,47 @@ const VARIANT_OPTIONS = {
 
 const VARIANT_OPTIONS_BY_SYSTEM = {
   sheiko: {
-    benchVariantInput: ["Paused Bench Press", "Tempo Bench Press", "Close Grip Bench Press"],
+    benchVariantInput: ["Paused Bench Press", "Tempo Bench Press", "Close Grip Bench Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Tempo Squat", "Front Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Deficit Deadlift", "Block Pull"],
   },
   calgary: {
-    benchVariantInput: ["Spoto Bench Press", "Paused Bench Press", "Close Grip Bench Press", "Floor Press"],
+    benchVariantInput: ["Spoto Bench Press", "Paused Bench Press", "Close Grip Bench Press", "Floor Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Front Squat", "Safety Bar Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Deficit Deadlift", "Romanian Deadlift"],
   },
   jts: {
-    benchVariantInput: ["Spoto Bench Press", "Paused Bench Press", "Close Grip Bench Press", "Tempo Bench Press"],
+    benchVariantInput: ["Spoto Bench Press", "Paused Bench Press", "Close Grip Bench Press", "Tempo Bench Press", "Board Press"],
     squatVariantInput: ["Belt Squat", "Paused Squat", "Tempo Squat", "Safety Bar Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Deficit Deadlift", "Romanian Deadlift", "Tempo Deadlift"],
   },
   norwegian: {
-    benchVariantInput: ["Paused Bench Press", "Tempo Bench Press", "Spoto Bench Press", "Close Grip Bench Press"],
+    benchVariantInput: ["Paused Bench Press", "Tempo Bench Press", "Spoto Bench Press", "Close Grip Bench Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Tempo Squat", "Front Squat", "Safety Bar Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Romanian Deadlift", "Deficit Deadlift", "Block Pull"],
   },
   rpeBlock: {
-    benchVariantInput: ["Spoto Bench Press", "Tempo Bench Press", "Close Grip Bench Press", "Paused Bench Press"],
+    benchVariantInput: ["Spoto Bench Press", "Tempo Bench Press", "Close Grip Bench Press", "Paused Bench Press", "Board Press"],
     squatVariantInput: ["Tempo Squat", "Paused Squat", "Front Squat", "Belt Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Deficit Deadlift", "Romanian Deadlift", "Block Pull"],
   },
   rts: {
-    benchVariantInput: ["Paused Bench Press", "Spoto Bench Press", "Close Grip Bench Press"],
+    benchVariantInput: ["Paused Bench Press", "Spoto Bench Press", "Close Grip Bench Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Tempo Squat", "Front Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Deficit Deadlift", "Block Pull"],
   },
   westside: {
-    benchVariantInput: ["Floor Press", "Pin Press", "Close Grip Bench Press"],
+    benchVariantInput: ["Floor Press", "Board Press", "Pin Press", "Close Grip Bench Press"],
     squatVariantInput: ["Safety Bar Squat", "Front Squat", "Hatfield Squat"],
     deadliftVariantInput: ["Block Pull", "Deficit Deadlift", "Romanian Deadlift"],
   },
   gzcl: {
-    benchVariantInput: ["Close Grip Bench Press", "Paused Bench Press", "Spoto Bench Press"],
+    benchVariantInput: ["Close Grip Bench Press", "Paused Bench Press", "Spoto Bench Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Front Squat", "Belt Squat"],
     deadliftVariantInput: ["Paused Deadlift", "Romanian Deadlift", "Deficit Deadlift"],
   },
   texas: {
-    benchVariantInput: ["Close Grip Bench Press", "Paused Bench Press", "Floor Press"],
+    benchVariantInput: ["Close Grip Bench Press", "Paused Bench Press", "Floor Press", "Board Press"],
     squatVariantInput: ["Paused Squat", "Front Squat", "Belt Squat"],
     deadliftVariantInput: ["Romanian Deadlift", "Paused Deadlift", "Block Pull"],
   },
@@ -7888,6 +7890,7 @@ function renderLanguage() {
     button.title = isEnglish() ? "Switch to Chinese" : "切换语言";
     button.setAttribute("aria-label", button.title);
   });
+  if (document.body) document.body.dataset.lang = isEnglish() ? "en" : "zh";
   populateBirthSelectors();
   renderToolLanguage();
   if (document.documentElement) document.documentElement.lang = isEnglish() ? "en" : "zh-CN";
@@ -7947,6 +7950,7 @@ function renderToolLanguage() {
   setButtonLanguage("[data-warmup-open]", "热身动作", "Warm-up drills");
   setButtonLanguage("[data-technique-button]", "技术笔记", "Technique notes");
   setButtonLanguage("#exportButton", "导出 PDF", "Export PDF");
+  setIconButtonTextLanguage("exportQuickButton", "导出 PDF", "Export PDF");
   setButtonLanguage("#resetButton", "删除日志", "Delete logs");
   setButtonLanguage("#backupButton", "备份/恢复数据", "Backup or restore data");
   setButtonLanguage("#floatingRpeButton", "RPE 计算器", "RPE calculator");
@@ -8054,6 +8058,20 @@ const STATIC_I18N = new Map(
     "更新内容": "Latest Update",
     "历史日志": "History",
     "查看历史日志": "View History",
+    "v2.17 · 移动端排版精修": "v2.17 · Mobile Layout Polish",
+    "2026-06-26 23:59 更新": "Updated 2026-06-26 23:59",
+    "手机端训练表继续收紧，动作、组、次数、RPE 和重量在一行里更稳。": "Mobile training rows are tighter, keeping movement, sets, reps, RPE, and load steadier on one line.",
+    "RPE 参考卡增加内边距和横向滑动保护，避免贴边或把页面撑宽。": "The RPE reference card now has more inner spacing and protected horizontal scrolling so it does not hug the edge or widen the page.",
+    "顶部工具 Dock 重新做功能配色和触控反馈，按钮更像 App 工具区。": "The top tool dock now has clearer function colors and touch feedback, closer to an app-style tool area.",
+    "中英文模式下移动端表格小标签会跟随语言切换。": "Mobile row micro-labels now switch with Chinese and English mode.",
+    "手机端训练表继续收紧；RPE 参考卡增加内边距和横向滑动保护；顶部工具 Dock 重做功能配色；移动端表格小标签跟随中英文切换。": "Mobile training rows were tightened; the RPE reference card gained spacing and scroll protection; the top dock got clearer function colors; mobile row labels now follow the selected language.",
+    "v2.16 · 工具栏与导出入口优化": "v2.16 · App Dock and Export Access",
+    "2026-06-26 16:34 更新": "Updated 2026-06-26 16:34",
+    "训练表页补强导出 PDF 入口，顶部工具栏和当天训练卡片旁都能找到导出操作。": "The training table now has clearer PDF export access from both the top dock and the daily training card.",
+    "顶部工具区改成可横向滑动的 App 工具胶囊，按钮间距、触控面积和视觉层级更稳定。": "The top tools now behave like a horizontally scrollable app dock with steadier spacing, touch targets, and hierarchy.",
+    "卧推变式新增木板卧推，适合中段到锁定、三头肌过载和限制行程训练。": "Bench variations now include Board Press for mid-to-lockout strength, triceps overload, and reduced-ROM work.",
+    "更新日志统一补齐到分钟，后续每次版本更新都按时间记录。": "Update logs now include minute-level timestamps for each version.",
+    "训练表页补强导出 PDF 入口；顶部工具区改成可横向滑动的 App 工具胶囊；卧推变式新增木板卧推；更新日志统一补齐到分钟。": "Improved PDF export access on the training table, changed the top tools into a horizontally scrollable app dock, added Board Press to bench variations, and standardized minute-level update log timestamps.",
     "v2.15 · 移动端执行布局": "v2.15 · Mobile Execution Layout",
     "手机端新增底部固定导航：主页、训练表、语言、档案、饮食、图表不用再回到顶部找。": "Mobile now has a fixed bottom navigation for home, training, language, profile, nutrition, and charts.",
     "训练日表格改成更清晰的执行卡片，动作、组、次数、RPE、重量同屏可读。": "Training-day rows are now clearer execution cards with movement, sets, reps, RPE, and load visible together.",
@@ -9687,8 +9705,24 @@ function isTestWeekIndex(index = state.weekIndex) {
 
 function setView(view) {
   state.view = view;
+  const nextHash = view === "workout" ? "#workout" : view === "technique" ? "#technique" : "#planner";
+  if (window.location.hash !== nextHash) {
+    window.history.replaceState(null, "", nextHash);
+  }
   saveState();
   render();
+}
+
+function applyHashView() {
+  const hashView =
+    window.location.hash === "#workout" ? "workout" :
+    window.location.hash === "#technique" ? "technique" :
+    window.location.hash === "#planner" ? "planner" :
+    "";
+  if (hashView && state.view !== hashView) {
+    state.view = hashView;
+    render();
+  }
 }
 
 function labelForKind(kind) {
@@ -13358,6 +13392,7 @@ function bindActions() {
   $("markDayButton")?.addEventListener("click", markDayComplete);
   $("saveLogButton").addEventListener("click", saveDayLog);
   $("exportButton").addEventListener("click", exportPlanPdf);
+  $("exportQuickButton")?.addEventListener("click", exportPlanPdf);
   $("backupButton").addEventListener("click", () => {
     if (confirm("确定要导出当前数据备份？点击取消可选择恢复备份。")) {
       backupData();
@@ -13390,5 +13425,6 @@ document.addEventListener("DOMContentLoaded", () => {
   bindProfile();
   bindActions();
   bindActivation();
+  window.addEventListener("hashchange", applyHashView);
   render();
 });
