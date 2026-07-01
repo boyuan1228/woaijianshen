@@ -9729,9 +9729,9 @@ function system905RoundStep() {
 }
 
 function system905PrForLift(lift) {
-  if (lift === "bench") return Math.max(Number(state.profile.bench || 0), Number(state.survey.system905BenchTrainingBest || 0));
-  if (lift === "squat") return Math.max(Number(state.profile.squat || 0), Number(state.survey.system905SquatTrainingBest || 0));
-  if (lift === "deadlift") return Math.max(Number(state.profile.deadlift || 0), Number(state.survey.system905DeadliftTrainingBest || 0));
+  if (lift === "bench") return Number(state.survey.system905BenchTrainingBest || 0) || Number(state.profile.bench || 0);
+  if (lift === "squat") return Number(state.survey.system905SquatTrainingBest || 0) || Number(state.profile.squat || 0);
+  if (lift === "deadlift") return Number(state.survey.system905DeadliftTrainingBest || 0) || Number(state.profile.deadlift || 0);
   return 0;
 }
 
@@ -9757,13 +9757,13 @@ function system905TmFactor(lift) {
   );
   if (manual) return manual;
   const mode = system905Mode();
-  const level = state.survey.system905Level || state.survey.experience || "intermediate";
-  const advanced = ["advanced", "veryAdvanced"].includes(level);
   if (mode === "kneeFriendly" && lift === "squat") return 0.7;
-  if (mode === "benchSpecialization" && lift === "bench") return 0.9;
+  if (mode === "benchSpecialization" && lift === "bench") return 1;
   if (mode === "prOnly") return lift === "deadlift" ? 0.85 : lift === "bench" ? 0.875 : 0.875;
-  if (lift === "deadlift") return advanced ? 0.875 : 0.85;
-  return advanced ? 0.9 : 0.875;
+  if (lift === "squat") return 0.96;
+  if (lift === "bench") return 1;
+  if (lift === "deadlift") return 0.89;
+  return 0.9;
 }
 
 function calculateSuggestedTM(lift) {
@@ -9788,7 +9788,12 @@ function system905TmDetails(lift) {
       base = pr ? pr * Math.min(factor, 0.875) : e1rm.value * factor;
       reason = isEnglish() ? "Deadlift recent heavy work is limited, so TM stays conservative" : "硬拉近期重拉少，TM 自动偏保守";
     } else {
-      base = (pr ? Math.min(pr, e1rm.value) : e1rm.value) * factor;
+      const nearCurrentMax = pr && e1rm.confidence !== "low" && e1rm.value >= pr * 0.95;
+      if (nearCurrentMax) {
+        base = lift === "bench" && factor >= 0.99 ? prBased * 0.985 : prBased;
+      } else {
+        base = pr ? Math.min(prBased, e1rm.value) : e1rm.value * factor;
+      }
       reason = e1rm.confidence === "low"
         ? (isEnglish() ? "No RPE entered: Epley estimate with lower confidence" : "未填写 RPE：用 Epley 低可信估算")
         : (isEnglish() ? "PR and recent e1RM cross-check" : "历史 PR 与近期 e1RM 交叉判断");
