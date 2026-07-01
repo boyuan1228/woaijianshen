@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260701-v223-905-polish" />
+    <link rel="stylesheet" href="./styles.css?v=20260701-v224-905-input-fix" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260701-v223-905-polish"></script>
+    <script defer src="./app.js?v=20260701-v224-905-input-fix"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.23">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.24">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,16 +62,17 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.23 · 905 输入与容量优化</strong>
-          <small class="update-time">2026-07-01 12:29 更新</small>
+          <strong>v2.24 · 905 输入体验修复</strong>
+          <small class="update-time">2026-07-01 13:51 更新</small>
           <ul>
-            <li>905 普通模式只保留核心输入，高级 / 教练模式才显示 TM 系数、手动 TM、取整单位等覆盖项。</li>
-            <li>近期代表组支持“不知道 RPE”，系统改用低可信 Epley 估算，不再把低 RPE 轻重量硬拉低 TM。</li>
-            <li>905 新增专用 MEV/MAV/MRV 容量卡和每次训练 90 分钟提示，超时优先砍低优先级辅项。</li>
-            <li>训练表增加休息列：主项 5 分钟、变式 3 分钟、辅项 60-90 秒。</li>
+            <li>修复 905 输入框每打一位就掉焦的问题，现在可连续输入数字。</li>
+            <li>深蹲和硬拉补充“训练最好”，与左侧历史 PR 一起参与保守 TM 判断。</li>
+            <li>905 数字输入明确允许小数，方便填写 177.5、6.5、0.5 这类值。</li>
+            <li>训练表移动端去掉每行重复出现的“组 / 次 / RPE / 重量”字段字样，自动拆分行也不再在动作名里重复写组数。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.24</strong> 2026-07-01 13:51：修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p>
             <p><strong>v2.23</strong> 2026-07-01 12:29：905 普通/教练模式分层；近期代表组支持 RPE 不知道低可信估算；新增 905 专用 MEV/MAV/MRV 容量卡、训练表休息列和 90 分钟上限提示。</p>
             <p><strong>v2.22</strong> 2026-07-01 07:22：905 体系接入 Excel DIY 输入、保守 TM/e1RM、变式系数、弱项辅项池、4/5 天切换和第 9 周 PR 测试周；估重按 TM × 变式系数 × 周百分比生成。</p>
             <p><strong>v2.21</strong> 2026-06-30 22:04：SSTT 三天力量 D1/D2/D3 补齐对应三大项变式：D1 深蹲变式、D2 卧推变式、D3 硬拉变式；变式跟随个人数据里的动作选择和估重逻辑。</p>
@@ -131,7 +132,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.23">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.24">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -993,6 +994,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.24</strong><span>2026-07-01 13:51</span><p>修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p></article>
           <article><strong>v2.23</strong><span>2026-07-01 12:29</span><p>905 普通/教练模式分层；近期代表组支持 RPE 不知道低可信估算；新增 905 专用 MEV/MAV/MRV 容量卡、训练表休息列和 90 分钟上限提示。</p></article>
           <article><strong>v2.22</strong><span>2026-07-01 07:22</span><p>905 体系接入 Excel DIY 输入、保守 TM/e1RM、变式系数、弱项辅项池、4/5 天切换和第 9 周 PR 测试周；估重按 TM × 变式系数 × 周百分比生成。</p></article>
           <article><strong>v2.21</strong><span>2026-06-30 22:04</span><p>SSTT 三天力量 D1/D2/D3 补齐对应三大项变式：D1 深蹲变式、D2 卧推变式、D3 硬拉变式；变式跟随个人数据里的动作选择和估重逻辑。</p></article>

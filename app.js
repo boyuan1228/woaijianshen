@@ -6906,7 +6906,9 @@ const state = {
     system905SquatTmFactor: "",
     system905BenchTmFactor: "",
     system905DeadliftTmFactor: "",
+    system905SquatTrainingBest: "",
     system905BenchTrainingBest: "",
+    system905DeadliftTrainingBest: "",
     system905SquatRecentWeight: "",
     system905SquatRecentReps: "",
     system905SquatRecentRpe: "",
@@ -8625,7 +8627,7 @@ function system905QuestionnaireHtml() {
   const advanced = state.survey.system905Advanced === "true";
   const label = (zh, en) => (isEnglish() ? en : zh);
   const numberInput = (key, placeholder = "", step = "0.001") =>
-    `<input data-survey-key="${key}" type="number" step="${step}" placeholder="${escapeHtml(placeholder)}" />`;
+    `<input data-survey-key="${key}" type="number" inputmode="decimal" step="${step}" placeholder="${escapeHtml(placeholder)}" />`;
   const textInput = (key, placeholder = "") =>
     `<input data-survey-key="${key}" type="text" placeholder="${escapeHtml(placeholder)}" />`;
   const tmCard = (lift, zh, en) => {
@@ -8723,8 +8725,9 @@ function system905QuestionnaireHtml() {
       <div class="system-905-tm-grid">
         <fieldset>
           <legend>${label("深蹲", "Squat")}</legend>
+          ${numberInput("system905SquatTrainingBest", label("训练最好", "training best"))}
           ${numberInput("system905SquatRecentWeight", label("近期重量", "recent load"))}
-          ${numberInput("system905SquatRecentReps", label("近期次数", "recent reps"), "1")}
+          ${numberInput("system905SquatRecentReps", label("近期次数", "recent reps"))}
           <select data-survey-key="system905SquatRecentRpeKnown">
             <option value="known">${label("知道 RPE", "RPE known")}</option>
             <option value="unknown">${label("不知道 RPE", "RPE unknown")}</option>
@@ -8736,7 +8739,7 @@ function system905QuestionnaireHtml() {
           <legend>${label("卧推", "Bench")}</legend>
           ${numberInput("system905BenchTrainingBest", label("训练最好", "training best"))}
           ${numberInput("system905BenchRecentWeight", label("近期重量", "recent load"))}
-          ${numberInput("system905BenchRecentReps", label("近期次数", "recent reps"), "1")}
+          ${numberInput("system905BenchRecentReps", label("近期次数", "recent reps"))}
           <select data-survey-key="system905BenchRecentRpeKnown">
             <option value="known">${label("知道 RPE", "RPE known")}</option>
             <option value="unknown">${label("不知道 RPE", "RPE unknown")}</option>
@@ -8746,8 +8749,9 @@ function system905QuestionnaireHtml() {
         </fieldset>
         <fieldset>
           <legend>${label("硬拉", "Deadlift")}</legend>
+          ${numberInput("system905DeadliftTrainingBest", label("训练最好", "training best"))}
           ${numberInput("system905DeadliftRecentWeight", label("近期重量", "recent load"))}
-          ${numberInput("system905DeadliftRecentReps", label("近期次数", "recent reps"), "1")}
+          ${numberInput("system905DeadliftRecentReps", label("近期次数", "recent reps"))}
           <select data-survey-key="system905DeadliftRecentRpeKnown">
             <option value="known">${label("知道 RPE", "RPE known")}</option>
             <option value="unknown">${label("不知道 RPE", "RPE unknown")}</option>
@@ -9726,8 +9730,8 @@ function system905RoundStep() {
 
 function system905PrForLift(lift) {
   if (lift === "bench") return Math.max(Number(state.profile.bench || 0), Number(state.survey.system905BenchTrainingBest || 0));
-  if (lift === "squat") return Number(state.profile.squat || 0);
-  if (lift === "deadlift") return Number(state.profile.deadlift || 0);
+  if (lift === "squat") return Math.max(Number(state.profile.squat || 0), Number(state.survey.system905SquatTrainingBest || 0));
+  if (lift === "deadlift") return Math.max(Number(state.profile.deadlift || 0), Number(state.survey.system905DeadliftTrainingBest || 0));
   return 0;
 }
 
@@ -11315,7 +11319,7 @@ function expandedSetRows(item) {
   const totalSets = numberFrom(item.sets);
   const reps = item.reps || "-";
   const rows = rpes.map((rpe, index) => ({
-    label: isEnglish() ? `Ascending Set ${index + 1}` : `递增第 ${index + 1} 组`,
+    label: isEnglish() ? `Ascending ${index + 1}` : `递增 ${index + 1}`,
     sets: 1,
     reps,
     rpe,
@@ -11328,7 +11332,7 @@ function expandedSetRows(item) {
   if (repeatSetCount > 0) {
     const lastRpe = rpes[rpes.length - 1];
     rows.push({
-      label: isEnglish() ? `Repeat RPE${lastRpe} x ${repeatSetCount}` : `延续 RPE${lastRpe} ${repeatSetCount} 组`,
+      label: isEnglish() ? `Repeat RPE${lastRpe}` : `延续 RPE${lastRpe}`,
       sets: repeatSetCount,
       reps,
       rpe: lastRpe,
@@ -11341,7 +11345,7 @@ function expandedSetRows(item) {
     const topAscendingLoad =
       numberFrom(loadForItemAtRpe(item, rpes[rpes.length - 1])) || numberFrom(rows[rows.length - 1]?.load);
     rows.push({
-      label: isEnglish() ? `Drop ${dropSetCount} Set${dropSetCount > 1 ? "s" : ""}` : `降重 ${dropSetCount} 组`,
+      label: isEnglish() ? "Drop" : "降重",
       sets: dropSetCount,
       reps,
       rpe: `<=${rpes[rpes.length - 1]}`,
@@ -12247,11 +12251,19 @@ function bindFields(fields, target) {
     const input = $(id);
     if (!input) return;
     input.value = target[key] || "";
+    input.addEventListener("focus", () => {
+      input.dataset.previousValue = target[key] || "";
+    });
     input.addEventListener("input", () => {
+      if (id === "meetDateInput") return;
+      target[key] = input.value;
+      saveState();
+    });
+    input.addEventListener("change", () => {
       if (id === "meetDateInput" && Object.keys(state.logs).length) {
         const ok = confirm("修改比赛日期会重排计划周数，已保存的训练日志会保留但可能对应到新的周。继续修改？");
         if (!ok) {
-          input.value = target[key] || "";
+          input.value = input.dataset.previousValue || target[key] || "";
           return;
         }
       }
@@ -12271,7 +12283,6 @@ function bindDynamicSurveyFields(root) {
     input.addEventListener("input", () => {
       state.survey[key] = input.value;
       saveState();
-      render();
     });
     input.addEventListener("change", () => {
       state.survey[key] = input.value;
@@ -13028,7 +13039,7 @@ function renderExercises() {
         const rows = generated.map((row, rowIndex) => `
           <tr class="generated-backdown">
             <td>
-              <div class="exercise-name">${escapeHtml(displayName(item))} · ${escapeHtml(localizeBackdownStatus(row.status))} ${row.sets} ${isEnglish() ? "sets" : "组"}</div>
+              <div class="exercise-name">${escapeHtml(displayName(item))} · ${escapeHtml(localizeBackdownStatus(row.status))}</div>
               <span class="kind auto">${escapeHtml(localizeKind("auto"))}</span>
             </td>
             <td>${row.sets}</td>
