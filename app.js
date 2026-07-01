@@ -8661,6 +8661,8 @@ function system905QuestionnaireHtml() {
         ${tmCard("bench", "卧推最终 TM", "Bench final TM")}
         ${tmCard("deadlift", "硬拉最终 TM", "Deadlift final TM")}
       </div>
+      ${system905TmExplainHtml(details)}
+      ${system905ExcelCheckHtml()}
       <div class="system-mini-grid">
         ${system905VolumeCardsHtml()}
       </div>
@@ -9735,6 +9737,20 @@ function system905PrForLift(lift) {
   return 0;
 }
 
+function system905TrainingBestForLift(lift) {
+  if (lift === "bench") return Number(state.survey.system905BenchTrainingBest || 0);
+  if (lift === "squat") return Number(state.survey.system905SquatTrainingBest || 0);
+  if (lift === "deadlift") return Number(state.survey.system905DeadliftTrainingBest || 0);
+  return 0;
+}
+
+function system905HistoryPrForLift(lift) {
+  if (lift === "bench") return Number(state.profile.bench || 0);
+  if (lift === "squat") return Number(state.profile.squat || 0);
+  if (lift === "deadlift") return Number(state.profile.deadlift || 0);
+  return 0;
+}
+
 function system905RecentForLift(lift) {
   const prefix = lift === "squat" ? "system905Squat" : lift === "bench" ? "system905Bench" : "system905Deadlift";
   return {
@@ -9804,6 +9820,8 @@ function system905TmDetails(lift) {
   if (recent.manualTm) reason = isEnglish() ? "Manual TM override" : "高级设置手动 TM 覆盖";
   return {
     pr,
+    trainingBest: system905TrainingBestForLift(lift),
+    historyPr: system905HistoryPrForLift(lift),
     recent,
     e1rm: e1rm.value,
     confidence: e1rm.confidence,
@@ -9882,6 +9900,76 @@ function system905CapacityCardsHtml(plan) {
       </article>`;
     })
     .join("");
+}
+
+function system905TmExplainHtml(details) {
+  const liftNames = isEnglish()
+    ? { squat: "Squat", bench: "Bench", deadlift: "Deadlift" }
+    : { squat: "深蹲", bench: "卧推", deadlift: "硬拉" };
+  return `
+    <section class="system-905-explain">
+      <div class="system-builder-head compact">
+        <strong>${isEnglish() ? "Why these training maxes?" : "为什么采用这些训练基准？"}</strong>
+        <p>${isEnglish()
+          ? "Training best is treated as the current system ceiling when entered. Recent e1RM explains whether the plan should stay close to that number or pull back."
+          : "填写训练最好后，它会作为当前 905 体系的上限；近期 e1RM 用来判断这次周期是贴近当前水平，还是需要下调。"}
+        </p>
+      </div>
+      <div class="system-905-explain-grid">
+        ${Object.entries(details).map(([lift, item]) => `
+          <article>
+            <strong>${escapeHtml(liftNames[lift] || lift)}</strong>
+            <span>${isEnglish() ? "Adopted TM" : "采用基准"} <b>${item.finalTm || "-"} kg</b></span>
+            <span>${isEnglish() ? "Training best" : "训练最好"} ${item.trainingBest || "-"} · ${isEnglish() ? "Profile PR" : "左侧 PR"} ${item.historyPr || "-"}</span>
+            <span>${isEnglish() ? "Recent e1RM" : "近期 e1RM"} ${item.e1rm ? `${Math.round(item.e1rm * 10) / 10} kg` : "-"}</span>
+            <small>${escapeHtml(item.reason || "")}</small>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function format905Percent(percent) {
+  const value = Number(percent || 0);
+  return value ? `${Math.round(value * 1000) / 10}%` : "-";
+}
+
+function system905ExcelCheckHtml() {
+  const labels = isEnglish()
+    ? { title: "905 Excel cross-check", body: "Week 1 key rows generated from the current inputs. If this differs from the spreadsheet too much, check training best, recent set, and advanced coefficients.", day: "Day", exercise: "Exercise", percent: "%", load: "Load" }
+    : { title: "905 Excel 对照校验", body: "按当前输入生成 Week 1 关键行。若和 Excel 差太多，先检查训练最好、近期代表组和高级系数。", day: "日", exercise: "动作", percent: "强度", load: "估重" };
+  const rows = [1, 2, 3, 4, 5]
+    .flatMap((dayNumber) =>
+      system905RowsFor(0, dayNumber)
+        .filter((item) => Number(item.percent || 0) && ["bench", "squat", "deadlift", "benchVariant", "squatVariant", "deadliftVariant"].includes(movementType(item)))
+        .slice(0, 3)
+        .map((item) => ({
+          day: `D${dayNumber}`,
+          name: localizeExerciseName(displayName(item)),
+          percent: format905Percent(item.percent),
+          load: system905EstimatedLoad(item, movementType(item)) || "-",
+        }))
+    );
+  return `
+    <section class="system-905-check">
+      <div class="system-builder-head compact">
+        <strong>${labels.title}</strong>
+        <p>${labels.body}</p>
+      </div>
+      <div class="system-905-check-table">
+        <div class="check-head"><span>${labels.day}</span><span>${labels.exercise}</span><span>${labels.percent}</span><span>${labels.load}</span></div>
+        ${rows.map((row) => `
+          <div>
+            <span>${escapeHtml(row.day)}</span>
+            <strong>${escapeHtml(row.name)}</strong>
+            <span>${escapeHtml(row.percent)}</span>
+            <b>${escapeHtml(row.load)}</b>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function system905VariantName(lift) {
@@ -13004,6 +13092,14 @@ function isBackdownRow(item) {
   return String(item.sets) === "0" && hasAutoWeightNote(item);
 }
 
+function noteCellHtml(noteKey, value = "") {
+  const label = isEnglish() ? "Notes" : "备注";
+  return `<td class="notes-cell">
+    <button class="note-toggle" data-note-toggle="${escapeHtml(noteKey)}" type="button">${label}</button>
+    <textarea class="note-edit" data-note="${escapeHtml(noteKey)}" rows="2">${escapeHtml(value || "")}</textarea>
+  </td>`;
+}
+
 function renderExercises() {
   const day = currentDay();
   const log = currentLog();
@@ -13052,7 +13148,7 @@ function renderExercises() {
             <td>${escapeHtml(row.rpe)}</td>
             <td class="estimate">${escapeHtml(formatLoadText(row.load))}</td>
             <td>${escapeHtml(restForItem(item))}</td>
-            <td class="notes-cell"><textarea class="note-edit" data-note="${index}-g${rowIndex}" rows="2">${escapeHtml(log.itemNotes[`${index}-g${rowIndex}`] || "")}</textarea></td>
+            ${noteCellHtml(`${index}-g${rowIndex}`, log.itemNotes[`${index}-g${rowIndex}`] || "")}
           </tr>
         `);
         return [controlRow, ...rows];
@@ -13072,7 +13168,7 @@ function renderExercises() {
           <td>${escapeHtml(item.rpe || "-")}</td>
           <td class="estimate">${escapeHtml(formatLoadText(estimate || item.weight || "-"))}</td>
           <td>${escapeHtml(restForItem(item))}</td>
-          <td class="notes-cell"><textarea class="note-edit" data-note="${index}" rows="2">${escapeHtml(editableNote || "")}</textarea></td>
+          ${noteCellHtml(`${index}`, editableNote || "")}
         </tr>
       `];
       const expandedRows = expandedSetRows(item).map((row, rowIndex) => `
@@ -13086,7 +13182,7 @@ function renderExercises() {
           <td>${escapeHtml(row.rpe)}</td>
           <td class="estimate">${escapeHtml(formatLoadText(row.load))}</td>
           <td>${escapeHtml(restForItem(item))}</td>
-          <td class="notes-cell"><textarea class="note-edit" data-note="${index}-a${rowIndex}" rows="2">${escapeHtml(log.itemNotes[`${index}-a${rowIndex}`] || "")}</textarea></td>
+          ${noteCellHtml(`${index}-a${rowIndex}`, log.itemNotes[`${index}-a${rowIndex}`] || "")}
         </tr>
       `);
       rows.push(...expandedRows);
@@ -13109,6 +13205,11 @@ function renderExercises() {
     note.addEventListener("input", () => {
       currentLog().itemNotes[note.dataset.note] = note.value;
       saveState();
+    });
+  });
+  document.querySelectorAll("[data-note-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      button.closest(".notes-cell")?.classList.toggle("open");
     });
   });
   document.querySelectorAll("[data-backdown]").forEach((input) => {

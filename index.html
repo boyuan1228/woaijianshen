@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260701-v225-905-tm-calibration" />
+    <link rel="stylesheet" href="./styles.css?v=20260701-v226-905-check-notes" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260701-v225-905-tm-calibration"></script>
+    <script defer src="./app.js?v=20260701-v226-905-check-notes"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.25">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.26">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,16 +62,17 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.25 · 905 训练基准校准</strong>
-          <small class="update-time">2026-07-01 15:12 更新</small>
+          <strong>v2.26 · 905 对照与备注优化</strong>
+          <small class="update-time">2026-07-01 23:14 更新</small>
           <ul>
-            <li>905 的“训练最好”现在作为当前体系基准，填写后不再被左侧历史 PR 强行覆盖。</li>
-            <li>卧推 `155kg × 3 @ RPE9 + 训练最好 180kg` 会校准到约 `177.5kg` 基准。</li>
-            <li>W1D1 卧推容量恢复到截图逻辑：顶组约 `127.5kg`，降重组约 `120kg`。</li>
-            <li>深蹲、卧推、硬拉默认基准系数改为更贴近 905 Excel：深蹲约 96%，卧推按近期 e1RM/训练最好校准，硬拉约 89%。</li>
+            <li>905 问卷新增“为什么采用这些训练基准”，显示训练最好、左侧 PR、近期 e1RM 和最终采用 TM。</li>
+            <li>新增 Week 1 Excel 对照校验，按当前输入列出 D1-D5 关键主项/变式的百分比和估重。</li>
+            <li>用 `155kg × 3 @ RPE9 + 训练最好 180kg` 校验，W1D1 仍对应顶组约 `127.5kg`、降重组约 `120kg`。</li>
+            <li>手机端训练表备注默认折叠为按钮，点开后再填写，表格第一眼只保留动作、组、次、RPE、重量和休息。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.26</strong> 2026-07-01 23:14：905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p>
             <p><strong>v2.25</strong> 2026-07-01 15:12：修正 905 训练基准逻辑；训练最好填写后优先作为当前体系基准，不再被左侧历史 PR 强行覆盖；卧推 155kg × 3 @ RPE9 + 训练最好 180kg 时，W1D1 顶组约 127.5kg、降重组约 120kg。</p>
             <p><strong>v2.24</strong> 2026-07-01 13:51：修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p>
             <p><strong>v2.23</strong> 2026-07-01 12:29：905 普通/教练模式分层；近期代表组支持 RPE 不知道低可信估算；新增 905 专用 MEV/MAV/MRV 容量卡、训练表休息列和 90 分钟上限提示。</p>
@@ -133,7 +134,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.25">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.26">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -995,6 +996,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.26</strong><span>2026-07-01 23:14</span><p>905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p></article>
           <article><strong>v2.25</strong><span>2026-07-01 15:12</span><p>修正 905 训练基准逻辑；训练最好填写后优先作为当前体系基准，不再被左侧历史 PR 强行覆盖；卧推 155kg × 3 @ RPE9 + 训练最好 180kg 时，W1D1 顶组约 127.5kg、降重组约 120kg。</p></article>
           <article><strong>v2.24</strong><span>2026-07-01 13:51</span><p>修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p></article>
           <article><strong>v2.23</strong><span>2026-07-01 12:29</span><p>905 普通/教练模式分层；近期代表组支持 RPE 不知道低可信估算；新增 905 专用 MEV/MAV/MRV 容量卡、训练表休息列和 90 分钟上限提示。</p></article>

@@ -1173,6 +1173,80 @@ textarea:focus {
   margin-top: 7px;
 }
 
+.system-905-explain,
+.system-905-check {
+  grid-column: 1 / -1;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.system-905-explain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.system-905-explain-grid article {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid #dbe7ef;
+  border-radius: 8px;
+  background: #f8fbfd;
+}
+
+.system-905-explain-grid strong {
+  color: var(--ink);
+}
+
+.system-905-explain-grid span,
+.system-905-explain-grid small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.system-905-explain-grid b,
+.system-905-check-table b {
+  color: var(--ok);
+}
+
+.system-905-check-table {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.system-905-check-table > div {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1.6fr) 70px 92px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.system-905-check-table .check-head {
+  border-top: 0;
+  color: var(--muted);
+  background: #f4f8fb;
+  font-weight: 900;
+}
+
+.system-905-check-table strong {
+  min-width: 0;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .icon-button {
   width: 42px;
   height: 42px;
@@ -3010,6 +3084,19 @@ td {
   min-height: 38px;
   padding: 8px;
   font-size: 12px;
+}
+
+.note-toggle {
+  display: none;
+  width: fit-content;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .generated-row {
@@ -5090,6 +5177,18 @@ body[data-lang="en"] td:nth-child(5)::before {
 
 /* v2.24: keep workout rows clean after adding the rest column. */
 @media (max-width: 720px) {
+  .system-905-explain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .system-905-check-table {
+    overflow-x: auto;
+  }
+
+  .system-905-check-table > div {
+    min-width: 420px;
+  }
+
   .workout-panel tbody tr:not(.generated-row) {
     grid-template-columns: minmax(0, 1.45fr) 30px 36px 38px minmax(52px, 0.8fr);
   }
@@ -5114,6 +5213,25 @@ body[data-lang="en"] td:nth-child(5)::before {
   .workout-panel tbody td:nth-child(7) {
     grid-column: 1 / -1;
     grid-row: 3;
+  }
+
+  .workout-panel .notes-cell {
+    max-width: none;
+  }
+
+  .workout-panel .note-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .workout-panel .notes-cell:not(.open) .note-edit {
+    display: none;
+  }
+
+  .workout-panel .notes-cell.open .note-edit {
+    display: block;
+    margin-top: 6px;
   }
 
   .workout-panel tbody tr.filtered-empty-row td,
