@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260701-v226-905-check-notes" />
+    <link rel="stylesheet" href="./styles.css?v=20260702-v227-uiux-pro-max" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260701-v226-905-check-notes"></script>
+    <script defer src="./app.js?v=20260702-v227-uiux-pro-max"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.26">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.27">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,16 +62,17 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.26 · 905 对照与备注优化</strong>
-          <small class="update-time">2026-07-01 23:14 更新</small>
+          <strong>v2.27 · UIUX Pro Max 视觉升级</strong>
+          <small class="update-time">2026-07-02 21:58 更新</small>
           <ul>
-            <li>905 问卷新增“为什么采用这些训练基准”，显示训练最好、左侧 PR、近期 e1RM 和最终采用 TM。</li>
-            <li>新增 Week 1 Excel 对照校验，按当前输入列出 D1-D5 关键主项/变式的百分比和估重。</li>
-            <li>用 `155kg × 3 @ RPE9 + 训练最好 180kg` 校验，W1D1 仍对应顶组约 `127.5kg`、降重组约 `120kg`。</li>
-            <li>手机端训练表备注默认折叠为按钮，点开后再填写，表格第一眼只保留动作、组、次、RPE、重量和休息。</li>
+            <li>使用 UIUX Pro Max 的 Data-Dense Dashboard 建议重做视觉覆盖层：更清晰的工作台背景、工具 dock、卡片阴影和状态色。</li>
+            <li>训练表增加更强的行层级、hover 反馈和移动端执行卡片质感，动作、组、次、RPE、估重第一眼更清楚。</li>
+            <li>手机端顶部工具区改成网格化触控布局，减少横向挤压；底部导航和备注按钮同步增强触控反馈。</li>
+            <li>加入 reduced-motion 保护、focus 可见状态和移动端 overscroll 控制，整体更像 App，而不是普通表格网页。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.27</strong> 2026-07-02 21:58：使用 UIUX Pro Max 的数据密集型仪表盘建议升级界面；重做视觉 token、顶部工具 dock、状态卡、训练表层级、移动端执行卡和触控反馈；加入 reduced-motion 与更清晰的 focus 状态。</p>
             <p><strong>v2.26</strong> 2026-07-01 23:14：905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p>
             <p><strong>v2.25</strong> 2026-07-01 15:12：修正 905 训练基准逻辑；训练最好填写后优先作为当前体系基准，不再被左侧历史 PR 强行覆盖；卧推 155kg × 3 @ RPE9 + 训练最好 180kg 时，W1D1 顶组约 127.5kg、降重组约 120kg。</p>
             <p><strong>v2.24</strong> 2026-07-01 13:51：修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p>
@@ -134,7 +135,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.26">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.27">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -996,6 +997,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.27</strong><span>2026-07-02 21:58</span><p>使用 UIUX Pro Max 的数据密集型仪表盘建议升级界面；重做视觉 token、顶部工具 dock、状态卡、训练表层级、移动端执行卡和触控反馈；加入 reduced-motion 与更清晰的 focus 状态。</p></article>
           <article><strong>v2.26</strong><span>2026-07-01 23:14</span><p>905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p></article>
           <article><strong>v2.25</strong><span>2026-07-01 15:12</span><p>修正 905 训练基准逻辑；训练最好填写后优先作为当前体系基准，不再被左侧历史 PR 强行覆盖；卧推 155kg × 3 @ RPE9 + 训练最好 180kg 时，W1D1 顶组约 127.5kg、降重组约 120kg。</p></article>
           <article><strong>v2.24</strong><span>2026-07-01 13:51</span><p>修复 905 输入框重渲染导致掉焦；深蹲和硬拉补充训练最好；数字输入允许小数；训练表移动端去掉重复字段标签，自动拆分行不再在动作名里重复写组数。</p></article>
