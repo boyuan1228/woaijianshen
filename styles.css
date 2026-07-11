@@ -5726,3 +5726,13 @@ tbody tr.generated-backdown {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* v2.28: workout table cells no longer repeat header labels inside rows. */
+.workout-panel tbody td:nth-child(2)::before,
+.workout-panel tbody td:nth-child(3)::before,
+.workout-panel tbody td:nth-child(4)::before,
+.workout-panel tbody td:nth-child(5)::before,
+.workout-panel tbody td:nth-child(6)::before {
+  content: none !important;
+  display: none !important;
+}
