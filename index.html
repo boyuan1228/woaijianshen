@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260711-v228-workout-label-cleanup" />
+    <link rel="stylesheet" href="./styles.css?v=20260711-v229-default-jts-sstt" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260711-v228-workout-label-cleanup"></script>
+    <script defer src="./app.js?v=20260711-v229-default-jts-sstt"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.28">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.29">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,15 +62,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.28 · 训练表字段清理</strong>
-          <small class="update-time">2026-07-11 11:50 更新</small>
+          <strong>v2.29 · 默认体系切换</strong>
+          <small class="update-time">2026-07-11 13:18 更新</small>
           <ul>
-            <li>训练表行内不再重复显示“组 / 次 / RPE / 重量”等字段标签。</li>
-            <li>保留表头“动作 / 组 / 次数 / RPE / 估重 / 休息 / 备注”，行内只显示具体数据。</li>
-            <li>该调整只作用于训练表，不影响热身重量表、RPE 计算器和其他弹窗表格。</li>
+            <li>首次打开和清空数据后，默认训练体系改回 JTS × SSTT 十五周。</li>
+            <li>计划生成器、侧栏和周表默认都跟随 JTS × SSTT，不再优先进入肌肥大模板。</li>
+            <li>肌肥大健美周期仍保留在训练体系下拉框里，可手动切换。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.29</strong> 2026-07-11 13:18：默认训练体系改回 JTS × SSTT 十五周；首次打开/清空数据后，计划生成器不再优先进入肌肥大模板。</p>
             <p><strong>v2.28</strong> 2026-07-11 11:50：清理训练表移动端/执行卡片里的重复字段标签；行内不再显示“组 / 次 / RPE / 重量 / SETS / REPS / WEIGHT”，只保留表头和具体数据。</p>
             <p><strong>v2.27</strong> 2026-07-02 21:58：使用 UIUX Pro Max 的数据密集型仪表盘建议升级界面；重做视觉 token、顶部工具 dock、状态卡、训练表层级、移动端执行卡和触控反馈；加入 reduced-motion 与更清晰的 focus 状态。</p>
             <p><strong>v2.26</strong> 2026-07-01 23:14：905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p>
@@ -135,7 +136,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.28">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.29">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -997,6 +998,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.29</strong><span>2026-07-11 13:18</span><p>默认训练体系改回 JTS × SSTT 十五周；首次打开/清空数据后，计划生成器不再优先进入肌肥大模板，肌肥大仍可手动选择。</p></article>
           <article><strong>v2.28</strong><span>2026-07-11 11:50</span><p>清理训练表移动端/执行卡片里的重复字段标签；行内不再显示“组 / 次 / RPE / 重量 / SETS / REPS / WEIGHT”，只保留表头和具体数据。</p></article>
           <article><strong>v2.27</strong><span>2026-07-02 21:58</span><p>使用 UIUX Pro Max 的数据密集型仪表盘建议升级界面；重做视觉 token、顶部工具 dock、状态卡、训练表层级、移动端执行卡和触控反馈；加入 reduced-motion 与更清晰的 focus 状态。</p></article>
           <article><strong>v2.26</strong><span>2026-07-01 23:14</span><p>905 问卷新增训练基准解释和 Week 1 Excel 对照校验；按当前输入显示关键行百分比和估重；手机端训练表备注默认折叠，减少表格拥挤。</p></article>

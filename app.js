@@ -6845,6 +6845,7 @@ const LOCAL_LICENSE_HASHES = new Set([
 ]);
 const data = window.PROGRAM_DATA;
 const DEFAULT_PLAN_WEEKS = 15;
+const DEFAULT_PROGRAM_SYSTEM = "jtsSstt";
 
 const today = new Date();
 
@@ -6868,7 +6869,7 @@ const state = {
     deadliftVariantMax: "",
   },
   survey: {
-    programSystem: "bodybuilding",
+    programSystem: DEFAULT_PROGRAM_SYSTEM,
     meetDate: "",
     testPr: false,
     templateMode: "auto",
@@ -7589,7 +7590,7 @@ function localizeExerciseName(name) {
 }
 
 function currentProgramSystem() {
-  return PROGRAM_SYSTEMS[state.survey.programSystem] || PROGRAM_SYSTEMS.bodybuilding || PROGRAM_SYSTEMS.jtsSstt;
+  return PROGRAM_SYSTEMS[state.survey.programSystem] || PROGRAM_SYSTEMS[DEFAULT_PROGRAM_SYSTEM] || PROGRAM_SYSTEMS.bodybuilding;
 }
 
 function programTitle(system = currentProgramSystem()) {
@@ -7606,7 +7607,7 @@ function systemDisplayTitle(system = currentProgramSystem()) {
 }
 
 function systemDisplayShort(system = currentProgramSystem()) {
-  const key = state.survey.programSystem || "bodybuilding";
+  const key = state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM;
   if (isEnglish() && key === "jtsSstt") return "JTS × SSTT 15-Week";
   if (isEnglish() && key === "rpeBlock") return "RPE Block";
   if (isEnglish() && key === "905") return "905";
@@ -7639,7 +7640,7 @@ function phaseProgressText(status) {
   if (status.progress === "比赛/测试") return isEnglish() ? "Meet / test" : "比赛/测试";
   if (status.progress === "恢复/桥接") return isEnglish() ? "Recovery / bridge" : "恢复/桥接";
   if (status.progress === "减载周") return isEnglish() ? "Deload week" : "减载周";
-  if (["rpeBlock", "norwegian", "905", "sstt3"].includes(state.survey.programSystem || "bodybuilding")) return status.progress;
+  if (["rpeBlock", "norwegian", "905", "sstt3"].includes(state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM)) return status.progress;
   const overloadMatch = String(status.progress || "").match(/(\d+)\/(\d+)/);
   if (overloadMatch) {
     return isEnglish() ? `Overload ${overloadMatch[1]}/${overloadMatch[2]}` : status.progress;
@@ -7648,7 +7649,7 @@ function phaseProgressText(status) {
 }
 
 function systemShortText(system = currentProgramSystem()) {
-  const key = state.survey.programSystem || "bodybuilding";
+  const key = state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM;
   if (isEnglish() && key === "jtsSstt") return "JTS × SSTT 15-Week";
   if (isEnglish() && key === "rpeBlock") return "RPE Block";
   if (isEnglish() && key === "905") return "905";
@@ -8802,7 +8803,7 @@ function renderSystemChrome() {
     state.survey.meetDate = "";
     state.survey.testPr = false;
   }
-  document.body.dataset.system = state.survey.programSystem || "bodybuilding";
+  document.body.dataset.system = state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM;
   document.body.dataset.trainingMode = isBodybuilding ? "bodybuilding" : "strength";
   const brandTitle = systemDisplayTitle(system);
   const displayShort = systemShortText(system);
@@ -11006,7 +11007,7 @@ function systemVirtualWeek(index) {
 }
 
 function virtualWeek(index) {
-  if ((state.survey.programSystem || "bodybuilding") !== "jtsSstt") return systemVirtualWeek(index);
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) !== "jtsSstt") return systemVirtualWeek(index);
   const totalWeeks = weeksUntilMeet();
   const testTemplate = data.weeks.find((week) => week.phase === "test") || data.weeks[data.weeks.length - 1];
   const trainingTemplates = data.weeks.filter((week) => week.phase !== "test");
@@ -12059,7 +12060,7 @@ function dayIntensity(model, dayIndex) {
 }
 
 function makeWeeklyLayout(days, frequencies, model) {
-  const system = state.survey.programSystem || "bodybuilding";
+  const system = state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM;
   const templatesBySystem = {
     bodybuilding: {
       3: [["全身 A", "胸背腿基础"], ["全身 B", "肩背后链"], ["全身 C", "弱项泵感"]],
@@ -12212,7 +12213,7 @@ function makeWeeklyLayout(days, frequencies, model) {
       6: [["容量日下肢"], ["容量日上肢"], ["恢复日下肢"], ["恢复日上肢"], ["强度日下肢"], ["强度日上肢"]],
     },
   };
-  const templates = templatesBySystem[system] || templatesBySystem.bodybuilding || templatesBySystem.jtsSstt;
+  const templates = templatesBySystem[system] || templatesBySystem[DEFAULT_PROGRAM_SYSTEM] || templatesBySystem.bodybuilding;
   return templates[days].map((items, index) => ({
     day: `D${index + 1}`,
     intensity: dayIntensity(model, index),
@@ -12224,7 +12225,7 @@ function makeWeeklyLayout(days, frequencies, model) {
 }
 
 function makePlanner() {
-  const systemKey = state.survey.programSystem || "bodybuilding";
+  const systemKey = state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM;
   const capacities = systemKey === "905" ? make905Capacities() : makeCapacities();
   const totalWeeks = FIXED_SYSTEM_WEEKS[systemKey] || weeksUntilMeet();
   if (systemKey !== "jtsSstt") {
@@ -12267,29 +12268,29 @@ function phaseForWeek(weekNumber, phases) {
 }
 
 function phaseProgress(phase, localWeek, capacities) {
-  if ((state.survey.programSystem || "bodybuilding") === "905") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "905") {
     const zh = { hypertrophy: "积累", deload: "减载", strength: "转化", peaking: "峰值准备" };
     const en = { hypertrophy: "Accumulation", deload: "Deload", strength: "Conversion", peaking: "Peak prep" };
     const label = (isEnglish() ? en : zh)[phase.key] || phaseDisplayName(phase);
     return `${label} ${localWeek}/${phase.weeks || localWeek}`;
   }
-  if ((state.survey.programSystem || "bodybuilding") === "sstt3") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "sstt3") {
     const zh = { hypertrophy: "积累", strength: "强度", deload: "减载", peaking: "峰值", test: "测试" };
     const en = { hypertrophy: "Accumulation", strength: "Strength", deload: "Deload", peaking: "Peak", test: "Test" };
     const label = (isEnglish() ? en : zh)[phase.key] || phaseDisplayName(phase);
     return `${label} ${localWeek}/${phase.weeks || localWeek}`;
   }
   if (!["hypertrophy", "strength", "peaking"].includes(phase.key)) return isEnglish() ? "Recovery / bridge" : "恢复/桥接";
-  if ((state.survey.programSystem || "bodybuilding") === "bodybuilding") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "bodybuilding") {
     const zh = { hypertrophy: "容量累积", strength: "渐进超负荷", peaking: "恢复评估" };
     const en = { hypertrophy: "Volume build", strength: "Progressive overload", peaking: "Recovery review" };
     const label = (isEnglish() ? en : zh)[phase.key] || (isEnglish() ? "Hypertrophy" : "增肌");
     return `${label} ${localWeek}/${phase.weeks || localWeek}`;
   }
-  if ((state.survey.programSystem || "bodybuilding") === "rpeBlock") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "rpeBlock") {
     return `${phaseDisplayName(phase)} ${localWeek}/${phase.weeks || localWeek}`;
   }
-  if ((state.survey.programSystem || "bodybuilding") === "norwegian") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "norwegian") {
     const zh = { hypertrophy: "高频容量", strength: "高频专项", peaking: "高频冲刺" };
     const en = { hypertrophy: "High-frequency volume", strength: "High-frequency specificity", peaking: "High-frequency taper" };
     const label = (isEnglish() ? en : zh)[phase.key] || phaseDisplayName(phase);
@@ -12522,14 +12523,14 @@ function openerValue(lift) {
 }
 
 function wantsOpenerPanel() {
-  if ((state.survey.programSystem || "bodybuilding") === "bodybuilding") return false;
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "bodybuilding") return false;
   return Boolean(state.survey.meetDate || state.survey.testPr);
 }
 
 function renderTestPrToggle() {
   const button = $("testPrToggle");
   if (!button) return;
-  if ((state.survey.programSystem || "bodybuilding") === "bodybuilding") {
+  if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "bodybuilding") {
     button.classList.remove("active");
     button.setAttribute("aria-pressed", "false");
     button.disabled = true;
@@ -14993,7 +14994,7 @@ function bindActions() {
     if (history) history.open = true;
   });
   $("testPrToggle")?.addEventListener("click", () => {
-    if ((state.survey.programSystem || "bodybuilding") === "bodybuilding") return;
+    if ((state.survey.programSystem || DEFAULT_PROGRAM_SYSTEM) === "bodybuilding") return;
     if (state.survey.meetDate) return;
     state.survey.testPr = !state.survey.testPr;
     saveState();
