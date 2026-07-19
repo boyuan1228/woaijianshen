@@ -10743,7 +10743,128 @@ function rpeBlockRowsFor(dayNumber, phaseKey, compact = false) {
   return (phaseTemplates[phaseKey] || phaseTemplates.hypertrophy)[(dayNumber - 1) % 4];
 }
 
-function popularProgramRowsFor(systemKey, dayNumber, phaseKey, compact = false) {
+function adjustIntegerLike(value, delta, min = 1) {
+  const text = String(value ?? "").trim();
+  if (!/^\d+$/.test(text)) return value;
+  return String(Math.max(min, Number(text) + delta));
+}
+
+function adjustRepLike(value, delta, min = 1) {
+  const text = String(value ?? "").trim();
+  if (/^\d+$/.test(text)) return String(Math.max(min, Number(text) + delta));
+  const range = text.match(/^(\d+)-(\d+)$/);
+  if (range) {
+    const low = Math.max(min, Number(range[1]) + delta);
+    const high = Math.max(low, Number(range[2]) + delta);
+    return `${low}-${high}`;
+  }
+  return value;
+}
+
+function popularMainRowRole(name = "") {
+  const normalized = String(name).toUpperCase();
+  if (/^(SQUAT|BENCH PRESS|DEADLIFT)$/.test(normalized)) return "main";
+  if (/^(SQUAT|BENCH PRESS|DEADLIFT) VARIANT$/.test(normalized)) return "variant";
+  return "";
+}
+
+function popularWeekProfile(systemKey, weekIndex = 0, phaseKey = "hypertrophy") {
+  const weekNumber = weekIndex + 1;
+  const wave = weekIndex % 4;
+  const genericWave = phaseKey === "peaking"
+    ? [
+        { setDelta: 0, repDelta: -1, rpe: "7.5-8", note: "峰值准备：降低次数，保留专项速度。" },
+        { setDelta: -1, repDelta: -1, rpe: "8-8.5", note: "峰值准备：强度上升，总量下降。" },
+        { setDelta: -1, repDelta: -2, rpe: "8.5-9", note: "峰值准备：接近测试但不硬磨。" },
+        { setDelta: -2, repDelta: 0, rpe: "6", note: "测试前减量：只保留手感和速度。" },
+      ]
+    : [
+        { setDelta: 0, repDelta: 1, rpe: "6-7", note: "波段第 1 周：技术和容量起步。" },
+        { setDelta: 0, repDelta: 0, rpe: "7", note: "波段第 2 周：小幅加重，保持动作质量。" },
+        { setDelta: 1, repDelta: -1, rpe: "7-8", note: "波段第 3 周：超负荷周，RPE 优先。" },
+        { setDelta: -1, repDelta: 1, rpe: "5-6", note: "波段第 4 周：减载/速度周。" },
+      ];
+
+  const profile = { ...genericWave[wave], weekNumber };
+  if (systemKey === "wendler531" || systemKey === "nsuns") {
+    const reps = ["5", "3", "5/3/1", "5"];
+    const rpes = ["7", "7.5-8", "8-9", "5-6"];
+    return {
+      ...profile,
+      repsOverride: reps[wave],
+      setDelta: wave === 3 ? -1 : 0,
+      repDelta: 0,
+      rpe: rpes[wave],
+      note: wave === 3 ? "5/3/1 波段减载周。" : `5/3/1 波段第 ${wave + 1} 周。`,
+    };
+  }
+  if (systemKey === "bullmastiff") {
+    const reps = phaseKey === "peaking" ? ["3", "2", "1", "3"] : ["6", "5", "4", "6"];
+    return {
+      ...profile,
+      repsOverride: reps[wave],
+      setDelta: wave === 3 ? -1 : profile.setDelta,
+      rpe: wave === 3 ? "5-6" : profile.rpe,
+      note: wave === 3 ? "Bullmastiff 波段减载/恢复。" : `Bullmastiff ${reps[wave]} 次波段。`,
+    };
+  }
+  if (systemKey === "juggernaut") {
+    const repsByPhase = {
+      hypertrophy: ["10", "8", "6", "10"],
+      strength: ["5", "3", "2", "5"],
+      peaking: ["3", "2", "1", "3"],
+    };
+    const reps = repsByPhase[phaseKey] || repsByPhase.hypertrophy;
+    return {
+      ...profile,
+      repsOverride: reps[wave],
+      setDelta: wave === 3 ? -1 : 0,
+      rpe: wave === 3 ? "5-6" : profile.rpe,
+      note: wave === 3 ? "Juggernaut 波段回落周。" : `Juggernaut ${reps[wave]} 次波段。`,
+    };
+  }
+  if (systemKey === "candito6") {
+    const candito = [
+      { setDelta: 1, repDelta: 1, rpe: "6-7", note: "Candito 第 1 周：容量/技术起步。" },
+      { setDelta: 0, repDelta: 0, rpe: "7", note: "Candito 第 2 周：容量巩固。" },
+      { setDelta: 0, repDelta: -1, rpe: "7-8", note: "Candito 第 3 周：强度上升。" },
+      { setDelta: -1, repDelta: -2, rpe: "8-9", note: "Candito 第 4 周：重组/低次数。" },
+      { setDelta: -2, repDelta: -1, rpe: "6", note: "Candito 第 5 周：测试前恢复。" },
+      { setDelta: -2, repDelta: -3, rpe: "8-9", note: "Candito 第 6 周：测试/表现周。" },
+    ];
+    return { ...candito[Math.min(weekIndex, candito.length - 1)], weekNumber };
+  }
+  if (systemKey === "madcow5x5") {
+    return {
+      ...profile,
+      repDelta: 0,
+      setDelta: wave === 3 ? -1 : 0,
+      rpe: ["6-7", "7", "7-8", "5-6"][wave],
+      note: wave === 3 ? "Madcow 轻量恢复周。" : `Madcow 第 ${wave + 1} 周：保留 5x5 结构，小幅递进。`,
+    };
+  }
+  return profile;
+}
+
+function applyPopularWeekProgression(rows, systemKey, weekIndex, phaseKey) {
+  const profile = popularWeekProfile(systemKey, weekIndex, phaseKey);
+  return rows.map((item) => {
+    const role = popularMainRowRole(item.name);
+    if (!role) return { ...item };
+    const next = { ...item };
+    if (profile.repsOverride && (role === "main" || String(next.reps).includes("5/3/1"))) {
+      next.reps = profile.repsOverride;
+    } else {
+      next.reps = adjustRepLike(next.reps, role === "variant" ? Math.min(0, profile.repDelta) : profile.repDelta);
+    }
+    next.sets = adjustIntegerLike(next.sets, profile.setDelta);
+    next.rpe = profile.rpe || next.rpe;
+    next.notes = [`W${profile.weekNumber}`, profile.note, next.notes].filter(Boolean).join(" ");
+    return next;
+  });
+}
+
+function popularProgramRowsFor(systemKey, dayNumber, phaseKey, weekIndex = 0, compact = false) {
   const p = phasePrescription(phaseKey, dayNumber, systemKey);
   const quality = "这是公开计划逻辑的改写版：按当天状态和目标 RPE 调整，不复制原 spreadsheet。";
   const backoff = "补充组保持速度和动作一致性，RPE 超标就减重或少做。";
@@ -10822,7 +10943,7 @@ function popularProgramRowsFor(systemKey, dayNumber, phaseKey, compact = false) 
     ],
   };
   const pool = templates[systemKey] || templates.intermediatePowerlifting;
-  return pool[(dayNumber - 1) % pool.length];
+  return applyPopularWeekProgression(pool[(dayNumber - 1) % pool.length], systemKey, weekIndex, phaseKey);
 }
 
 function systemDayItems(systemKey, dayNumber, days, phaseKey, weekIndex) {
@@ -10844,7 +10965,7 @@ function systemDayItems(systemKey, dayNumber, days, phaseKey, weekIndex) {
   if (systemKey === "rpeBlock") return rpeBlockRowsFor(dayNumber, phaseKey, days >= 5).map((item) => ({ ...item }));
   if (systemKey === "905") return system905RowsFor(weekIndex, dayNumber);
   if (systemKey === "sstt3") return systemSstt3RowsFor(weekIndex, dayNumber);
-  if (POPULAR_PROGRAM_KEYS.has(systemKey)) return popularProgramRowsFor(systemKey, dayNumber, phaseKey, days >= 5).map((item) => ({ ...item }));
+  if (POPULAR_PROGRAM_KEYS.has(systemKey)) return popularProgramRowsFor(systemKey, dayNumber, phaseKey, weekIndex, days >= 5).map((item) => ({ ...item }));
   const p = phasePrescription(phaseKey, dayNumber, systemKey);
   const compact = days >= 5;
   const topNote = "按当天 RPE 调整重量，动作质量优先。";
