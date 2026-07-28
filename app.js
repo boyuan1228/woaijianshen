@@ -8243,6 +8243,12 @@ const STATIC_I18N = new Map(
     "更新内容": "Latest Update",
     "历史日志": "History",
     "查看历史日志": "View History",
+    "v2.33 · 上肢 / 下肢纠正速查": "v2.33 · Upper / Lower Corrective Map",
+    "2026-07-29 00:53 更新": "Updated 2026-07-29 00:53",
+    "知识库新增上肢 / 下肢纠正训练速查，高亮胸椎曲度变直、翼状肩胛、下肢内旋和骨盆前后倾。": "Knowledge Base adds an upper / lower corrective quick map highlighting flat thoracic curve, winged scapula, lower-limb internal rotation, and pelvic tilt.",
+    "内容按“看表现 / 怎么做”压缩成教练现场可用的短卡。": "Content is compressed into coach-ready cards: what to look for and what to do.",
+    "快速搜索补充胸椎曲度变直、下肢内旋、骨盆前倾/后倾、推拉代偿词条。": "Quick search adds flat thoracic curve, lower-limb internal rotation, anterior/posterior pelvic tilt, and push/pull compensation terms.",
+    "知识库新增上肢 / 下肢纠正训练速查，整理胸椎曲度变直、翼状肩胛、推拉代偿、下肢内旋/膝内扣、骨盆前倾/后倾和足弓控制，并补充可搜索词条。": "Knowledge Base adds upper / lower corrective quick cards covering flat thoracic curve, winged scapula, push/pull compensation, lower-limb internal rotation / knee valgus, pelvic tilt, and arch control, with searchable terms.",
     "v2.32 · 5 次内极限估计": "v2.32 · 1-5 Rep Max Estimate",
     "2026-07-29 00:42 更新": "Updated 2026-07-29 00:42",
     "RPE 计算器新增 Epley / Brzycki 双公式估算。": "The RPE calculator now includes Epley / Brzycki dual-formula max estimates.",
@@ -9195,11 +9201,71 @@ function juggernautClinicLesson() {
   `;
 }
 
+function correctiveClinicLesson() {
+  const upperCases = isEnglish()
+    ? [
+        ["Flat thoracic curve", "Deep upper-back groove, rib flare, stiff rib cage, or shoulder blades that cannot glide well.", "Do not keep forcing a bigger arch. Rebuild flexion control: upper T-spine soft-tissue work, wall roll-downs, controlled cat-camels, rib cage stacked over pelvis, then press in the scapular plane."],
+        ["Winged scapula", "Inner border or lower angle lifts from the rib cage, especially during push-ups or pressing.", "First check T-spine and rib cage position. Then train serratus control, pain-free push-up plus / wall slide patterns, and avoid heavy pressing that makes the winging sharper."],
+        ["Pressing bias", "Bench or push-ups go straight to front delt / triceps, chest has little tension.", "Spine neutral, ribs down, shoulder blade stable but not jammed back, upper arm roughly 30 degrees in the scapular plane, forearm vertical, wrist slightly extended with thenar pressure."],
+        ["Row / pulldown bias", "Traps and arms dominate, lats are hard to feel.", "Keep the elbow from drifting too far behind the shoulder, avoid excessive scapular retraction, use middle/ring finger and small-finger-side tension, and keep the rib cage quiet."],
+      ]
+    : [
+        ["胸椎曲度变直", "上背沟很深、肋骨外翻、胸廓僵、肩胛滑动差，推举或划船越练越僵。", "不要继续硬挺胸。先重建胸椎屈曲控制：胸椎上段放松、靠墙卷动、改良猫驼、胸廓叠在骨盆上，再用肩胛面推举。"],
+        ["翼状肩胛", "肩胛骨内侧缘或下角翘起，俯卧撑、卧推、推举时更明显。", "先看胸椎和胸廓位置，再练前锯肌控制、俯卧撑 plus / 墙滑这类无痛模式；翘起更明显时先降重量。"],
+        ["推类代偿", "卧推或俯卧撑主要变成肩前束、三头肌，胸肌感受弱。", "脊柱中立、肋骨内收；肩胛稳定但别夹死；上臂在肩胛面约 30 度，小臂垂直，手腕微伸，大鱼际发力。"],
+        ["拉类代偿", "划船和下拉主要变成斜方肌、手臂，大圆肌抢背阔。", "肘不要过度超过肩线；避免过度后缩肩胛；中指/无名指/小鱼际侧带住拉力，胸廓别外翻。"],
+      ];
+  const lowerCases = isEnglish()
+    ? [
+        ["Lower-limb internal rotation / knee valgus", "Knees collapse inward, foot arch drops, toes drift, or hips shift in squat / lunge work.", "Reduce load first. Rebuild tripod foot, short-foot control, toe separation, big-toe-ball pressure, gentle femur external rotation with the shin controlled, and closed-chain banded hip ER / abduction."],
+        ["Anterior pelvic tilt / lumbar overextension", "Deep lumbar arch, rib flare, hip-flexor tone, low-back fatigue before target muscles.", "Downshift load. Release hip flexors / TFL and overactive erectors, then use pelvic clock, dead bug, glute bridge, and rib-pelvis stacking before heavy squats."],
+        ["Posterior pelvic tilt / flat lumbar curve", "Tucked pelvis, hamstrings always feel tight, waist looks thick, deadlift turns into rounded pulling.", "Do not only stretch hamstrings. Restore lumbar extension tolerance with controlled cobra / ball extension, bird dog, psoas-focused seated hip flexion, and gradual hinge range."],
+        ["Foot arch and squat pressure", "Foot rolls in or out, squat balance changes, knees lose tracking.", "Use the 50/30/20 pressure idea: heel, big-toe ball, small-toe ball. Train short foot, toe spreading, calf / plantar-fascia prep, and stop chasing depth if the arch collapses."],
+      ]
+    : [
+        ["下肢内旋 / 膝内扣", "深蹲、弓步时膝盖向内塌，足弓掉，脚尖漂，臀部侧移。", "先降重量。重建足底三点、缩足、分脚趾、大脚趾球压地；股骨轻微外旋但小腿保持稳定，再做闭链弹力带髋外旋/外展。"],
+        ["骨盆前倾 / 腰椎过伸", "腰窝很深、肋骨外翻、屈髋肌紧，目标肌没累腰先酸。", "先降强度。放松屈髋肌群、阔筋膜张肌和过度紧张竖脊肌，再做骨盆时钟、死虫、臀桥和胸廓骨盆叠放。"],
+        ["骨盆后倾 / 腰椎变直", "骨盆卷住、腘绳肌总紧，腰围显厚，硬拉容易圆背拉。", "不要只拉腘绳肌。用可控眼镜蛇/球上伸展、猎鸟狗、坐姿屈髋提膝和逐步加深的髋铰链重建伸展能力。"],
+        ["足弓与深蹲压力", "足内翻/外翻、足弓塌、深蹲重心乱，膝盖很难对准脚趾。", "用 50/30/20 压力：足跟、大脚趾球、小脚趾球。做缩足、分脚趾、小腿和足底准备；足弓塌时别硬追深度。"],
+      ];
+  const buildCase = ([title, signal, action]) => `
+    <article class="corrective-card">
+      <mark>${escapeHtml(title)}</mark>
+      <p><b>${isEnglish() ? "Look for:" : "看表现："}</b>${escapeHtml(signal)}</p>
+      <p><b>${isEnglish() ? "Do:" : "怎么做："}</b>${escapeHtml(action)}</p>
+    </article>`;
+  return `
+    <section class="corrective-lesson">
+      <div class="corrective-head">
+        <span class="lesson-kicker">${isEnglish() ? "Corrective Quick Map" : "上肢 / 下肢纠正速查"}</span>
+        <strong>${isEnglish() ? "Assess the link before blaming one muscle" : "先看链条，再改动作"}</strong>
+        <p>${
+          isEnglish()
+            ? "Use this as coaching notes for common posture and movement biases. Pain, numbness, radiating symptoms, or strength loss need clinical assessment."
+            : "这是教练现场沟通用的训练教育笔记：先看胸椎、胸廓、肩胛、骨盆、髋膝踝是否协同。疼痛、麻木、放射痛或力量明显下降，要先做医学/康复评估。"
+        }</p>
+      </div>
+      <div class="corrective-split">
+        <div>
+          <h4>${isEnglish() ? "Upper body" : "上肢"}</h4>
+          ${upperCases.map(buildCase).join("")}
+        </div>
+        <div>
+          <h4>${isEnglish() ? "Lower body" : "下肢"}</h4>
+          ${lowerCases.map(buildCase).join("")}
+        </div>
+      </div>
+      <small class="source-note">${sourceText("corrective")}</small>
+    </section>
+  `;
+}
+
 function sourceText(type = "training") {
   const zh = {
     training: "参考：ACSM 阻力训练立场声明、NSCA Essentials of Strength Training and Conditioning、NASM OPT 模型、JTS Strength 训练资料。内容为训练教育摘要，不替代医疗或现场教练。",
     systemQuality: "参考：JTS Scientific Principles、JTS Strength 训练资料、Stronger by Science 完整力量训练指南、训练频率、训练容量和 tapering 文章。内容为训练教育摘要。",
     juggernautClinic: "参考：Juggernaut Powerlifting Clinic Manual 中文版。内容已改写为训练教育摘要，不复制原文，不替代医疗、康复或现场教练。",
+    corrective: "参考：上肢体态异常与上肢训练偏差分析、腰椎骨盆异常评估与纠正、前推后拉动作要点、下肢推动作要点课程笔记。内容为训练教育摘要，不替代医疗或康复诊断。",
     hypertrophy: "参考：ACSM/NSCA 阻力训练原则、NASM OPT 模型、Brad Schoenfeld 肌肥大训练综述。内容为训练教育摘要。",
     rehab: "参考：ACSM 运动测试与处方指南、NSCA 训练基础、NASM Corrective Exercise 思路。疼痛或伤病请咨询医生/康复师。",
     technique: "参考：JTS Strength 三项变式说明、Juggernaut Powerlifting Clinic Manual 中文版、NSCA 力量训练基础、IPF 技术规则公开资料。内容为技术教育摘要。",
@@ -9210,6 +9276,7 @@ function sourceText(type = "training") {
     training: "Sources: ACSM resistance-training position stands, NSCA Essentials of Strength Training and Conditioning, NASM OPT model, and JTS Strength material. Educational summary only.",
     systemQuality: "Sources: JTS Scientific Principles, JTS Strength material, and Stronger by Science articles on complete strength training, frequency, volume, and tapering. Educational summary only.",
     juggernautClinic: "Source: Juggernaut Powerlifting Clinic Manual, rewritten as an educational summary. Not copied verbatim and not medical, rehab, or in-person coaching advice.",
+    corrective: "Sources: course notes on upper-body posture and training bias, lumbar-pelvis assessment, pushing/pulling technique, and lower-body pushing technique. Educational summary only.",
     hypertrophy: "Sources: ACSM/NSCA resistance-training principles, NASM OPT model, and Brad Schoenfeld hypertrophy literature. Educational summary only.",
     rehab: "Sources: ACSM exercise testing and prescription guidance, NSCA training foundations, and NASM corrective-exercise concepts. Consult a clinician for pain or injury.",
     technique: "Sources: JTS Strength variation guides, Juggernaut Powerlifting Clinic Manual, NSCA strength-training foundations, and public IPF technical rules. Educational summary only.",
@@ -9222,6 +9289,10 @@ function sourceText(type = "training") {
 function knowledgeCards() {
   return isEnglish()
     ? [
+        { tag: "Corrective", title: "Flat thoracic curve protocol", body: "If the upper back looks too flat or the ribs flare, stop forcing a bigger arch. Use upper T-spine release, wall roll-downs, controlled cat-camels, and rib-pelvis stacking before heavy pressing.", source: "Upper-body corrective notes" },
+        { tag: "Corrective", title: "Lower-limb internal rotation", body: "For knee collapse, foot-arch loss, or hip shift, reduce load and rebuild tripod foot, big-toe-ball pressure, gentle femur external rotation, stable shin control, and closed-chain hip work.", source: "Lower-body corrective notes" },
+        { tag: "Corrective", title: "Pelvis tilt quick split", body: "Anterior tilt / overextension: release hip flexors and use dead bugs / pelvic clock. Posterior tilt / flat lumbar curve: restore controlled extension with bird dogs, cobra progressions, and psoas-focused hip flexion.", source: "Lumbar-pelvis corrective notes" },
+        { tag: "Corrective", title: "Press and pull bias", body: "Pressing needs rib control, stable scapulae, about 30 degrees in the scapular plane, vertical forearms, and thenar pressure. Pulling needs controlled scapular motion and ring/small-finger-side tension.", source: "Push-pull technique notes" },
         { tag: "Anatomy", title: "Scapula and pressing", body: "For pressing, keep the shoulder blades stable against the bench or rib cage before chasing load.", source: "NSCA Essentials; NASM OPT" },
         { tag: "Anatomy", title: "Hip hinge", body: "A hinge loads hamstrings and glutes while keeping the trunk braced; it is not a rounded-back reach.", source: "NSCA Essentials; NASM CES" },
         { tag: "Hypertrophy", title: "Double progression", body: "Add reps first inside the target range, then add load when all sets stay within the target RPE/RIR.", source: "ACSM; Schoenfeld hypertrophy review" },
@@ -9244,6 +9315,10 @@ function knowledgeCards() {
         { tag: "Juggernaut", title: "Sick-day adjustment", body: "Illness is stress. Reduce intensity and skip heavy work rather than adding more stress to recovery.", source: "Juggernaut Clinic Manual" },
       ]
     : [
+        { tag: "纠正训练", title: "胸椎曲度变直处理", body: "上背沟很深、肋骨外翻、肩胛滑动差时，不要继续硬挺胸。先做胸椎上段放松、靠墙卷动、改良猫驼和胸廓骨盆叠放，再回到推举和划船。", source: "上肢纠正课程笔记" },
+        { tag: "纠正训练", title: "下肢内旋 / 膝内扣处理", body: "深蹲或弓步膝内扣、足弓塌、臀部侧移时，先降重量；练足底三点、缩足、分脚趾、大脚趾球压地、股骨轻微外旋和闭链髋外旋外展。", source: "下肢纠正课程笔记" },
+        { tag: "纠正训练", title: "骨盆前倾 / 后倾速查", body: "前倾或腰椎过伸偏向：放松屈髋肌和竖脊肌，做骨盆时钟、死虫、臀桥。后倾或腰椎变直偏向：重建可控伸展，做猎鸟狗、眼镜蛇进阶和腰大肌屈髋。", source: "腰椎骨盆课程笔记" },
+        { tag: "纠正训练", title: "推拉代偿速查", body: "推类看胸廓、肩胛、上臂 30 度、小臂垂直和大鱼际。拉类看是否耸肩、肘过度超过肩线、手臂抢力，优先用中指/无名指/小鱼际侧带住拉力。", source: "前推后拉课程笔记" },
         { tag: "解剖学", title: "肩胛与推类动作", body: "推类动作先稳定肩胛和胸廓，再追重量；卧推是上背平台、胸廓张力和腿驱动共同工作。", source: "NSCA Essentials；NASM OPT" },
         { tag: "解剖学", title: "髋铰链", body: "髋铰链用腘绳肌和臀部承受张力，躯干保持支撑；不是弯腰去够地面。", source: "NSCA Essentials；NASM CES" },
         { tag: "肌肥大", title: "双进展逻辑", body: "先在目标次数区间内加次数；所有组都落在目标 RPE/RIR 后，再小幅加重量。", source: "ACSM；Schoenfeld 肌肥大综述" },
@@ -9315,6 +9390,7 @@ function renderKnowledgePanel() {
   root.innerHTML = `
     ${systemQualityLesson()}
     ${juggernautClinicLesson()}
+    ${correctiveClinicLesson()}
     <label class="knowledge-search">
       ${isEnglish() ? "Knowledge Search" : "快速知识检索"}
       <input id="knowledgeSearchInput" type="search" placeholder="${isEnglish() ? "Search anatomy, rehab, hypertrophy..." : "搜索解剖、康复、肌肥大..."}" />

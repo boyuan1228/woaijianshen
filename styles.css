@@ -621,6 +621,83 @@ textarea:focus {
   color: #fff;
 }
 
+.corrective-lesson {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 7px;
+  background:
+    linear-gradient(135deg, rgba(0, 143, 115, 0.12), rgba(228, 91, 42, 0.08)),
+    rgba(255, 255, 255, 0.055);
+}
+
+.corrective-head {
+  display: grid;
+  gap: 5px;
+}
+
+.corrective-head strong {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.corrective-head p {
+  margin: 0;
+  color: #b8c7c2;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.corrective-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.corrective-split > div {
+  display: grid;
+  gap: 7px;
+}
+
+.corrective-split h4 {
+  margin: 0;
+  color: #e9f5f1;
+  font-size: 12px;
+}
+
+.corrective-card {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: rgba(7, 12, 15, 0.22);
+}
+
+.corrective-card mark {
+  width: fit-content;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(228, 91, 42, 0.22);
+  color: #ffd9ca;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.corrective-card p {
+  margin: 0;
+  color: #c9d6d2;
+  font-size: 12px;
+  line-height: 1.42;
+}
+
+.corrective-card b {
+  margin-right: 2px;
+  color: #ffffff;
+}
+
 .knowledge-list {
   display: grid;
   gap: 8px;
@@ -3563,6 +3640,10 @@ td {
   }
 
   .quality-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .corrective-split {
     grid-template-columns: 1fr;
   }
 
