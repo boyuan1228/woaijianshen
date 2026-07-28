@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260729-v231-plan-qa-feedback" />
+    <link rel="stylesheet" href="./styles.css?v=20260729-v232-epley-brzycki" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260729-v231-plan-qa-feedback"></script>
+    <script defer src="./app.js?v=20260729-v232-epley-brzycki"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.31">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.32">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,15 +62,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.31 · 计划质检与动作反馈</strong>
-          <small class="update-time">2026-07-29 00:11 更新</small>
+          <strong>v2.32 · 5 次内极限估计</strong>
+          <small class="update-time">2026-07-29 00:42 更新</small>
           <ul>
-            <li>训练表新增纯前端计划质量校验：检查主项、周递进、90 分钟上限、估重和反馈闭环。</li>
-            <li>每个动作可记录实际重量、次数和 RPE，并即时给出下次同动作的调整建议。</li>
-            <li>移动端实际记录默认折叠在备注里，避免训练表过长和挤压。</li>
+            <li>RPE 计算器新增 Epley / Brzycki 双公式估算。</li>
+            <li>输入 1-5 次内重组，输出平均估计、Epley、Brzycki 和保守训练参考。</li>
+            <li>计算结果会自动填入建议重量模块的预估 1RM，方便继续反推训练重量。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.32</strong> 2026-07-29 00:42：RPE 计算器新增 Epley / Brzycki 5 次内极限估计，输出平均估计、双公式结果和保守训练参考，并可回填到建议重量计算。</p>
             <p><strong>v2.31</strong> 2026-07-29 00:11：训练表新增计划质量校验卡；每个动作可填写实际重量、次数和 RPE，并生成动作级下次调整建议；移动端记录默认折叠。</p>
             <p><strong>v2.30</strong> 2026-07-19 22:02：修复公共计划模板同阶段每周重复；为 Calgary、Bullmastiff、Kizen、Candito、Juggernaut、nSuns、531、Madcow 等体系加入周递进波动。</p>
             <p><strong>v2.29</strong> 2026-07-11 13:18：默认训练体系改回 JTS × SSTT 十五周；首次打开/清空数据后，计划生成器不再优先进入肌肥大模板。</p>
@@ -138,7 +139,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.31">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.32">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -779,6 +780,21 @@
           <div id="rpeE1rmResult" class="calc-result">按 RPE 表估算当天 e1RM。</div>
         </section>
         <section class="calc-section">
+          <h4>5 次内极限估计</h4>
+          <div class="calc-grid">
+            <label>
+              完成重量
+              <input id="formulaLoadInput" type="number" min="0" step="0.5" placeholder="例如 170" />
+            </label>
+            <label>
+              完成次数
+              <input id="formulaRepsInput" type="number" min="1" max="5" step="1" placeholder="1-5" />
+            </label>
+          </div>
+          <button id="formulaMaxButton" type="button">计算极限</button>
+          <div id="formulaMaxResult" class="calc-result">使用 Epley 和 Brzycki 估算 1-5 次内的极限。</div>
+        </section>
+        <section class="calc-section">
           <h4>建议重量</h4>
           <div class="calc-grid">
             <label>
@@ -1002,6 +1018,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.32</strong><span>2026-07-29 00:42</span><p>RPE 计算器新增 Epley / Brzycki 5 次内极限估计，输出平均估计、双公式结果和保守训练参考，并可回填到建议重量计算。</p></article>
           <article><strong>v2.31</strong><span>2026-07-29 00:11</span><p>训练表新增纯前端计划质量校验卡，检查主项、周递进、90 分钟上限、估重和反馈闭环；每个动作可填写实际重量、次数和 RPE，并生成动作级下次调整建议。</p></article>
           <article><strong>v2.30</strong><span>2026-07-19 22:02</span><p>修复公共计划模板同阶段每周重复的问题；Calgary、Bullmastiff、Kizen、Candito、Juggernaut、nSuns、531、Madcow 等体系现在会按周改变组数、次数、RPE 和备注。</p></article>
           <article><strong>v2.29</strong><span>2026-07-11 13:18</span><p>默认训练体系改回 JTS × SSTT 十五周；首次打开/清空数据后，计划生成器不再优先进入肌肥大模板，肌肥大仍可手动选择。</p></article>

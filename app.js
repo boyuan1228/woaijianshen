@@ -8127,7 +8127,8 @@ function renderToolLanguage() {
   setTextLanguage("warmupBuildButton", "生成热身重量", "Build Warm-ups");
   const rpeSectionTitles = document.querySelectorAll("#rpeModal .calc-section h4");
   if (rpeSectionTitles[0]) rpeSectionTitles[0].textContent = isEnglish() ? "Estimated 1RM" : "预估 1RM";
-  if (rpeSectionTitles[1]) rpeSectionTitles[1].textContent = isEnglish() ? "Suggested Load" : "建议重量";
+  if (rpeSectionTitles[1]) rpeSectionTitles[1].textContent = isEnglish() ? "1-5 Rep Max Estimate" : "5 次内极限估计";
+  if (rpeSectionTitles[2]) rpeSectionTitles[2].textContent = isEnglish() ? "Suggested Load" : "建议重量";
   document.querySelectorAll("[data-source-note]").forEach((node) => {
     node.textContent = sourceText(node.dataset.sourceNote || "training");
   });
@@ -8140,6 +8141,16 @@ function renderToolLanguage() {
   setInputLabelLanguage("rpeLoadInput", "完成重量", "Completed Load");
   setInputLabelLanguage("rpeRepsInput", "完成次数", "Completed Reps");
   setInputLabelLanguage("rpeValueInput", "完成 RPE", "Completed RPE");
+  setInputLabelLanguage("formulaLoadInput", "完成重量", "Completed Load");
+  setInputLabelLanguage("formulaRepsInput", "完成次数", "Completed Reps");
+  setTextLanguage("formulaMaxButton", "计算极限", "Estimate Max");
+  if (!$("formulaMaxResult")?.dataset.calculated) {
+    setTextLanguage(
+      "formulaMaxResult",
+      "使用 Epley 和 Brzycki 估算 1-5 次内的极限。",
+      "Use Epley and Brzycki to estimate a 1-5 rep max."
+    );
+  }
   setInputLabelLanguage("targetE1rmInput", "预估 1RM", "Estimated 1RM");
   setInputLabelLanguage("targetRepsInput", "目标次数", "Target Reps");
   setInputLabelLanguage("targetRpeInput", "目标 RPE", "Target RPE");
@@ -8232,6 +8243,12 @@ const STATIC_I18N = new Map(
     "更新内容": "Latest Update",
     "历史日志": "History",
     "查看历史日志": "View History",
+    "v2.32 · 5 次内极限估计": "v2.32 · 1-5 Rep Max Estimate",
+    "2026-07-29 00:42 更新": "Updated 2026-07-29 00:42",
+    "RPE 计算器新增 Epley / Brzycki 双公式估算。": "The RPE calculator now includes Epley / Brzycki dual-formula max estimates.",
+    "输入 1-5 次内重组，输出平均估计、Epley、Brzycki 和保守训练参考。": "Enter a heavy 1-5 rep set to see the average estimate, Epley, Brzycki, and a conservative training reference.",
+    "计算结果会自动填入建议重量模块的预估 1RM，方便继续反推训练重量。": "The result automatically fills the estimated 1RM field for suggested-load calculations.",
+    "RPE 计算器新增 Epley / Brzycki 5 次内极限估计，输出平均估计、双公式结果和保守训练参考，并可回填到建议重量计算。": "The RPE calculator adds an Epley / Brzycki 1-5 rep max estimate with average, dual-formula values, conservative reference, and suggested-load handoff.",
     "v2.18 · 热身重量生成器": "v2.18 · Warm-up Load Builder",
     "2026-06-30 13:53 更新": "Updated 2026-06-30 13:53",
     "热身弹窗新增目标重量生成器，输入 topset/正式组重量即可生成热身重量。": "The warm-up modal now includes a target-load builder: enter a top set or work-set load to generate warm-up loads.",
@@ -14885,6 +14902,32 @@ function calculateRpeE1rm() {
   if ($("targetE1rmInput")) $("targetE1rmInput").value = isEnglish() ? Math.round(e1rm * KG_TO_LBS) : e1rm;
 }
 
+function calculateFormulaMax() {
+  const load = massInputToKg($("formulaLoadInput")?.value || 0);
+  const reps = Number($("formulaRepsInput")?.value || 0);
+  const target = $("formulaMaxResult");
+  if (!target) return;
+  target.dataset.calculated = "true";
+  if (!load || !reps) {
+    target.textContent = isEnglish() ? "Enter load and reps from 1 to 5." : "请输入重量和 1-5 次内的次数。";
+    return;
+  }
+  if (reps < 1 || reps > 5) {
+    target.textContent = isEnglish()
+      ? "This estimate is intentionally limited to 1-5 reps. Use the RPE calculator for higher-rep sets."
+      : "这个估算只用于 1-5 次。超过 5 次建议使用 RPE 计算器，别让高次数把极限估太虚。";
+    return;
+  }
+  const epley = reps === 1 ? load : load * (1 + reps / 30);
+  const brzycki = reps === 1 ? load : load * (36 / (37 - reps));
+  const average = (epley + brzycki) / 2;
+  const conservative = Math.min(epley, brzycki);
+  target.innerHTML = isEnglish()
+    ? `<strong>Average estimate: ${displayMass(roundLoad(average))}</strong><span>Epley: ${displayMass(roundLoad(epley))} · Brzycki: ${displayMass(roundLoad(brzycki))}</span><span>Conservative training reference: ${displayMass(roundLoad(conservative))}. Best for heavy sets of 1-5 reps.</span>`
+    : `<strong>平均估计：${displayMass(roundLoad(average))}</strong><span>Epley：${displayMass(roundLoad(epley))} · Brzycki：${displayMass(roundLoad(brzycki))}</span><span>保守训练参考：${displayMass(roundLoad(conservative))}。适合 1-5 次重组，不适合高次数泵感组。</span>`;
+  if ($("targetE1rmInput")) $("targetE1rmInput").value = isEnglish() ? Math.round(average * KG_TO_LBS) : roundLoad(average);
+}
+
 function calculateRpeLoad() {
   const e1rm = massInputToKg($("targetE1rmInput")?.value || 0);
   const reps = Number($("targetRepsInput")?.value || 0);
@@ -15313,7 +15356,11 @@ function bindActions() {
   });
   $("bmrCalculateButton")?.addEventListener("click", calculateBmr);
   $("rpeE1rmButton")?.addEventListener("click", calculateRpeE1rm);
+  $("formulaMaxButton")?.addEventListener("click", calculateFormulaMax);
   $("rpeLoadButton")?.addEventListener("click", calculateRpeLoad);
+  ["formulaLoadInput", "formulaRepsInput"].forEach((id) => {
+    $(id)?.addEventListener("input", calculateFormulaMax);
+  });
   $("warmupBuildButton")?.addEventListener("click", renderWarmupLoadResult);
   ["warmupTargetInput", "warmupBarInput", "warmupStepInput"].forEach((id) => {
     $(id)?.addEventListener(id === "warmupStepInput" ? "change" : "input", (event) => {
