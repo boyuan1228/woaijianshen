@@ -8243,6 +8243,12 @@ const STATIC_I18N = new Map(
     "更新内容": "Latest Update",
     "历史日志": "History",
     "查看历史日志": "View History",
+    "v2.34 · 可拖拽左右分栏": "v2.34 · Resizable Split Panels",
+    "2026-07-29 01:30 更新": "Updated 2026-07-29 01:30",
+    "桌面端新增左侧知识库 / 右侧工作区之间的拖拽分栏。": "Desktop now has a draggable split between the left knowledge panel and the right workspace.",
+    "侧栏宽度会自动保存，下次打开保持上次阅读宽度。": "The sidebar width is saved automatically and restored next time.",
+    "支持键盘左右方向键微调；手机端自动隐藏拖拽手柄，保持原本布局。": "Arrow keys can fine-tune the width; mobile hides the handle and keeps the compact layout.",
+    "桌面端新增可拖拽左右分栏，左侧知识库/参数区可以展开阅读，宽度自动保存；手机端保持紧凑布局。": "Desktop adds resizable split panels so the left knowledge / parameter area can expand for reading; width is saved, while mobile stays compact.",
     "v2.33 · 上肢 / 下肢纠正速查": "v2.33 · Upper / Lower Corrective Map",
     "2026-07-29 00:53 更新": "Updated 2026-07-29 00:53",
     "知识库新增上肢 / 下肢纠正训练速查，高亮胸椎曲度变直、翼状肩胛、下肢内旋和骨盆前后倾。": "Knowledge Base adds an upper / lower corrective quick map highlighting flat thoracic curve, winged scapula, lower-limb internal rotation, and pelvic tilt.",
@@ -15475,6 +15481,101 @@ function bindActions() {
   $("resetButton").addEventListener("click", resetLogs);
 }
 
+const SIDEBAR_WIDTH_STORAGE_KEY = "forgePlanSidebarWidth";
+
+function sidebarWidthBounds() {
+  const viewport = window.innerWidth || 1440;
+  return {
+    min: 280,
+    max: Math.max(320, Math.min(680, viewport - 560)),
+  };
+}
+
+function clampSidebarWidth(width) {
+  const { min, max } = sidebarWidthBounds();
+  return Math.max(min, Math.min(max, Number(width) || min));
+}
+
+function applySidebarWidth(width, persist = false) {
+  const appShell = $("appShell");
+  if (!appShell || window.innerWidth <= 1120) return;
+  const nextWidth = clampSidebarWidth(width);
+  appShell.style.setProperty("--sidebar-width", `${Math.round(nextWidth)}px`);
+  const handle = $("shellResizeHandle");
+  if (handle) {
+    handle.setAttribute("aria-valuemin", String(sidebarWidthBounds().min));
+    handle.setAttribute("aria-valuemax", String(sidebarWidthBounds().max));
+    handle.setAttribute("aria-valuenow", String(Math.round(nextWidth)));
+  }
+  if (persist) localStorage.setItem(SIDEBAR_WIDTH_STORAGE_KEY, String(Math.round(nextWidth)));
+}
+
+function initShellResizer() {
+  const appShell = $("appShell");
+  const handle = $("shellResizeHandle");
+  if (!appShell || !handle) return;
+
+  const savedWidth = Number(localStorage.getItem(SIDEBAR_WIDTH_STORAGE_KEY));
+  if (savedWidth) applySidebarWidth(savedWidth);
+
+  let isDragging = false;
+
+  const widthFromPointer = (event) => {
+    const shellRect = appShell.getBoundingClientRect();
+    return event.clientX - shellRect.left;
+  };
+
+  handle.addEventListener("pointerdown", (event) => {
+    if (window.innerWidth <= 1120) return;
+    isDragging = true;
+    handle.setPointerCapture?.(event.pointerId);
+    document.body.classList.add("shell-resizing");
+    applySidebarWidth(widthFromPointer(event), true);
+    event.preventDefault();
+  });
+
+  handle.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    applySidebarWidth(widthFromPointer(event), true);
+  });
+
+  const finishDrag = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    handle.releasePointerCapture?.(event.pointerId);
+    document.body.classList.remove("shell-resizing");
+  };
+
+  handle.addEventListener("pointerup", finishDrag);
+  handle.addEventListener("pointercancel", finishDrag);
+  handle.addEventListener("dblclick", () => applySidebarWidth(318, true));
+  handle.addEventListener("keydown", (event) => {
+    const current = Number(getComputedStyle(appShell).getPropertyValue("--sidebar-width").replace("px", "")) || 318;
+    if (event.key === "ArrowLeft") {
+      applySidebarWidth(current - 24, true);
+      event.preventDefault();
+    }
+    if (event.key === "ArrowRight") {
+      applySidebarWidth(current + 24, true);
+      event.preventDefault();
+    }
+    if (event.key === "Home") {
+      applySidebarWidth(sidebarWidthBounds().min, true);
+      event.preventDefault();
+    }
+    if (event.key === "End") {
+      applySidebarWidth(sidebarWidthBounds().max, true);
+      event.preventDefault();
+    }
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1120) {
+      const current = Number(getComputedStyle(appShell).getPropertyValue("--sidebar-width").replace("px", "")) || savedWidth || 318;
+      applySidebarWidth(current);
+    }
+  });
+}
+
 function bindActivation() {
   $("activationButton").addEventListener("click", activateFromInput);
   $("activationCodeInput").addEventListener("keydown", (event) => {
@@ -15493,6 +15594,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bindProfile();
   bindActions();
   bindActivation();
+  initShellResizer();
   window.addEventListener("hashchange", applyHashView);
   render();
 });

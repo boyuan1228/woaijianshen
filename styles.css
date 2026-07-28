@@ -5538,6 +5538,74 @@ body[data-lang="en"] td:nth-child(5)::before {
   }
 }
 
+/* v2.34: desktop split-pane resizing between the knowledge/sidebar panel and workspace. */
+.shell-resize-handle {
+  display: none;
+}
+
+@media (min-width: 1121px) {
+  .app-shell {
+    --sidebar-width: 318px;
+    grid-template-columns: var(--sidebar-width) 12px minmax(0, 1fr);
+  }
+
+  .shell-resize-handle {
+    position: sticky;
+    top: 0;
+    z-index: 36;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 100vh;
+    cursor: col-resize;
+    touch-action: none;
+    background:
+      linear-gradient(90deg, rgba(9, 17, 20, 0.28), rgba(255, 255, 255, 0.78) 45%, rgba(15, 23, 42, 0.08));
+    border-inline: 1px solid rgba(15, 23, 42, 0.08);
+    transition: background-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  }
+
+  .shell-resize-handle::before {
+    content: "";
+    width: 3px;
+    height: 54px;
+    border-radius: 999px;
+    background:
+      linear-gradient(180deg, rgba(8, 127, 112, 0.24), rgba(8, 127, 112, 0.74), rgba(8, 127, 112, 0.24));
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.58);
+  }
+
+  .shell-resize-handle:hover,
+  .shell-resize-handle:focus-visible,
+  body.shell-resizing .shell-resize-handle {
+    background:
+      linear-gradient(90deg, rgba(8, 127, 112, 0.28), rgba(255, 255, 255, 0.9) 45%, rgba(8, 127, 112, 0.16));
+    box-shadow: 0 0 0 3px rgba(8, 127, 112, 0.12);
+  }
+
+  .shell-resize-handle:focus-visible {
+    outline: 3px solid rgba(8, 127, 112, 0.28);
+    outline-offset: -2px;
+  }
+
+  body.shell-resizing {
+    cursor: col-resize;
+    user-select: none;
+  }
+
+  body.shell-resizing .sidebar,
+  body.shell-resizing .main {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 1120px) {
+  .shell-resize-handle {
+    display: none !important;
+  }
+}
+
 /* v2.27: UIUX Pro Max pass - denser dashboard rhythm, clearer mobile execution cards. */
 :root {
   --bg: #e9eff3;
