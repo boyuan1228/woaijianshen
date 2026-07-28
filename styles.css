@@ -3245,6 +3245,162 @@ td {
   line-height: 1.45;
 }
 
+.plan-quality-panel {
+  margin: 14px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(252, 254, 253, 0.86);
+  box-shadow: var(--shadow-tight);
+}
+
+.plan-quality-panel.ok {
+  border-color: rgba(22, 163, 74, 0.28);
+}
+
+.plan-quality-panel.watch {
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+.plan-quality-panel.risk {
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.plan-quality-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.plan-quality-head span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.plan-quality-head strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink);
+  font-size: 20px;
+}
+
+.plan-quality-head p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.plan-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.plan-quality-grid article {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.plan-quality-grid article.ok {
+  background: #f1faf5;
+  border-color: rgba(22, 163, 74, 0.22);
+}
+
+.plan-quality-grid article.warn {
+  background: #fff9ed;
+  border-color: rgba(217, 119, 6, 0.24);
+}
+
+.plan-quality-grid article.risk {
+  background: #fff4f2;
+  border-color: rgba(220, 38, 38, 0.24);
+}
+
+.plan-quality-grid span {
+  display: inline-flex;
+  margin-bottom: 7px;
+  border-radius: 999px;
+  padding: 2px 7px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.plan-quality-grid strong {
+  display: block;
+  font-size: 13px;
+}
+
+.plan-quality-grid p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.actual-log {
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #dbe6e2;
+  border-radius: 8px;
+  background: #f8fbfa;
+}
+
+.actual-log-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.actual-log-head strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.actual-log-head span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.actual-log-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.actual-log-grid label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.actual-log-grid input {
+  width: 100%;
+  min-height: 32px;
+  margin-top: 3px;
+  padding: 6px 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 12px;
+}
+
 .hint {
   margin-top: 14px;
   padding: 11px;
@@ -5177,6 +5333,56 @@ body[data-lang="en"] td:nth-child(5)::before {
 
 /* v2.24: keep workout rows clean after adding the rest column. */
 @media (max-width: 720px) {
+  .plan-quality-panel {
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .plan-quality-head {
+    display: block;
+  }
+
+  .plan-quality-head p {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+
+  .plan-quality-grid {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .plan-quality-grid article {
+    flex: 0 0 178px;
+    scroll-snap-align: start;
+  }
+
+  .actual-log {
+    padding: 7px;
+  }
+
+  .actual-log-head {
+    display: block;
+  }
+
+  .actual-log-head span {
+    display: block;
+    margin-top: 3px;
+    text-align: left;
+  }
+
+  .actual-log-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .actual-log-grid input {
+    min-height: 30px;
+    padding: 5px 6px;
+  }
+
   .system-905-explain-grid {
     grid-template-columns: 1fr;
   }
@@ -5226,6 +5432,10 @@ body[data-lang="en"] td:nth-child(5)::before {
   }
 
   .workout-panel .notes-cell:not(.open) .note-edit {
+    display: none;
+  }
+
+  .workout-panel .notes-cell:not(.open) .actual-log {
     display: none;
   }
 

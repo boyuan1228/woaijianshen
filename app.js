@@ -9482,9 +9482,10 @@ function logKey(weekIndex = state.weekIndex, dayIndex = state.dayIndex) {
 
 function currentLog() {
   const key = logKey();
-  state.logs[key] ||= { done: [], bodyweight: "", notes: "", feedback: {}, adjustment: "", itemNotes: {}, backdowns: {}, accessories: {} };
+  state.logs[key] ||= { done: [], bodyweight: "", notes: "", feedback: {}, adjustment: "", itemNotes: {}, itemActuals: {}, backdowns: {}, accessories: {} };
   state.logs[key].feedback ||= {};
   state.logs[key].itemNotes ||= {};
+  state.logs[key].itemActuals ||= {};
   state.logs[key].backdowns ||= {};
   state.logs[key].accessories ||= {};
   return state.logs[key];
@@ -13214,10 +13215,67 @@ function isBackdownRow(item) {
   return String(item.sets) === "0" && hasAutoWeightNote(item);
 }
 
-function noteCellHtml(noteKey, value = "") {
+function highestNumber(value) {
+  const nums = String(value || "").match(/\d+(?:\.\d+)?/g);
+  return nums ? Math.max(...nums.map(Number)) : 0;
+}
+
+function actualMovementAdvice(item, actual = {}, estimate = "") {
+  const hasActual = ["load", "reps", "rpe"].some((key) => String(actual[key] || "").trim());
+  if (!hasActual) return isEnglish() ? "Log actual work here." : "填写后给出动作级建议。";
+  const plannedRpe = primaryRpe(item.rpe);
+  const actualRpe = Number(actual.rpe || 0);
+  const plannedReps = highestNumber(item.reps);
+  const actualReps = Number(actual.reps || 0);
+  const plannedLoad = numberFrom(estimate || item.weight);
+  const actualLoad = Number(actual.load || 0);
+  const missedReps = plannedReps && actualReps && actualReps < plannedReps;
+  const rpeHigh = plannedRpe && actualRpe >= plannedRpe + 1;
+  const rpeSlightHigh = plannedRpe && actualRpe >= plannedRpe + 0.5;
+  const loadHigh = plannedLoad && actualLoad && actualLoad > plannedLoad * 1.035;
+
+  if (rpeHigh || missedReps) {
+    return isEnglish()
+      ? "Next exposure: reduce 5-10% or repeat with fewer sets."
+      : "下次同动作：降 5-10%，或同重量少做 1 组。";
+  }
+  if (rpeSlightHigh || loadHigh) {
+    return isEnglish()
+      ? "Hold load next time; do not add extra work."
+      : "下次先维持重量，不额外加量。";
+  }
+  if (plannedRpe && actualRpe && actualRpe <= plannedRpe - 0.5 && (!plannedReps || actualReps >= plannedReps)) {
+    return isEnglish()
+      ? "Good margin: small load jump or 1 extra rep is reasonable."
+      : "余量不错：可小幅加重，或辅助项加 1 次。";
+  }
+  return isEnglish()
+    ? "Acceptable: repeat planned progression."
+    : "表现可接受：按原计划推进即可。";
+}
+
+function actualLogHtml(actualKey, item, estimate = "") {
+  const log = currentLog();
+  log.itemActuals ||= {};
+  const actual = log.itemActuals[actualKey] || {};
+  return `<div class="actual-log" data-actual-group="${escapeHtml(actualKey)}" data-planned-reps="${escapeHtml(item.reps || "")}" data-planned-rpe="${escapeHtml(item.rpe || "")}" data-planned-load="${escapeHtml(estimate || item.weight || "")}">
+    <div class="actual-log-head">
+      <strong>${isEnglish() ? "Actual" : "实际记录"}</strong>
+      <span data-actual-summary="${escapeHtml(actualKey)}">${escapeHtml(actualMovementAdvice(item, actual, estimate))}</span>
+    </div>
+    <div class="actual-log-grid">
+      <label>${isEnglish() ? "Load" : "重量"}<input data-actual="${escapeHtml(actualKey)}" data-actual-field="load" type="number" min="0" step="0.5" value="${escapeHtml(actual.load || "")}" placeholder="${isEnglish() ? "kg" : "kg"}" /></label>
+      <label>${isEnglish() ? "Reps" : "次数"}<input data-actual="${escapeHtml(actualKey)}" data-actual-field="reps" type="number" min="0" step="1" value="${escapeHtml(actual.reps || "")}" /></label>
+      <label>RPE<input data-actual="${escapeHtml(actualKey)}" data-actual-field="rpe" type="number" min="4" max="10" step="0.5" value="${escapeHtml(actual.rpe || "")}" /></label>
+    </div>
+  </div>`;
+}
+
+function noteCellHtml(noteKey, value = "", options = {}) {
   const label = isEnglish() ? "Notes" : "备注";
   return `<td class="notes-cell">
     <button class="note-toggle" data-note-toggle="${escapeHtml(noteKey)}" type="button">${label}</button>
+    ${options.actualKey ? actualLogHtml(options.actualKey, options.item || {}, options.estimate || "") : ""}
     <textarea class="note-edit" data-note="${escapeHtml(noteKey)}" rows="2">${escapeHtml(value || "")}</textarea>
   </td>`;
 }
@@ -13270,7 +13328,7 @@ function renderExercises() {
             <td>${escapeHtml(row.rpe)}</td>
             <td class="estimate">${escapeHtml(formatLoadText(row.load))}</td>
             <td>${escapeHtml(restForItem(item))}</td>
-            ${noteCellHtml(`${index}-g${rowIndex}`, log.itemNotes[`${index}-g${rowIndex}`] || "")}
+            ${noteCellHtml(`${index}-g${rowIndex}`, log.itemNotes[`${index}-g${rowIndex}`] || "", { actualKey: `${index}-g${rowIndex}`, item: { ...item, sets: row.sets, reps: row.reps, rpe: row.rpe, weight: row.load }, estimate: row.load })}
           </tr>
         `);
         return [controlRow, ...rows];
@@ -13290,7 +13348,7 @@ function renderExercises() {
           <td>${escapeHtml(item.rpe || "-")}</td>
           <td class="estimate">${escapeHtml(formatLoadText(estimate || item.weight || "-"))}</td>
           <td>${escapeHtml(restForItem(item))}</td>
-          ${noteCellHtml(`${index}`, editableNote || "")}
+          ${noteCellHtml(`${index}`, editableNote || "", { actualKey: `${index}`, item, estimate: estimate || item.weight || "" })}
         </tr>
       `];
       const expandedRows = expandedSetRows(item).map((row, rowIndex) => `
@@ -13304,7 +13362,7 @@ function renderExercises() {
           <td>${escapeHtml(row.rpe)}</td>
           <td class="estimate">${escapeHtml(formatLoadText(row.load))}</td>
           <td>${escapeHtml(restForItem(item))}</td>
-          ${noteCellHtml(`${index}-a${rowIndex}`, log.itemNotes[`${index}-a${rowIndex}`] || "")}
+          ${noteCellHtml(`${index}-a${rowIndex}`, log.itemNotes[`${index}-a${rowIndex}`] || "", { actualKey: `${index}-a${rowIndex}`, item: { ...item, sets: row.sets, reps: row.reps, rpe: row.rpe, weight: row.load }, estimate: row.load })}
         </tr>
       `);
       rows.push(...expandedRows);
@@ -13346,6 +13404,26 @@ function renderExercises() {
       currentLog().accessories[select.dataset.accessory] = select.value;
       saveState();
       renderExercises();
+    });
+  });
+  document.querySelectorAll("[data-actual]").forEach((input) => {
+    input.addEventListener("input", () => {
+      const log = currentLog();
+      log.itemActuals ||= {};
+      const key = input.dataset.actual;
+      log.itemActuals[key] ||= {};
+      log.itemActuals[key][input.dataset.actualField] = input.value;
+      saveState();
+      const group = input.closest(".actual-log");
+      const summary = group?.querySelector("[data-actual-summary]");
+      if (group && summary) {
+        summary.textContent = actualMovementAdvice(
+          { reps: group.dataset.plannedReps || "", rpe: group.dataset.plannedRpe || "", weight: group.dataset.plannedLoad || "" },
+          log.itemActuals[key],
+          group.dataset.plannedLoad || ""
+        );
+      }
+      renderPlanQualityPanel();
     });
   });
 }
@@ -13506,6 +13584,137 @@ function renderInjuryControls() {
   if (clearButton) clearButton.onclick = () => setWeekInjuryFilter("");
 }
 
+function itemSetCount(item) {
+  return Math.max(0, numberFrom(item.sets));
+}
+
+function estimatedMinutesForItem(item) {
+  const sets = itemSetCount(item);
+  if (!sets) return 0;
+  const type = movementType(item);
+  if (["bench", "squat", "deadlift"].includes(type)) return sets * 6.25;
+  if (["benchVariant", "squatVariant", "deadliftVariant"].includes(type)) return sets * 4.1;
+  return sets * 2.15;
+}
+
+function dayEstimatedMinutes(day = currentDay()) {
+  return Math.round((day.items || []).reduce((sum, item) => sum + estimatedMinutesForItem(item), 0));
+}
+
+function dayMainLiftCount(day = currentDay()) {
+  return (day.items || []).filter((item) => ["bench", "squat", "deadlift", "benchVariant", "squatVariant", "deadliftVariant"].includes(movementType(item))).length;
+}
+
+function dayMissingLoadCount(day = currentDay()) {
+  return (day.items || []).filter((item, index) => {
+    const type = movementType(item);
+    if (!["bench", "squat", "deadlift", "benchVariant", "squatVariant", "deadliftVariant"].includes(type)) return false;
+    if (isBackdownRow(item)) return false;
+    return !numberFrom(estimatedLoadWithContext(item, index, day.items) || item.weight);
+  }).length;
+}
+
+function weekPlanSignature(week) {
+  return (week.days || [])
+    .map((day) => (day.items || [])
+      .filter((item) => ["bench", "squat", "deadlift", "benchVariant", "squatVariant", "deadliftVariant"].includes(movementType(item)))
+      .map((item) => `${item.name}:${item.sets}x${item.reps}@${item.rpe}`)
+      .join("|"))
+    .join(" / ");
+}
+
+function planQualityChecks(plan = makePlanner()) {
+  const weeks = planWeeks(plan);
+  const current = currentDay();
+  const minutes = dayEstimatedMinutes(current);
+  const mainCount = dayMainLiftCount(current);
+  const missingLoads = dayMissingLoadCount(current);
+  const currentSignature = weekPlanSignature(weeks[state.weekIndex]);
+  const previousSignature = state.weekIndex > 0 ? weekPlanSignature(weeks[state.weekIndex - 1]) : "";
+  const firstFourUnique = new Set(weeks.slice(0, Math.min(4, weeks.length)).map(weekPlanSignature)).size;
+  const log = currentLog();
+  const actualCount = Object.values(log.itemActuals || {}).filter((entry) => Object.values(entry || {}).some((value) => String(value || "").trim())).length;
+  const checks = [
+    {
+      key: "main",
+      ok: mainCount > 0,
+      title: isEnglish() ? "Main lift present" : "主项存在",
+      body: mainCount > 0
+        ? (isEnglish() ? `${mainCount} main/variation rows in this day.` : `当天有 ${mainCount} 个主项/变式行。`)
+        : (isEnglish() ? "This day has no SBD main or variation row." : "当天没有三大项主项或变式。"),
+    },
+    {
+      key: "wave",
+      ok: !previousSignature || currentSignature !== previousSignature,
+      title: isEnglish() ? "Weekly progression" : "周递进",
+      body: !previousSignature
+        ? (isEnglish() ? `${firstFourUnique} unique signatures in the first four weeks.` : `前四周有 ${firstFourUnique} 个不同周结构。`)
+        : currentSignature !== previousSignature
+          ? (isEnglish() ? "This week differs from the previous week." : "当前周和上一周不完全相同。")
+          : (isEnglish() ? "This week matches the previous week. Check whether this system intentionally repeats." : "当前周和上一周完全相同，需要确认是否为刻意重复。"),
+    },
+    {
+      key: "time",
+      ok: minutes <= 90,
+      warn: minutes > 80 && minutes <= 90,
+      title: isEnglish() ? "90-minute cap" : "90 分钟上限",
+      body: isEnglish()
+        ? `Estimated session time: about ${minutes} min.`
+        : `预计训练时长约 ${minutes} 分钟。`,
+    },
+    {
+      key: "load",
+      ok: missingLoads === 0,
+      title: isEnglish() ? "Load estimates" : "估重完整度",
+      body: missingLoads
+        ? (isEnglish() ? `${missingLoads} main/variation rows have no load estimate.` : `${missingLoads} 个主项/变式没有估重。`)
+        : (isEnglish() ? "Main and variation rows have load guidance when maxes exist." : "主项和变式在有最大值时都有估重参考。"),
+    },
+    {
+      key: "feedback",
+      ok: actualCount > 0 || feedbackHasAnyValue(log.feedback || {}),
+      warn: !actualCount && !feedbackHasAnyValue(log.feedback || {}),
+      title: isEnglish() ? "Feedback loop" : "反馈闭环",
+      body: actualCount
+        ? (isEnglish() ? `${actualCount} exercise rows have actual logs.` : `已有 ${actualCount} 个动作填写实际记录。`)
+        : (isEnglish() ? "Fill actual load/reps/RPE after training to adjust the next exposure." : "训练后填写实际重量/次数/RPE，才能判断下次怎么调。"),
+    },
+  ];
+  const failures = checks.filter((check) => !check.ok && !check.warn).length;
+  const warnings = checks.filter((check) => check.warn).length;
+  const score = Math.max(0, 100 - failures * 18 - warnings * 8);
+  return { score, checks, minutes, failures, warnings };
+}
+
+function renderPlanQualityPanel() {
+  const target = $("planQualityPanel");
+  if (!target) return;
+  const quality = planQualityChecks();
+  const tone = quality.failures ? "risk" : quality.warnings ? "watch" : "ok";
+  target.className = `plan-quality-panel ${tone}`;
+  target.innerHTML = `
+    <div class="plan-quality-head">
+      <div>
+        <span>${isEnglish() ? "Plan QA" : "计划质检"}</span>
+        <strong>${isEnglish() ? "Quality score" : "质量分"} ${quality.score}</strong>
+      </div>
+      <p>${isEnglish()
+        ? "Pure frontend check: weekly variation, main-lift presence, load guidance, time cap, and feedback loop."
+        : "纯前端检查：周波动、主项存在、估重、90 分钟上限和反馈闭环。"}
+      </p>
+    </div>
+    <div class="plan-quality-grid">
+      ${quality.checks.map((check) => `
+        <article class="${check.ok ? "ok" : check.warn ? "warn" : "risk"}">
+          <span>${check.ok ? "OK" : check.warn ? (isEnglish() ? "WATCH" : "注意") : (isEnglish() ? "RISK" : "风险")}</span>
+          <strong>${escapeHtml(check.title)}</strong>
+          <p>${escapeHtml(check.body)}</p>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderLog() {
   const log = currentLog();
   const feedback = log.feedback || {};
@@ -13554,6 +13763,7 @@ function renderWorkout() {
 
   renderTabs();
   renderMetrics();
+  renderPlanQualityPanel();
   renderAmrapHint(day);
   renderExercises();
   renderLog();
@@ -14064,6 +14274,7 @@ function saveDayLog() {
   log.adjustment = trainingAdjustmentAdvice(log.feedback, currentDay());
   saveState();
   renderMetrics();
+  renderPlanQualityPanel();
   renderAdjustmentHint();
 }
 
