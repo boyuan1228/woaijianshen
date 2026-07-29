@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260729-v234-resizable-shell" />
+    <link rel="stylesheet" href="./styles.css?v=20260730-v235-clean-shell" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260729-v234-resizable-shell"></script>
+    <script defer src="./app.js?v=20260730-v235-clean-shell"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.34">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.35">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -62,15 +62,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.34 · 可拖拽左右分栏</strong>
-          <small class="update-time">2026-07-29 01:30 更新</small>
+          <strong>v2.35 · 清爽版工作台</strong>
+          <small class="update-time">2026-07-30 01:23 更新</small>
           <ul>
-            <li>桌面端新增左侧知识库 / 右侧工作区之间的拖拽分栏。</li>
-            <li>侧栏宽度会自动保存，下次打开保持上次阅读宽度。</li>
-            <li>支持键盘左右方向键微调；手机端自动隐藏拖拽手柄，保持原本布局。</li>
+            <li>顶部入口收束为核心导航，档案、饮食、图表和热身统一放进工具菜单。</li>
+            <li>左侧知识库和小课堂压缩为可滚动信息区，减少第一屏拥挤感。</li>
+            <li>主内容卡片减少重阴影和杂色，训练表与问卷阅读更干净。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.35</strong> 2026-07-30 01:23：清爽版工作台上线；顶部二级工具收进工具菜单，左侧知识库/小课堂限高滚动，主内容卡片减少重阴影和杂色。</p>
             <p><strong>v2.34</strong> 2026-07-29 01:30：桌面端新增可拖拽左右分栏，左侧知识库/参数区可以展开阅读，宽度自动保存；手机端保持紧凑布局。</p>
             <p><strong>v2.33</strong> 2026-07-29 00:53：知识库新增上肢 / 下肢纠正训练速查，整理胸椎曲度变直、翼状肩胛、推拉代偿、下肢内旋/膝内扣、骨盆前倾/后倾和足弓控制，并补充可搜索词条。</p>
             <p><strong>v2.32</strong> 2026-07-29 00:42：RPE 计算器新增 Epley / Brzycki 5 次内极限估计，输出平均估计、双公式结果和保守训练参考，并可回填到建议重量计算。</p>
@@ -141,7 +142,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.34">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.35">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -290,18 +291,30 @@
                 <i data-lucide="calendar-days"></i>
               </button>
               <button class="language-toggle" data-language-toggle type="button" title="切换语言" aria-label="切换语言">EN</button>
-              <button class="tool-button" data-body-profile-open type="button" title="建立档案" aria-label="建立档案">
-                <i data-lucide="clipboard-plus"></i>
-              </button>
-              <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
-                <i data-lucide="utensils"></i>
-              </button>
-              <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
-                <i data-lucide="bar-chart-3"></i>
-              </button>
-              <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
-                <i data-lucide="flame"></i>
-              </button>
+              <details class="top-tool-menu">
+                <summary class="tool-button tool-menu-button" title="工具" aria-label="工具">
+                  <i data-lucide="wrench"></i>
+                  <span>工具</span>
+                </summary>
+                <div class="top-tool-menu-panel">
+                  <button class="tool-button" data-body-profile-open type="button" title="建立档案" aria-label="建立档案">
+                    <i data-lucide="clipboard-plus"></i>
+                    <span>档案</span>
+                  </button>
+                  <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
+                    <i data-lucide="utensils"></i>
+                    <span>饮食</span>
+                  </button>
+                  <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>图表</span>
+                  </button>
+                  <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
+                    <i data-lucide="flame"></i>
+                    <span>热身</span>
+                  </button>
+                </div>
+              </details>
             </div>
           </header>
           <section class="planner-layout">
@@ -550,28 +563,43 @@
                 <i data-lucide="calendar-days"></i>
               </button>
               <button class="language-toggle" data-language-toggle type="button" title="切换语言" aria-label="切换语言">EN</button>
-              <button class="tool-button" data-body-profile-open type="button" title="建立档案" aria-label="建立档案">
-                <i data-lucide="clipboard-plus"></i>
-              </button>
-              <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
-                <i data-lucide="utensils"></i>
-              </button>
-              <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
-                <i data-lucide="bar-chart-3"></i>
-              </button>
-              <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
-                <i data-lucide="flame"></i>
-              </button>
-              <button class="icon-button" id="exportButton" type="button" title="导出 PDF 计划">
-                <i data-lucide="download"></i>
-              </button>
-              <button class="icon-button hidden" id="backupButton" type="button" title="备份/恢复数据">
-                <i data-lucide="archive"></i>
-              </button>
+              <details class="top-tool-menu">
+                <summary class="tool-button tool-menu-button" title="工具" aria-label="工具">
+                  <i data-lucide="wrench"></i>
+                  <span>工具</span>
+                </summary>
+                <div class="top-tool-menu-panel">
+                  <button class="tool-button" data-body-profile-open type="button" title="建立档案" aria-label="建立档案">
+                    <i data-lucide="clipboard-plus"></i>
+                    <span>档案</span>
+                  </button>
+                  <button class="tool-button" data-diet-open type="button" title="饮食与 BMR" aria-label="饮食与 BMR">
+                    <i data-lucide="utensils"></i>
+                    <span>饮食</span>
+                  </button>
+                  <button class="tool-button" data-analytics-open type="button" title="训练图表" aria-label="训练图表">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>图表</span>
+                  </button>
+                  <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
+                    <i data-lucide="flame"></i>
+                    <span>热身</span>
+                  </button>
+                  <button class="icon-button" id="exportButton" type="button" title="导出 PDF 计划">
+                    <i data-lucide="download"></i>
+                    <span>导出</span>
+                  </button>
+                  <button class="icon-button hidden" id="backupButton" type="button" title="备份/恢复数据">
+                    <i data-lucide="archive"></i>
+                    <span>备份</span>
+                  </button>
+                  <button class="icon-button danger-tool" id="resetButton" type="button" title="清空本地记录">
+                    <i data-lucide="trash-2"></i>
+                    <span>清空</span>
+                  </button>
+                </div>
+              </details>
               <input id="restoreInput" type="file" accept="application/json,.json" hidden />
-              <button class="icon-button" id="resetButton" type="button" title="清空本地记录">
-                <i data-lucide="trash-2"></i>
-              </button>
             </div>
           </header>
           <section id="workoutMeetPrepStrip" class="meet-prep-strip compact" aria-label="周期状态"></section>
@@ -1030,6 +1058,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.35</strong><span>2026-07-30 01:23</span><p>清爽版工作台上线；顶部二级工具收进工具菜单，左侧知识库/小课堂限高滚动，主内容卡片减少重阴影和杂色。</p></article>
           <article><strong>v2.34</strong><span>2026-07-29 01:30</span><p>桌面端新增可拖拽左右分栏，左侧知识库/参数区可以展开阅读，宽度自动保存；手机端保持紧凑布局。</p></article>
           <article><strong>v2.33</strong><span>2026-07-29 00:53</span><p>知识库新增上肢 / 下肢纠正训练速查，整理胸椎曲度变直、翼状肩胛、推拉代偿、下肢内旋/膝内扣、骨盆前倾/后倾和足弓控制，并补充可搜索词条。</p></article>
           <article><strong>v2.32</strong><span>2026-07-29 00:42</span><p>RPE 计算器新增 Epley / Brzycki 5 次内极限估计，输出平均估计、双公式结果和保守训练参考，并可回填到建议重量计算。</p></article>

@@ -8243,6 +8243,12 @@ const STATIC_I18N = new Map(
     "更新内容": "Latest Update",
     "历史日志": "History",
     "查看历史日志": "View History",
+    "v2.35 · 清爽版工作台": "v2.35 · Cleaner Workspace",
+    "2026-07-30 01:23 更新": "Updated 2026-07-30 01:23",
+    "顶部入口收束为核心导航，档案、饮食、图表和热身统一放进工具菜单。": "Top navigation is reduced to core actions; profile, nutrition, charts, and warm-up tools now live in one Tools menu.",
+    "左侧知识库和小课堂压缩为可滚动信息区，减少第一屏拥挤感。": "The left knowledge base and classroom notes are compressed into scrollable areas to reduce first-screen crowding.",
+    "主内容卡片减少重阴影和杂色，训练表与问卷阅读更干净。": "Main cards use lighter shadows and fewer colors, making the plan table and questionnaire cleaner to read.",
+    "清爽版工作台上线；顶部二级工具收进工具菜单，左侧知识库/小课堂限高滚动，主内容卡片减少重阴影和杂色。": "Cleaner workspace update: secondary tools move into one Tools menu, sidebar knowledge/classroom areas are scrollable, and main cards use lighter visual treatment.",
     "v2.34 · 可拖拽左右分栏": "v2.34 · Resizable Split Panels",
     "2026-07-29 01:30 更新": "Updated 2026-07-29 01:30",
     "桌面端新增左侧知识库 / 右侧工作区之间的拖拽分栏。": "Desktop now has a draggable split between the left knowledge panel and the right workspace.",
@@ -8339,9 +8345,14 @@ const STATIC_I18N = new Map(
     "首页": "Home",
     "训练": "Training",
     "训练表": "Training",
+    "工具": "Tools",
     "档案": "Profile",
     "饮食": "Nutrition",
     "图表": "Charts",
+    "热身": "Warm-up",
+    "导出": "Export",
+    "备份": "Backup",
+    "清空": "Clear",
     "知识库 / 参数": "Knowledge / Inputs",
     "姓名": "Name",
     "深蹲": "Squat",
@@ -15576,6 +15587,27 @@ function initShellResizer() {
   });
 }
 
+function bindTopToolMenus() {
+  document.querySelectorAll(".top-tool-menu").forEach((menu) => {
+    menu.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        menu.open = false;
+      });
+    });
+  });
+  document.addEventListener("click", (event) => {
+    document.querySelectorAll(".top-tool-menu[open]").forEach((menu) => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    document.querySelectorAll(".top-tool-menu[open]").forEach((menu) => {
+      menu.open = false;
+    });
+  });
+}
+
 function bindActivation() {
   $("activationButton").addEventListener("click", activateFromInput);
   $("activationCodeInput").addEventListener("keydown", (event) => {
@@ -15595,6 +15627,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bindActions();
   bindActivation();
   initShellResizer();
+  bindTopToolMenus();
   window.addEventListener("hashchange", applyHashView);
   render();
 });
