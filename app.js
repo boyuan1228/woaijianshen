@@ -8098,6 +8098,7 @@ function renderToolLanguage() {
   setButtonLanguage("[data-body-profile-open]", "建立档案", "Body profile");
   setButtonLanguage("[data-analytics-open]", "训练图表", "Training charts");
   setButtonLanguage("[data-warmup-open]", "热身动作", "Warm-up drills");
+  setButtonLanguage("[data-rehab-open]", "动作筛查", "Movement screen");
   setButtonLanguage("[data-technique-button]", "技术笔记", "Technique notes");
   setButtonLanguage("#exportButton", "导出 PDF", "Export PDF");
   setIconButtonTextLanguage("exportQuickButton", "导出 PDF", "Export PDF");
@@ -8109,9 +8110,23 @@ function renderToolLanguage() {
   setButtonLanguage(".mobile-bottom-nav [data-body-profile-open]", "档案", "Profile");
   setButtonLanguage(".mobile-bottom-nav [data-diet-open]", "饮食", "Nutrition");
   setButtonLanguage(".mobile-bottom-nav [data-analytics-open]", "图表", "Charts");
+  setButtonLanguage(".mobile-bottom-nav [data-rehab-open]", "筛查", "Screen");
   setButtonLanguage("[data-modal-close]", "关闭", "Close");
   setTextLanguage("dietModalTitle", "垂直饮食法", "Vertical Diet");
   setTextLanguage("bodyProfileModalTitle", "建立档案", "Body Profile");
+  setTextLanguage("rehabModalTitle", "动作筛查与回训建议", "Movement Screen and Return-to-Training");
+  setTextLanguage(
+    "rehabLead",
+    "这是训练决策辅助，不是医疗诊断。先看红旗风险，再用目标动作、症状行为和低风险干预做复测。",
+    "This is a training decision aid, not a medical diagnosis. Check red flags first, then use the target movement, symptom behavior, and low-risk trials for retesting."
+  );
+  setTextLanguage("rehabSafetyTitle", "红旗筛查", "Red-Flag Screen");
+  setTextLanguage(
+    "rehabRedFlagLabel",
+    "有明显外伤不能承重、夜间痛、反复肿胀/卡锁、麻木无力加重、胸痛气短或症状持续恶化。",
+    "Major trauma with inability to bear weight, night pain, repeated swelling/locking, worsening numbness or weakness, chest pain, shortness of breath, or steadily worsening symptoms."
+  );
+  setTextLanguage("rehabAnalyzeButton", "生成建议", "Generate Suggestions");
   setTextLanguage("bmrModalTitle", "BMR 计算器", "BMR Calculator");
   setTextLanguage("bmrCalculateButton", "计算 BMR", "Calculate BMR");
   setTextLanguage("rpeModalTitle", "RPE 计算器", "RPE Calculator");
@@ -8162,6 +8177,32 @@ function renderToolLanguage() {
   setInputLabelLanguage("warmupTargetInput", "目标重量 kg", "Target load");
   setInputLabelLanguage("warmupBarInput", "空杆重量 kg", "Empty bar");
   setInputLabelLanguage("warmupStepInput", "取整单位 kg", "Rounding step kg");
+  setInputLabelLanguage("rehabTaskInput", "目标动作", "Target movement");
+  setInputLabelLanguage("rehabSymptomInput", "主要问题", "Main issue");
+  setInputLabelLanguage("rehabLoadConditionInput", "出现条件", "When it appears");
+  setInputLabelLanguage("rehabPainInput", "疼痛等级", "Pain level");
+  setInputLabelLanguage("rehabNotesInput", "简短描述", "Short notes");
+  setSelectOptionsLanguage("rehabTaskInput", {
+    squat: { zh: "深蹲 / 下肢推", en: "Squat / lower push" },
+    bench: { zh: "卧推 / 上肢推", en: "Bench / upper push" },
+    deadlift: { zh: "硬拉 / 髋铰链", en: "Deadlift / hip hinge" },
+    pull: { zh: "划船 / 下拉", en: "Row / pulldown" },
+    footAnkle: { zh: "足踝 / 膝盖轨迹", en: "Foot-ankle / knee track" },
+    breathing: { zh: "呼吸 / 腹压", en: "Breathing / bracing" },
+  });
+  setSelectOptionsLanguage("rehabSymptomInput", {
+    pain: { zh: "疼痛", en: "Pain" },
+    stiffness: { zh: "活动受限 / 卡住", en: "Stiffness / blocked range" },
+    control: { zh: "动作失控 / 代偿", en: "Control loss / compensation" },
+    weakness: { zh: "力量掉很多", en: "Major strength drop" },
+    fatigue: { zh: "疲劳恢复慢", en: "Slow recovery" },
+  });
+  setSelectOptionsLanguage("rehabLoadConditionInput", {
+    warmup: { zh: "热身重量就出现", en: "During warm-ups" },
+    working: { zh: "正式组出现", en: "During work sets" },
+    heavy: { zh: "大重量/接近极限出现", en: "Heavy / near max" },
+    late: { zh: "训练后半段或隔天出现", en: "Late session or next day" },
+  });
   setSelectOptionsLanguage("bmrSexInput", {
     male: { zh: "男性", en: "Male" },
     female: { zh: "女性", en: "Female" },
@@ -8214,6 +8255,7 @@ function renderToolLanguage() {
       ? "Enter a target load to build warm-up sets."
       : "输入目标重量后生成热身组。";
   }
+  setRehabDefaultResult();
 }
 
 const STATIC_TEXT_ORIGINALS = new WeakMap();
@@ -8234,7 +8276,15 @@ const STATIC_I18N = new Map(
     "BMR 计算器": "BMR Calculator",
     "热身动作库": "Warm-up Library",
     "训练图表": "Training Charts",
+    "动作筛查": "Movement Screen",
     "PDF 导出": "PDF Export",
+    "筛查": "Screen",
+    "v2.36 · 动作筛查助手": "v2.36 · Movement Screen Assistant",
+    "2026-08-28 22:03 更新": "Updated 2026-08-28 22:03",
+    "新增动作筛查助手，用目标动作、症状、疼痛等级和出现条件生成训练调整建议。": "Adds a movement screen assistant that uses target movement, symptoms, pain level, and trigger conditions to suggest training adjustments.",
+    "输出红旗提醒、低风险测试、干预试做、立即复测和回训标准。": "Outputs red-flag guidance, low-risk tests, intervention trials, immediate retests, and return-to-training criteria.",
+    "明确非医疗诊断边界，疼痛高或出现红旗时优先暂停加量并评估。": "Clarifies the non-medical boundary: high pain or red flags should pause progression and prompt assessment.",
+    "新增动作筛查助手；按目标动作、症状、疼痛等级和出现条件生成低风险测试、干预试做、立即复测和回训标准，并加入红旗风险提醒。": "Adds a movement screen assistant that generates low-risk tests, intervention trials, immediate retests, and return-to-training criteria from target movement, symptoms, pain level, and trigger conditions, with red-flag prompts.",
     "热身重量生成器": "Warm-up Load Builder",
     "输入今天的 topset 或正式组重量，按比例生成空杆到 80-85% 的递进热身。": "Enter today's top set or work-set load to build a ramp from the empty bar to 80-85%.",
     "输入目标重量后生成热身组。": "Enter a target load to build warm-up sets.",
@@ -15157,6 +15207,210 @@ function renderWarmupLoadResult() {
     <p>${escapeHtml(note)}</p>`;
 }
 
+const REHAB_TASK_GUIDES = {
+  squat: {
+    zh: {
+      focus: "足底三点、踝背屈、髋膝轨迹、骨盆/肋骨对位和腹压维持。",
+      hypotheses: ["踝/足底策略限制导致膝轨迹代偿", "髋部控制或股四头容量不足", "重量上来后腹压和躯干刚性下降"],
+      tests: ["徒手深蹲、暂停底部深蹲和脚跟垫高深蹲对比", "单腿下蹲或台阶下放观察膝盖轨迹", "同重量下降 10-20% 后复测动作质量和疼痛"],
+      trial: ["先降重 10-20%，用 3 秒离心 + 底部 1 秒暂停找轨迹", "加入前脚抬高膝前移、髋飞机或弹力带侧向走 1-2 轮", "用短口令：脚底压稳、膝盖跟脚尖、胸髋一起"],
+      retest: "复测原本出问题的深蹲重量或同动作低 10% 版本，看疼痛、速度、膝轨迹和底部稳定是否改善。",
+      progression: "疼痛小于等于 2/10 且动作稳定时，每次只恢复 5-10% 负荷或 1-2 组；疼痛大于 3/10 或轨迹明显失控，保留无痛变式并减少专项量。"
+    },
+    en: {
+      focus: "Tripod foot, ankle dorsiflexion, hip-knee tracking, rib/pelvis stack, and pressure control.",
+      hypotheses: ["Ankle/foot strategy may be driving knee compensation", "Hip control or quad capacity may be limiting", "Pressure and trunk stiffness may drop as load rises"],
+      tests: ["Compare bodyweight squat, paused bottom squat, and heel-elevated squat", "Use single-leg squat or step-down to observe knee tracking", "Retest with 10-20% lower load and compare pain/quality"],
+      trial: ["Reduce load 10-20%, use 3-sec eccentric plus 1-sec pause", "Add knee-over-toe ankle rocks, hip airplanes, or banded side walks", "Use cues: stable foot, knee follows toes, chest and hips rise together"],
+      retest: "Retest the original squat task or a 10% lighter version and compare pain, speed, knee track, and bottom stability.",
+      progression: "If pain is <=2/10 and movement is stable, restore only 5-10% load or 1-2 sets at a time. If pain is >3/10 or mechanics clearly break, keep a pain-free variant and reduce specific volume."
+    }
+  },
+  bench: {
+    zh: {
+      focus: "胸椎支撑、肩胛与肋骨贴合、手腕/前臂垂直、触胸点和腿驱动。",
+      hypotheses: ["肩胛没有稳定贴合肋骨，底部支撑丢失", "手腕或前臂路径改变导致肩前侧压力增大", "胸椎和上背支撑不足，重重量下动作变形"],
+      tests: ["空杆到 60% 做暂停卧推，观察触胸点是否一致", "窄一点或宽一点握距各做轻组，对比肩部压力", "俯卧撑 plus 或墙滑看肩胛上旋/前锯肌控制"],
+      trial: ["先降重 10-15%，做暂停 1 秒的技术组", "加入胸椎旋转、墙滑、弹力带外旋或前锯肌推 1-2 轮", "口令用：上背压住、手腕叠肘、胸口迎杠、腿向后推"],
+      retest: "复测原本疼痛或卡住的卧推动作，重点看触胸点、肩前侧压力和推起路径。",
+      progression: "无痛且 RPE 回到目标范围后再加重量；如果肩前侧痛或麻木加重，停止重卧推并换成无痛 ROM 的哑铃/俯卧撑变式。"
+    },
+    en: {
+      focus: "T-spine support, scapula-rib connection, wrist/forearm stack, touch point, and leg drive.",
+      hypotheses: ["Scapula may lose connection to the rib cage at the bottom", "Wrist or forearm path may increase anterior shoulder stress", "Upper-back support may fail under heavier load"],
+      tests: ["Paused bench from empty bar to 60% and check touch-point consistency", "Try slightly narrower/wider grip with light sets and compare shoulder pressure", "Use push-up plus or wall slide to check scapular control"],
+      trial: ["Reduce load 10-15% and use 1-sec paused technique sets", "Add T-spine rotations, wall slides, band external rotations, or serratus push-ups", "Use cues: upper back down, wrist over elbow, chest to bar, legs push back"],
+      retest: "Retest the original bench task and compare touch point, anterior shoulder pressure, and bar path.",
+      progression: "Add load only when pain is absent and RPE returns to target. If anterior shoulder pain or numbness worsens, stop heavy benching and use pain-free dumbbell or push-up ROM."
+    }
+  },
+  deadlift: {
+    zh: {
+      focus: "足中压力、髋铰链、杠贴身、背阔肌张力、腹压和离地前拉紧杠。",
+      hypotheses: ["起拉前没有拉紧杠，导致离地瞬间代偿", "髋膝时序变化让杠铃离身体太远", "后侧链或躯干容量不足，后半程质量下降"],
+      tests: ["轻重量停顿硬拉：离地 2-3cm 暂停，检查背部和杠距", "RDL 与暂停硬拉对比，看哪一个更能保持张力", "同重量单次重置，不做连续弹地，比较每次起始位"],
+      trial: ["降重 10-20%，每次完全重置再拉", "加入停顿硬拉或 RDL 2-3 组，RPE 控制 6 左右", "口令用：腋下夹紧、杠贴腿、脚压地、髋往杠走"],
+      retest: "复测原硬拉重量的 80-90%，看杠距、起拉速度、腰背紧张感和疼痛是否改善。",
+      progression: "连续两次训练能稳定无痛完成，再恢复普通硬拉容量；如果腰背痛扩散、麻木或力量明显下降，停止重拉并转专业评估。"
+    },
+    en: {
+      focus: "Midfoot pressure, hip hinge, bar proximity, lat tension, pressure, and pulling slack before liftoff.",
+      hypotheses: ["Slack may not be pulled out before liftoff", "Hip/knee timing may let the bar drift away", "Posterior-chain or trunk capacity may drop late in the session"],
+      tests: ["Light paused deadlift 2-3 cm off the floor to check back position and bar distance", "Compare RDL and paused deadlift for tension control", "Use reset singles instead of touch-and-go and compare starting position"],
+      trial: ["Reduce load 10-20% and reset every rep", "Add paused deadlift or RDL for 2-3 sets around RPE 6", "Use cues: armpits tight, bar close, push floor, hips to bar"],
+      retest: "Retest 80-90% of the original deadlift load and compare bar distance, speed off the floor, back tension, and pain.",
+      progression: "Restore normal deadlift volume after two stable pain-free sessions. If back pain spreads, numbness appears, or strength drops clearly, stop heavy pulls and seek assessment."
+    }
+  },
+  pull: {
+    zh: {
+      focus: "肋骨位置、肩胛节奏、握法、腕肘方向，以及背部先参与还是手臂先抢。",
+      hypotheses: ["手臂先发力，背阔/上背参与不足", "肋骨外翻或耸肩让肩颈压力增大", "握距或腕角导致肘路径不稳定"],
+      tests: ["轻重量下拉，停在底部 1 秒，观察肩颈是否紧张", "胸托划船和绳索划船对比，找更稳定的背部感觉", "换中立握/窄握测试肘和肩舒适度"],
+      trial: ["降重，先做肩胛下沉/后收，再拉手肘", "加入胸托划船、直臂下压或面拉作为低风险试验", "口令用：肋骨收住、肘向髋、手只是钩子"],
+      retest: "复测原拉类动作，看肩颈压力、背部发力感和肘路径是否改善。",
+      progression: "如果肩颈压力下降，可逐步恢复重量；如果麻木、放射痛或握力明显下降，先停掉刺激动作。"
+    },
+    en: {
+      focus: "Rib position, scapular timing, grip, wrist/elbow direction, and whether the back or arms start the pull.",
+      hypotheses: ["Arms may dominate before lats/upper back engage", "Rib flare or shrugging may increase neck/shoulder stress", "Grip or wrist angle may destabilize elbow path"],
+      tests: ["Light pulldown with 1-sec bottom pause and check neck tension", "Compare chest-supported row and cable row for back connection", "Try neutral/narrow grip and compare elbow/shoulder comfort"],
+      trial: ["Reduce load, set scapula first, then pull elbows", "Try chest-supported rows, straight-arm pulldowns, or face pulls", "Use cues: ribs down, elbows to hips, hands are hooks"],
+      retest: "Retest the original pull and compare neck pressure, back connection, and elbow path.",
+      progression: "If neck/shoulder pressure drops, rebuild load gradually. Stop irritating movements if numbness, radiating pain, or grip loss appears."
+    }
+  },
+  footAnkle: {
+    zh: {
+      focus: "足底三点、第一跖趾关节、踝背屈、胫骨旋转和落地/蹲起时膝盖轨迹。",
+      hypotheses: ["踝背屈或第一跖趾活动受限", "足底横向稳定不足，导致膝盖轨迹变化", "鞋子、站距或足压分布影响动作"],
+      tests: ["膝触墙踝背屈测试，两侧对比", "提踵测试和单腿平衡，看足弓与大脚趾控制", "脚跟垫高或换鞋复测深蹲/弓步"],
+      trial: ["做踝背屈松动、短足控制、提踵和胫骨前移练习", "训练中先使用稳定鞋或轻微垫高作为短期辅助", "不要只看足弓高低，重点看疼痛、压力和动作变化"],
+      retest: "复测原来的蹲、弓步、跳落地或走路疼痛，观察膝轨迹和足底压力是否改善。",
+      progression: "改善能保持 24-48 小时后再逐步增加深度、速度或重量。若有持续肿胀、卡锁或不能承重，停止训练并评估。"
+    },
+    en: {
+      focus: "Tripod foot, first MTP, ankle dorsiflexion, tibial rotation, and knee track during squats/landings.",
+      hypotheses: ["Ankle dorsiflexion or first MTP motion may be limited", "Forefoot stability may affect knee path", "Shoes, stance, or pressure distribution may affect the task"],
+      tests: ["Knee-to-wall dorsiflexion test side to side", "Heel raise and single-leg balance for arch/big-toe control", "Retest squat/lunge with heel lift or shoe change"],
+      trial: ["Use dorsiflexion mobilization, short-foot control, calf raises, and tibial glide drills", "Use stable shoes or slight heel elevation as a short-term aid", "Do not judge by arch height only; track pain, pressure, and movement response"],
+      retest: "Retest the original squat, lunge, landing, or walking symptom and compare knee track and foot pressure.",
+      progression: "If changes hold for 24-48 hours, gradually add depth, speed, or load. Stop and seek assessment with persistent swelling, locking, or inability to bear weight."
+    }
+  },
+  breathing: {
+    zh: {
+      focus: "胸腔/骨盆对位、安静吸气、呼气后停顿、侧腰扩张、说话耐受和训练中气短。",
+      hypotheses: ["过度耸肩或上胸呼吸增加肩颈紧张", "腹压建立方式过猛，导致动作前就紧绷", "训练压力或疲劳影响呼吸节奏和恢复"],
+      tests: ["仰卧 90/90 呼吸 3-5 次，观察颈肩是否放松", "轻重量主项前后对比气短、头晕和动作稳定", "走路说话测试，观察是否容易喘或频繁叹气"],
+      trial: ["轻收下巴，呼气到肋骨回落，停 1-2 秒，再安静吸气", "不要强行鼓肚子或憋到头晕；把 360 度腹压当训练技巧，不当诊断标准", "主项热身只做少量呼吸重置，避免练累"],
+      retest: "复测原训练动作或走路/说话耐受，看气短、颈肩紧张和动作稳定是否改善。",
+      progression: "如果呼吸重置后动作更稳，可放在热身里；若出现胸痛、晕厥、明显心悸或突然运动耐受下降，停止训练并就医。"
+    },
+    en: {
+      focus: "Rib/pelvis orientation, quiet inhale, pause after exhale, lateral expansion, speech tolerance, and exercise breathlessness.",
+      hypotheses: ["Upper-chest breathing or shrugging may increase neck tension", "Overly aggressive bracing may create tension before the lift", "Stress or fatigue may affect breathing rhythm and recovery"],
+      tests: ["Supine 90/90 breathing for 3-5 breaths and check neck/shoulder relaxation", "Compare breathlessness and stability before/after light main-lift sets", "Walk-and-talk tolerance: note air hunger or frequent sighs"],
+      trial: ["Slight chin tuck, exhale ribs down, pause 1-2 sec, then inhale quietly", "Avoid forceful belly pushing or breath-holding until dizzy; use 360 pressure as a skill, not a diagnosis", "Use only a small reset during warm-up so it does not become fatigue"],
+      retest: "Retest the original lift or walk/speech tolerance and compare breathlessness, neck tension, and stability.",
+      progression: "If the reset improves the task, keep it in warm-up. Stop training and seek care with chest pain, syncope, marked palpitations, or sudden exercise intolerance."
+    }
+  }
+};
+
+function selectedOptionText(id) {
+  const node = $(id);
+  if (!node) return "";
+  return node.options?.[node.selectedIndex]?.textContent || node.value || "";
+}
+
+function rehabResultDefaultText() {
+  return isEnglish()
+    ? "Complete the fields to generate red-flag guidance, low-risk tests, an intervention trial, a retest, and return-to-training criteria."
+    : "填完后生成：红旗判断、低风险测试、干预试验、复测方式和回训条件。";
+}
+
+function setRehabDefaultResult() {
+  const target = $("rehabResult");
+  if (target && !target.dataset.generated) {
+    target.classList.remove("warning");
+    target.textContent = rehabResultDefaultText();
+  }
+}
+
+function renderRehabSuggestions() {
+  const target = $("rehabResult");
+  if (!target) return;
+  target.dataset.generated = "true";
+  const redFlag = Boolean($("rehabRedFlagInput")?.checked);
+  const pain = Number($("rehabPainInput")?.value || 0);
+  const task = $("rehabTaskInput")?.value || "squat";
+  const symptom = selectedOptionText("rehabSymptomInput");
+  const condition = selectedOptionText("rehabLoadConditionInput");
+  const notes = $("rehabNotesInput")?.value.trim();
+  const guide = REHAB_TASK_GUIDES[task]?.[isEnglish() ? "en" : "zh"] || REHAB_TASK_GUIDES.squat.zh;
+  const highRisk = redFlag || pain >= 7;
+  target.classList.toggle("warning", highRisk);
+  if (highRisk) {
+    target.innerHTML = isEnglish()
+      ? `
+        <h4>Stop normal progression and get assessed</h4>
+        <ul>
+          <li>This report includes red flags or pain ${pain}/10. Do not treat this as a normal technique problem.</li>
+          <li>Pause heavy loading and avoid chasing PRs or forced range of motion.</li>
+          <li>Use professional medical or rehab evaluation before returning to heavy training.</li>
+        </ul>
+        <p><strong>Boundary:</strong> This tool is a training screen, not a diagnosis.</p>
+      `
+      : `
+        <h4>暂停正常加量，优先评估</h4>
+        <ul>
+          <li>当前包含红旗风险或疼痛 ${pain}/10，不要当成普通技术问题硬练。</li>
+          <li>暂停大重量、PR 尝试和强行加活动范围。</li>
+          <li>先做专业医疗或康复评估，再决定是否回到重训练。</li>
+        </ul>
+        <p><strong>边界：</strong>这个工具是训练筛查，不是诊断。</p>
+      `;
+    return;
+  }
+  const title = isEnglish()
+    ? `${selectedOptionText("rehabTaskInput")} · ${symptom || "Issue"} · ${condition || "Condition"}`
+    : `${selectedOptionText("rehabTaskInput")} · ${symptom || "问题"} · ${condition || "出现条件"}`;
+  const summary = isEnglish()
+    ? `Hypothesis-driven screen for ${title}. Pain level: ${pain}/10.${notes ? ` Notes: ${escapeHtml(notes)}` : ""}`
+    : `针对 ${title} 的假设驱动筛查。疼痛等级：${pain}/10。${notes ? `描述：${escapeHtml(notes)}` : ""}`;
+  const listHtml = (items) => items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  target.innerHTML = `
+    <h4>${escapeHtml(title)}</h4>
+    <p>${summary}</p>
+    <div>
+      <strong>${isEnglish() ? "Main focus" : "优先观察"}</strong>
+      <ul><li>${escapeHtml(guide.focus)}</li></ul>
+    </div>
+    <div>
+      <strong>${isEnglish() ? "2-3 hypotheses to test" : "值得测试的 2-3 个假设"}</strong>
+      <ul>${listHtml(guide.hypotheses)}</ul>
+    </div>
+    <div>
+      <strong>${isEnglish() ? "Objective tests" : "客观测试"}</strong>
+      <ul>${listHtml(guide.tests)}</ul>
+    </div>
+    <div>
+      <strong>${isEnglish() ? "Low-risk trial" : "低风险干预试验"}</strong>
+      <ul>${listHtml(guide.trial)}</ul>
+    </div>
+    <div>
+      <strong>${isEnglish() ? "Immediate retest" : "立即复测"}</strong>
+      <ul><li>${escapeHtml(guide.retest)}</li></ul>
+    </div>
+    <div>
+      <strong>${isEnglish() ? "Return-to-training rule" : "回训标准"}</strong>
+      <ul><li>${escapeHtml(guide.progression)}</li></ul>
+    </div>
+    <p><strong>${isEnglish() ? "Evidence boundary" : "证据边界"}：</strong>${isEnglish() ? "A short-term response supports a hypothesis; it does not prove a diagnosis or permanent structural change." : "短期改善只能支持某个假设，不能证明诊断，也不能证明结构被永久改变。"}</p>
+  `;
+}
+
 function liftKeyForItem(item) {
   const type = movementType(item);
   if (type === "bench" || type === "benchVariant") return "bench";
@@ -15429,6 +15683,12 @@ function bindActions() {
       toggleModal("warmupModal", true);
     });
   });
+  document.querySelectorAll("[data-rehab-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setRehabDefaultResult();
+      toggleModal("rehabModal", true);
+    });
+  });
   document.querySelectorAll("[data-analytics-open]").forEach((button) => {
     button.addEventListener("click", () => {
       renderAnalyticsCharts();
@@ -15451,6 +15711,7 @@ function bindActions() {
   $("rpeE1rmButton")?.addEventListener("click", calculateRpeE1rm);
   $("formulaMaxButton")?.addEventListener("click", calculateFormulaMax);
   $("rpeLoadButton")?.addEventListener("click", calculateRpeLoad);
+  $("rehabAnalyzeButton")?.addEventListener("click", renderRehabSuggestions);
   ["formulaLoadInput", "formulaRepsInput"].forEach((id) => {
     $(id)?.addEventListener("input", calculateFormulaMax);
   });

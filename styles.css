@@ -6167,6 +6167,12 @@ tbody tr.generated-backdown {
   color: #17252c;
 }
 
+.top-actions .tool-button[data-rehab-open] {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
 .top-tool-menu {
   position: relative;
   flex: 0 0 auto;
@@ -6236,6 +6242,140 @@ tbody tr.generated-backdown {
   color: #9f2d1d;
   background: #fff5f2;
   border-color: #ffd1c7;
+}
+
+/* v2.36: movement screen and return-to-training assistant. */
+.tool-button[data-rehab-open],
+.mobile-bottom-nav button[data-rehab-open] {
+  background: #eefaf0;
+  border-color: #a7e4b2;
+  color: #166534;
+}
+
+.rehab-card {
+  width: min(860px, 100%);
+}
+
+.rehab-safety {
+  padding: 12px;
+  border: 1px solid #f4a8a8;
+  border-radius: 10px;
+  background: #fff7f7;
+}
+
+.rehab-safety h4 {
+  margin: 0 0 8px;
+  color: #9f1239;
+}
+
+.checkline {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 760;
+}
+
+.checkline input {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--accent-2);
+}
+
+.rehab-grid {
+  margin-top: 12px;
+}
+
+.rehab-notes-label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.rehab-notes-label textarea {
+  width: 100%;
+  min-height: 86px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  color: var(--ink);
+}
+
+#rehabAnalyzeButton {
+  min-height: 42px;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #166534;
+  color: #fff;
+  font-weight: 850;
+  padding: 0 14px;
+}
+
+.rehab-result {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.48;
+}
+
+.rehab-result.warning {
+  border-color: #f4a8a8;
+  background: #fff7f7;
+}
+
+.rehab-result h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.rehab-result p {
+  margin: 0;
+}
+
+.rehab-result ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+.rehab-result li + li {
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .mobile-bottom-nav {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .mobile-bottom-nav button {
+    min-height: 48px;
+    font-size: 10px;
+  }
+
+  .mobile-bottom-nav button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .rehab-card {
+    max-height: 84vh;
+  }
 }
 
 .sidebar {

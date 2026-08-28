@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ForgePlan 自定义训练计划库</title>
-    <link rel="stylesheet" href="./styles.css?v=20260730-v235-clean-shell" />
+    <link rel="stylesheet" href="./styles.css?v=20260828-v236-movement-screen" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./app.js?v=20260730-v235-clean-shell"></script>
+    <script defer src="./app.js?v=20260828-v236-movement-screen"></script>
   </head>
   <body>
     <section id="activationGate" class="activation-gate hidden" aria-label="激活">
       <div class="activation-card">
         <div class="activation-brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.35">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.36">
             <img class="brand-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -43,6 +43,7 @@
             <span>降重组拆分</span>
             <span>BMR 计算器</span>
             <span>热身动作库</span>
+            <span>动作筛查</span>
             <span>训练图表</span>
             <span>刷新清空</span>
             <span>PDF 导出</span>
@@ -62,15 +63,16 @@
             <span>更新内容</span>
             <a id="historyLogLink" href="#historyLog">历史日志</a>
           </div>
-          <strong>v2.35 · 清爽版工作台</strong>
-          <small class="update-time">2026-07-30 01:23 更新</small>
+          <strong>v2.36 · 动作筛查助手</strong>
+          <small class="update-time">2026-08-28 22:03 更新</small>
           <ul>
-            <li>顶部入口收束为核心导航，档案、饮食、图表和热身统一放进工具菜单。</li>
-            <li>左侧知识库和小课堂压缩为可滚动信息区，减少第一屏拥挤感。</li>
-            <li>主内容卡片减少重阴影和杂色，训练表与问卷阅读更干净。</li>
+            <li>新增动作筛查助手，用目标动作、症状、疼痛等级和出现条件生成训练调整建议。</li>
+            <li>输出红旗提醒、低风险测试、干预试做、立即复测和回训标准。</li>
+            <li>明确非医疗诊断边界，疼痛高或出现红旗时优先暂停加量并评估。</li>
           </ul>
           <details id="historyLog">
             <summary>查看历史日志</summary>
+            <p><strong>v2.36</strong> 2026-08-28 22:03：新增动作筛查助手；按目标动作、症状、疼痛等级和出现条件生成低风险测试、干预试做、立即复测和回训标准，并加入红旗风险提醒。</p>
             <p><strong>v2.35</strong> 2026-07-30 01:23：清爽版工作台上线；顶部二级工具收进工具菜单，左侧知识库/小课堂限高滚动，主内容卡片减少重阴影和杂色。</p>
             <p><strong>v2.34</strong> 2026-07-29 01:30：桌面端新增可拖拽左右分栏，左侧知识库/参数区可以展开阅读，宽度自动保存；手机端保持紧凑布局。</p>
             <p><strong>v2.33</strong> 2026-07-29 00:53：知识库新增上肢 / 下肢纠正训练速查，整理胸椎曲度变直、翼状肩胛、推拉代偿、下肢内旋/膝内扣、骨盆前倾/后倾和足弓控制，并补充可搜索词条。</p>
@@ -142,7 +144,7 @@
     <div id="appShell" class="app-shell hidden">
       <aside class="sidebar">
         <div class="brand">
-          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.35">
+          <button class="logo-button" data-changelog-open type="button" title="当前版本 v2.36">
             <img class="brand-logo sidebar-logo" src="./assets/power-logo-small.jpg" alt="查看更新日志" />
           </button>
           <div>
@@ -312,6 +314,10 @@
                   <button class="tool-button" data-warmup-open type="button" title="热身动作" aria-label="热身动作">
                     <i data-lucide="flame"></i>
                     <span>热身</span>
+                  </button>
+                  <button class="tool-button" data-rehab-open type="button" title="动作筛查" aria-label="动作筛查">
+                    <i data-lucide="activity"></i>
+                    <span>筛查</span>
                   </button>
                 </div>
               </details>
@@ -585,6 +591,10 @@
                     <i data-lucide="flame"></i>
                     <span>热身</span>
                   </button>
+                  <button class="tool-button" data-rehab-open type="button" title="动作筛查" aria-label="动作筛查">
+                    <i data-lucide="activity"></i>
+                    <span>筛查</span>
+                  </button>
                   <button class="icon-button" id="exportButton" type="button" title="导出 PDF 计划">
                     <i data-lucide="download"></i>
                     <span>导出</span>
@@ -754,6 +764,9 @@
                 <i data-lucide="arrow-left"></i>
               </button>
               <button class="language-toggle" data-language-toggle type="button" title="切换语言" aria-label="切换语言">EN</button>
+              <button class="tool-button" data-rehab-open type="button" title="动作筛查" aria-label="动作筛查">
+                <i data-lucide="activity"></i>
+              </button>
             </div>
           </header>
           <section class="technique-notes" id="techniqueNotes"></section>
@@ -781,6 +794,10 @@
       <button data-analytics-open type="button" title="训练图表" aria-label="训练图表">
         <i data-lucide="bar-chart-3"></i>
         <span>图表</span>
+      </button>
+      <button data-rehab-open type="button" title="动作筛查" aria-label="动作筛查">
+        <i data-lucide="activity"></i>
+        <span>筛查</span>
       </button>
     </nav>
     <div class="floating-tools" aria-label="训练工具">
@@ -1032,6 +1049,73 @@
         <div id="bodyProfileContent" class="body-profile-content"></div>
       </div>
     </div>
+    <div id="rehabModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rehabModalTitle">
+      <div class="modal-card rehab-card">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">MOVEMENT SCREEN</span>
+            <h3 id="rehabModalTitle">动作筛查与回训建议</h3>
+          </div>
+          <button class="icon-button" type="button" data-modal-close="rehabModal" title="关闭">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p class="diet-lead" id="rehabLead">
+          这是训练决策辅助，不是医疗诊断。先看红旗风险，再用目标动作、症状行为和低风险干预做复测。
+        </p>
+        <section class="rehab-safety">
+          <h4 id="rehabSafetyTitle">红旗筛查</h4>
+          <label class="checkline">
+            <input id="rehabRedFlagInput" type="checkbox" />
+            <span id="rehabRedFlagLabel">有明显外伤不能承重、夜间痛、反复肿胀/卡锁、麻木无力加重、胸痛气短或症状持续恶化。</span>
+          </label>
+        </section>
+        <div class="calc-grid rehab-grid">
+          <label>
+            目标动作
+            <select id="rehabTaskInput">
+              <option value="squat">深蹲 / 下肢推</option>
+              <option value="bench">卧推 / 上肢推</option>
+              <option value="deadlift">硬拉 / 髋铰链</option>
+              <option value="pull">划船 / 下拉</option>
+              <option value="footAnkle">足踝 / 膝盖轨迹</option>
+              <option value="breathing">呼吸 / 腹压</option>
+            </select>
+          </label>
+          <label>
+            主要问题
+            <select id="rehabSymptomInput">
+              <option value="pain">疼痛</option>
+              <option value="stiffness">活动受限 / 卡住</option>
+              <option value="control">动作失控 / 代偿</option>
+              <option value="weakness">力量掉很多</option>
+              <option value="fatigue">疲劳恢复慢</option>
+            </select>
+          </label>
+          <label>
+            出现条件
+            <select id="rehabLoadConditionInput">
+              <option value="warmup">热身重量就出现</option>
+              <option value="working">正式组出现</option>
+              <option value="heavy">大重量/接近极限出现</option>
+              <option value="late">训练后半段或隔天出现</option>
+            </select>
+          </label>
+          <label>
+            疼痛等级
+            <input id="rehabPainInput" type="number" min="0" max="10" step="1" value="0" />
+          </label>
+        </div>
+        <label class="rehab-notes-label">
+          简短描述
+          <textarea id="rehabNotesInput" rows="3" placeholder="例如：深蹲到底部右膝内扣，120kg 以上明显；降重量后好一些。"></textarea>
+        </label>
+        <button id="rehabAnalyzeButton" type="button">生成建议</button>
+        <div id="rehabResult" class="rehab-result">
+          填完后生成：红旗判断、低风险测试、干预试验、复测方式和回训条件。
+        </div>
+      </div>
+    </div>
     <div id="analyticsModal" class="tool-modal hidden" role="dialog" aria-modal="true" aria-labelledby="analyticsModalTitle">
       <div class="modal-card analytics-card">
         <div class="modal-head">
@@ -1058,6 +1142,7 @@
           </button>
         </div>
         <div class="changelog-list">
+          <article><strong>v2.36</strong><span>2026-08-28 22:03</span><p>新增动作筛查助手；按目标动作、症状、疼痛等级和出现条件生成低风险测试、干预试做、立即复测和回训标准，并加入红旗风险提醒。</p></article>
           <article><strong>v2.35</strong><span>2026-07-30 01:23</span><p>清爽版工作台上线；顶部二级工具收进工具菜单，左侧知识库/小课堂限高滚动，主内容卡片减少重阴影和杂色。</p></article>
           <article><strong>v2.34</strong><span>2026-07-29 01:30</span><p>桌面端新增可拖拽左右分栏，左侧知识库/参数区可以展开阅读，宽度自动保存；手机端保持紧凑布局。</p></article>
           <article><strong>v2.33</strong><span>2026-07-29 00:53</span><p>知识库新增上肢 / 下肢纠正训练速查，整理胸椎曲度变直、翼状肩胛、推拉代偿、下肢内旋/膝内扣、骨盆前倾/后倾和足弓控制，并补充可搜索词条。</p></article>
